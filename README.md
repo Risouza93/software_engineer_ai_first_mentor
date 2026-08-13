@@ -208,4 +208,6 @@ EXECUÇÃO AUTÔNOMA
 O GPT personalizado é o mentor principal.
 Codex e Claude Code são ferramentas de execução assistida.
 
-Linha de laborat�rio Git.
+Linha de laborat�rio Git.
+
+LAB GIT: teste de restore staged
