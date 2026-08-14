@@ -1251,3 +1251,121 @@ humano valida
 ↓
 humano decide
 ```
+
+
+---
+
+## Atualização complementar — PowerShell / histórico persistente
+
+### Tema
+
+PSReadLine, histórico persistente e busca por prefixo com PageUp/PageDown.
+
+### Objetivo
+
+Melhorar a ergonomia do terminal para recuperar rapidamente comandos já usados
+durante a formação e no trabalho diário.
+
+### Evidências observadas
+
+Módulo disponível:
+
+```text
+PSReadLine 2.0.0
+```
+
+Histórico persistente:
+
+```text
+C:\Users\richard.feitosa\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+```
+
+Configuração:
+
+```text
+HistorySaveStyle: SaveIncrementally
+```
+
+### O que executei
+
+- inspecionei a versão e o caminho do PSReadLine;
+- identifiquei o arquivo real de histórico persistente;
+- confirmei salvamento incremental;
+- inspecionei key handlers relacionados a histórico;
+- diferenciei navegação geral de busca por prefixo;
+- configurei `PageUp` para `HistorySearchBackward`;
+- configurei `PageDown` para `HistorySearchForward`;
+- compreendi que a configuração pode ser persistida via `$PROFILE`;
+- aprendi a inspecionar o conteúdo do histórico com `Get-Content`.
+
+### Comandos
+
+```powershell
+Get-Module PSReadLine -ListAvailable |
+Select-Object Name, Version, Path
+
+Get-PSReadLineOption |
+Select-Object HistorySavePath, HistorySaveStyle
+
+Get-PSReadLineKeyHandler |
+Where-Object { $_.Function -match "History" } |
+Select-Object Key, Function
+
+Set-PSReadLineKeyHandler -Key PageUp -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key PageDown -Function HistorySearchForward
+
+$PROFILE
+Test-Path $PROFILE
+
+Get-PSReadLineKeyHandler |
+Where-Object { $_.Key -in @("PageUp", "PageDown") } |
+Select-Object Key, Function
+
+Get-Content (Get-PSReadLineOption).HistorySavePath -Tail 20
+```
+
+### Conceitos consolidados
+
+```text
+PSReadLine
+histórico persistente
+HistorySavePath
+SaveIncrementally
+HistorySearchBackward
+HistorySearchForward
+PowerShell Profile
+configuração de sessão
+configuração persistente
+```
+
+Separação importante:
+
+```text
+ConsoleHost_history.txt
+→ histórico dos comandos
+
+$PROFILE
+→ configuração carregada ao iniciar PowerShell
+```
+
+### Impacto no nível
+
+Reforça o nível atual de PowerShell:
+
+```text
+N2 forte — em transição para N3
+```
+
+Não altera automaticamente o nível formal, mas adiciona evidência de uso mais
+consciente e produtivo do ambiente.
+
+---
+
+## Próximo passo atualizado
+
+```text
+MISSÃO 005 — Branching
+```
+
+Claude Code Foundations continua adiado por dependência corporativa e deverá ser
+retomado quando licença e CLI/configuração estiverem disponíveis.
