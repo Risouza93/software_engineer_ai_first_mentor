@@ -211,3 +211,7 @@ Codex e Claude Code são ferramentas de execução assistida.
 ---
 
 Laboratório Teste Lab Git
+
+## Laboratório Codex
+
+Foi realizada uma primeira análise somente leitura do repositório com Codex.
