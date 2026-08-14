@@ -1548,3 +1548,268 @@ git status --short
 ```
 
 Não assumir Working Tree clean com base em uma sessão anterior.
+
+
+------------------------------------------------------------------------
+
+# 40. Histórico persistente do PowerShell com PSReadLine
+
+Foi verificado:
+
+```powershell
+Get-Module PSReadLine -ListAvailable |
+Select-Object Name, Version, Path
+```
+
+Resultado observado:
+
+```text
+PSReadLine 2.0.0
+```
+
+Também foi inspecionada a configuração do histórico:
+
+```powershell
+Get-PSReadLineOption |
+Select-Object HistorySavePath, HistorySaveStyle
+```
+
+Resultado observado:
+
+```text
+HistorySavePath:
+C:\Users\richard.feitosa\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+
+HistorySaveStyle:
+SaveIncrementally
+```
+
+Conclusão:
+
+```text
+PowerShell já possui histórico persistente
+↓
+não é necessário criar outro arquivo manualmente
+```
+
+------------------------------------------------------------------------
+
+# 41. Inspecionar atalhos de histórico do PSReadLine
+
+Comando praticado:
+
+```powershell
+Get-PSReadLineKeyHandler |
+Where-Object { $_.Function -match "History" } |
+Select-Object Key, Function
+```
+
+Key handlers observados:
+
+```text
+Alt+F7    ClearHistory
+Ctrl+s    ForwardSearchHistory
+F8        HistorySearchBackward
+Shift+F8  HistorySearchForward
+DownArrow NextHistory
+UpArrow   PreviousHistory
+Ctrl+r    ReverseSearchHistory
+```
+
+Separação:
+
+```text
+PreviousHistory / NextHistory
+→ navegação geral
+
+HistorySearchBackward / HistorySearchForward
+→ navegação filtrada pelo prefixo digitado
+```
+
+------------------------------------------------------------------------
+
+# 42. Configurar PageUp e PageDown para busca por prefixo
+
+Configuração praticada:
+
+```powershell
+Set-PSReadLineKeyHandler -Key PageUp -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key PageDown -Function HistorySearchForward
+```
+
+**O que faz:** associa `PageUp` e `PageDown` à busca no histórico usando como
+filtro o texto já digitado no prompt.
+
+Exemplo:
+
+```text
+digitar:
+
+git s
+
+PageUp
+↓
+git status --short
+```
+
+Outro exemplo:
+
+```text
+digitar:
+
+cod
+
+PageUp
+↓
+codex resume
+```
+
+**Altera o sistema:** altera apenas a configuração da sessão PowerShell atual,
+a menos que seja colocado no `$PROFILE`.
+
+------------------------------------------------------------------------
+
+# 43. Persistir a configuração no PowerShell Profile
+
+Descobrir o profile:
+
+```powershell
+$PROFILE
+```
+
+Verificar existência:
+
+```powershell
+Test-Path $PROFILE
+```
+
+Se necessário, criar:
+
+```powershell
+New-Item -ItemType File -Path $PROFILE -Force
+```
+
+Abrir para edição:
+
+```powershell
+notepad $PROFILE
+```
+
+Adicionar:
+
+```powershell
+Set-PSReadLineKeyHandler -Key PageUp -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key PageDown -Function HistorySearchForward
+```
+
+Modelo:
+
+```text
+PowerShell inicia
+↓
+carrega $PROFILE
+↓
+configura PSReadLine
+↓
+PageUp / PageDown usam busca por prefixo
+```
+
+------------------------------------------------------------------------
+
+# 44. Validar PageUp e PageDown
+
+Comando:
+
+```powershell
+Get-PSReadLineKeyHandler |
+Where-Object { $_.Key -in @("PageUp", "PageDown") } |
+Select-Object Key, Function
+```
+
+Resultado esperado:
+
+```text
+PageUp    HistorySearchBackward
+PageDown  HistorySearchForward
+```
+
+Teste funcional:
+
+```text
+digitar prefixo
+↓
+pressionar PageUp / PageDown
+↓
+navegar somente por comandos compatíveis
+```
+
+------------------------------------------------------------------------
+
+# 45. Inspecionar o arquivo de histórico persistente
+
+Mostrar todo o histórico salvo:
+
+```powershell
+Get-Content (Get-PSReadLineOption).HistorySavePath
+```
+
+Mostrar somente os últimos comandos:
+
+```powershell
+Get-Content (Get-PSReadLineOption).HistorySavePath -Tail 20
+```
+
+Modelo mental:
+
+```text
+COMANDO EXECUTADO
+↓
+PSReadLine
+↓
+ConsoleHost_history.txt
+↓
+fecha PowerShell
+↓
+abre nova sessão
+↓
+digita prefixo
+↓
+PageUp / PageDown
+↓
+reencontra comandos anteriores
+```
+
+Regra:
+
+```text
+arquivo de histórico do PSReadLine
+≠
+PowerShell Profile
+
+HistorySavePath
+→ guarda comandos usados
+
+$PROFILE
+→ guarda configuração do PowerShell
+```
+
+------------------------------------------------------------------------
+
+# 46. Próximo passo da formação
+
+Depois do fechamento de Codex Foundations e desta melhoria de ergonomia do
+PowerShell:
+
+```text
+MISSÃO 005 — Branching
+```
+
+é a próxima etapa disponível.
+
+Claude Code permanece:
+
+```text
+ADIADO / BLOQUEADO POR DEPENDÊNCIA CORPORATIVA
+```
+
+até que licença e CLI/configuração sejam liberadas pela empresa.
