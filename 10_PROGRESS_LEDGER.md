@@ -3,10 +3,10 @@
 ## Perfil de evolução
 
 ### Git/GitHub
-Nível atual: preencher
+Nível atual: N2 forte — executa fluxo Git/GitHub guiado; entrando em N3
 
 ### PowerShell
-Nível atual: preencher
+Nível atual: N2 forte — em transição para N3
 
 ### Leitura de código
 Nível atual: preencher
@@ -636,3 +636,221 @@ GitHub
 ```
 
 Conectar conscientemente o repositório local existente a um repositório remoto e aprender o fluxo remoto sem perder rastreabilidade e segurança.
+
+### MISSÃO 003 — GitHub
+
+Data: 14/08/2026  
+Tema: GitHub, fluxo remoto, feature branch e Pull Request  
+Problema real: conectar o repositório local de formação ao GitHub e executar um fluxo profissional completo de mudança até integração na `main`.  
+Nível inicial: Git local N2 forte; GitHub remoto ainda em consolidação.  
+Nível final: Git/GitHub N2 forte, entrando em N3. O fluxo foi executado de forma guiada; autonomia N3 ainda deverá ser comprovada sem receita pronta.
+
+#### Objetivo
+
+Construir e praticar:
+
+```text
+repositório local
+↕
+GitHub
+↓
+feature branch
+↓
+Pull Request
+↓
+review
+↓
+merge
+↓
+sincronização local
+```
+
+#### O que executei
+
+- validei o repositório local e a `main`;
+- configurei o remote `origin`;
+- publiquei a `main` no GitHub;
+- pratiquei `fetch`, `pull` e fast-forward remoto;
+- clonei o repositório e validei o `origin` criado pelo clone;
+- removi o clone temporário;
+- criei `feature/github-pr-lab`;
+- fiz uma alteração controlada no `README.md`;
+- revisei o diff antes e depois do staging;
+- criei commit na feature branch;
+- publiquei a feature branch com upstream;
+- criei o primeiro Pull Request;
+- validei `base: main` e `compare: feature/github-pr-lab`;
+- revisei o diff do PR;
+- relacionei mudança → impacto → risco → validação;
+- realizei merge remoto conscientemente;
+- atualizei a `main` local;
+- removi a feature branch local;
+- removi a feature branch remota;
+- confirmei no GitHub que o histórico integrado permaneceu preservado.
+
+#### Comandos
+
+```powershell
+git status
+git branch
+git remote -v
+git remote add origin <URL_HTTPS_DO_REPOSITORIO>
+git push -u origin main
+git push
+git branch -vv
+git fetch
+git fetch origin
+git pull
+git clone <URL_HTTPS_DO_REPOSITORIO> software_engineer_ai_first_mentor_clone
+
+git switch -c feature/github-pr-lab
+git diff
+git add .\README.md
+git diff --staged
+git commit -m "docs: adiciona registro do laboratorio de Pull Request"
+git push -u origin feature/github-pr-lab
+
+git switch main
+git pull
+git branch -d feature/github-pr-lab
+git push origin --delete feature/github-pr-lab
+```
+
+#### Erros
+
+Não houve erro técnico relevante no fluxo final de feature branch → Pull Request → merge.
+
+Durante a leitura do PR, o fluxo de aprovação formal não apareceu para o próprio autor. O review técnico foi realizado pela análise do diff, risco e validação.
+
+#### Como diagnostiquei
+
+Foi mantida a regra:
+
+```text
+OBSERVAR
+↓
+ENTENDER
+↓
+EXECUTAR
+↓
+VALIDAR
+```
+
+No Pull Request:
+
+```text
+intenção
+↓
+arquivos
+↓
+diff
+↓
+impacto
+↓
+risco
+↓
+validação
+↓
+decisão
+```
+
+#### Evidências
+
+- `main` publicada no GitHub;
+- remote `origin` configurado;
+- `fetch` e `pull` praticados;
+- clone realizado e removido;
+- `feature/github-pr-lab` publicada;
+- primeiro Pull Request criado;
+- diff continha somente a alteração planejada no `README.md`;
+- risco classificado como baixo por ser alteração documental;
+- merge remoto concluído;
+- `main` local atualizada;
+- branch local removida com `git branch -d`;
+- branch remota removida com `git push origin --delete`;
+- histórico da alteração confirmado no GitHub após remoção da branch.
+
+#### O que consigo explicar agora
+
+```text
+Git ≠ GitHub
+local ≠ remoto
+origin ≠ origin/main ≠ main
+fetch ≠ pull
+clone ≠ init
+
+branch local ↔ branch remota
+upstream/tracking
+feature branch
+base branch
+compare branch
+Pull Request
+diff de PR
+review orientado a risco
+merge remoto
+sincronização da main local
+remoção de branch local vs remota
+branch removida ≠ histórico integrado removido
+```
+
+Ponte com Quality Engineering:
+
+```text
+mudança
+→ comportamento/impacto
+→ risco
+→ teste/validação
+→ evidência
+```
+
+#### O que ainda não domino
+
+```text
+Git/GitHub N3 autônomo
+branch protection
+merge divergente
+conflitos
+rebase
+review real de PR de outra pessoa
+diagnóstico de falhas Git/GitHub mais complexas
+```
+
+#### Próxima missão
+
+```text
+MISSÃO 004 — AI Coding Tools Foundations
+├── Codex
+└── Claude Code
+```
+
+Sequência inicial:
+
+```text
+Codex
+↓
+documentação oficial atual
+↓
+pré-requisitos
+↓
+instalação
+↓
+autenticação
+↓
+primeira tarefa somente leitura
+↓
+alteração controlada
+↓
+git diff
+↓
+testes/validação
+```
+
+Regra de autonomia:
+
+```text
+LEITURA
+>
+ALTERAÇÃO
+>
+EXECUÇÃO AUTÔNOMA
+```
