@@ -541,26 +541,934 @@ decisão humana após alteração de IA
 ```
 
 ------------------------------------------------------------------------
+------------------------------------------------------------------------
 
-# 17. Próximo bloco — ainda não praticado
+# 17. Estado da sessão e `/status`
 
-Não tratar como concluído ainda:
+Comando praticado no Codex:
 
 ```text
-sessão do Codex
-contexto
-permissões em maior profundidade
-comandos essenciais do Codex
-fechamento do laboratório Codex
-Claude Code
-comparação Codex × Claude Code
+/status
 ```
 
-A cartilha deve ser expandida somente quando esses itens forem efetivamente ensinados e praticados.
+Estado observado:
+
+```text
+OpenAI Codex v0.147.0
+Model:                gpt-5.6-sol (reasoning low, summaries auto)
+Directory:            ~\Documents\ia\software_engineer_ai_first_mentor
+Permissions:          Workspace (Ask for approval)
+Agents.md:            <none>
+Collaboration mode:   Default
+Session:              01a00095-7351-7c63-ba1c-45e608fdf0db
+```
+
+**Objetivo:** inspecionar a configuração da sessão atual, diretório de trabalho,
+permissões, modelo, identidade da sessão e uso de contexto/quota quando exibidos.
+
+Separação importante:
+
+```text
+/status
+→ estado/configuração da sessão Codex
+
+git status
+→ estado do repositório Git
+```
+
+Conceito:
+
+```text
+sessão Codex
+≠
+Working Tree
+≠
+histórico Git
+```
 
 ------------------------------------------------------------------------
 
-# 18. Regra de ouro da MISSÃO 004
+# 18. Permissões do Codex
+
+Comando praticado:
+
+```text
+/permissions
+```
+
+Opções observadas:
+
+```text
+1. Read Only
+2. Ask for approval (non-admin sandbox) (current)
+3. Approve for me
+4. Full Access
+```
+
+Configuração utilizada durante o laboratório:
+
+```text
+Workspace (Ask for approval)
+```
+
+Modelo mental consolidado:
+
+```text
+CAPACIDADE
+"O agente consegue fazer?"
+
+AUTORIZAÇÃO
+"O agente está autorizado a fazer?"
+
+REVISÃO
+"Mesmo autorizado, o resultado deve ser aceito?"
+```
+
+Separação:
+
+```text
+capacidade técnica
+≠
+autorização operacional
+≠
+resultado correto
+≠
+aceitação humana
+```
+
+**Decisão do laboratório:** não ampliar para `Full Access`.
+
+Também foi observado que o sandbox atual protege arquivos e restringe rede sob
+determinadas condições. O comando `/setup-default-sandbox` foi descoberto, mas
+não executado, pois não havia necessidade de alterar a configuração.
+
+------------------------------------------------------------------------
+
+# 19. Slash commands descobertos
+
+A lista real disponível na instalação `v0.147.0` foi inspecionada.
+
+## Comandos efetivamente praticados
+
+```text
+/status
+/permissions
+/diff
+/review
+/exit
+/resume
+```
+
+## Comandos estudados conceitualmente, sem necessidade de execução completa
+
+```text
+/new
+/fork
+/archive
+/delete
+/compact
+/mention
+/ide
+/model
+/plan
+```
+
+## Recursos apenas descobertos — não tratar como dominados
+
+```text
+/fast
+/keymap
+/vim
+/setup-default-sandbox
+/sandbox-add-read-dir
+/experimental
+/approve
+/memories
+/skills
+/import
+/hooks
+/rename
+/app
+/init
+/goal
+/agent
+/side
+/copy
+/raw
+/title
+/statusline
+/theme
+/pets
+/mcp
+/plugins
+/logout
+/feedback
+/ps
+/stop
+/clear
+/personality
+/subagents
+```
+
+Regra:
+
+```text
+descobrir um comando
+≠
+precisar executá-lo
+≠
+dominar o recurso
+```
+
+------------------------------------------------------------------------
+
+# 20. Sessão, contexto e continuidade
+
+Separação consolidada:
+
+```text
+FILESYSTEM
+≠
+GIT
+≠
+SESSÃO DO CODEX
+≠
+CONTEXTO DO MODELO
+```
+
+A context window foi observada via `/status`.
+
+Modelo mental:
+
+```text
+context window
+→ capacidade de contexto disponível ao modelo
+
+arquivos do repositório
+→ estado persistente no filesystem
+
+Git
+→ rastreabilidade do estado do repositório
+```
+
+## `/compact`
+
+Comando estudado:
+
+```text
+/compact
+```
+
+Finalidade observada:
+
+```text
+summarize conversation to prevent hitting the context limit
+```
+
+Modelo:
+
+```text
+conversa extensa
+↓
+/compact
+↓
+resumo do contexto
+↓
+continuação da sessão
+```
+
+Separação:
+
+```text
+/compact
+≠
+git commit
+≠
+salvar arquivos
+≠
+limpar Working Tree
+≠
+encerrar sessão
+```
+
+O comando não foi executado artificialmente porque não havia necessidade real.
+
+------------------------------------------------------------------------
+
+# 21. `/diff` — visão integrada do Codex
+
+Comando praticado:
+
+```text
+/diff
+```
+
+Descrição observada:
+
+```text
+show git diff (including untracked files)
+```
+
+No laboratório, o resultado relevante coincidiu com o que havia sido observado
+diretamente com Git.
+
+Modelo mental:
+
+```text
+/diff
+→ conveniência integrada ao Codex
+
+git diff
+→ consulta direta ao Git
+```
+
+Regra:
+
+```text
+interface do agente
+não substitui
+conhecimento operacional de Git
+```
+
+------------------------------------------------------------------------
+
+# 22. `/review` — revisão das mudanças atuais
+
+Comando praticado:
+
+```text
+/review
+```
+
+Descrição observada:
+
+```text
+review my current changes and find issues
+```
+
+Separação:
+
+```text
+/diff
+→ mostra mudanças
+
+/review
+→ analisa mudanças e procura problemas
+
+humano
+→ valida a análise e decide
+```
+
+O `/review` encontrou um possível problema de continuidade documental:
+referências internas apontavam para nomes antigos de arquivos.
+
+O finding foi tratado como hipótese, não como verdade automática.
+
+------------------------------------------------------------------------
+
+# 23. Validar um finding da IA com evidência independente
+
+Primeiro foram listados os nomes reais dos artefatos:
+
+```powershell
+Get-ChildItem .\context\chat_history\*MISSAO_004* | Select-Object Name
+```
+
+Resultado observado:
+
+```text
+CONTEXTO_SESSAO_MISSAO_004_AI_CODING_TOOLS_2026-08-14.md
+CONTEXTO_SESSAO_MISSAO_004_CODEX_2026-08-14.md
+```
+
+Depois foram pesquisadas referências internas no documento:
+
+```powershell
+Select-String `
+  -Path .\context\chat_history\CONTEXTO_SESSAO_MISSAO_004_CODEX_2026-08-14.md `
+  -Pattern "CONTEXTO.*MISSAO_004"
+```
+
+Foram encontradas referências antigas como:
+
+```text
+CONTEXTO_INICIO_MISSAO_004_AI_CODING_TOOLS_2026-08-14.md
+CONTEXTO_CONTINUIDADE_MISSAO_004_CODEX_2026-08-14.md
+```
+
+Conclusão:
+
+```text
+finding da IA
+↓
+hipótese
+↓
+filesystem confirma nomes reais
+↓
+conteúdo confirma referências antigas
+↓
+VERDADEIRO POSITIVO
+```
+
+Regra consolidada:
+
+```text
+AI encontrou
+≠
+AI provou
+
+evidência independente
+→ confirma ou refuta
+```
+
+------------------------------------------------------------------------
+
+# 24. Correção controlada após AI review
+
+Depois de confirmar o finding, foi autorizada somente a correção das referências
+antigas no arquivo:
+
+```text
+context/chat_history/CONTEXTO_SESSAO_MISSAO_004_CODEX_2026-08-14.md
+```
+
+Substituições autorizadas:
+
+```text
+CONTEXTO_INICIO_MISSAO_004_AI_CODING_TOOLS_2026-08-14.md
+→
+CONTEXTO_SESSAO_MISSAO_004_AI_CODING_TOOLS_2026-08-14.md
+```
+
+e:
+
+```text
+CONTEXTO_CONTINUIDADE_MISSAO_004_CODEX_2026-08-14.md
+→
+CONTEXTO_SESSAO_MISSAO_004_CODEX_2026-08-14.md
+```
+
+A validação foi novamente realizada com `Select-String`.
+
+Fluxo praticado:
+
+```text
+IA detecta
+↓
+humano valida
+↓
+humano autoriza correção específica
+↓
+IA corrige
+↓
+humano valida novamente
+```
+
+------------------------------------------------------------------------
+
+# 25. Estado Git encontrado durante a correção
+
+Foi observado:
+
+```text
+ M README.md
+ D context/chat_history/CONTEXTO_INICIO_MISSAO_004_AI_CODING_TOOLS_2026-08-14.md
+?? context/chat_history/CONTEXTO_SESSAO_MISSAO_004_AI_CODING_TOOLS_2026-08-14.md
+?? context/chat_history/CONTEXTO_SESSAO_MISSAO_004_CODEX_2026-08-14.md
+?? context/commands/comandos_missao_004.md
+```
+
+Conceitos revisados:
+
+```text
+ M
+→ arquivo tracked modificado
+
+ D
+→ arquivo tracked ausente/removido no Working Tree
+
+??
+→ arquivo untracked
+```
+
+Também foi reforçado:
+
+```text
+git status
+→ mostra estado atual
+
+git status
+não prova sozinho
+→ quem causou cada mudança
+→ quando a mudança ocorreu
+```
+
+E:
+
+```text
+arquivo existe
+≠
+arquivo tracked
+```
+
+------------------------------------------------------------------------
+
+# 26. Commit e push realizados por decisão humana
+
+Após a correção e revisão, o usuário decidiu executar:
+
+```powershell
+git add .
+git commit -m "Correções no contexto"
+git push
+```
+
+Commit observado:
+
+```text
+72ab9b3
+```
+
+Resumo do commit:
+
+```text
+4 files changed, 1143 insertions(+)
+rename context/chat_history/{CONTEXTO_INICIO_MISSAO_004_AI_CODING_TOOLS_2026-08-14.md => CONTEXTO_SESSAO_MISSAO_004_AI_CODING_TOOLS_2026-08-14.md} (100%)
+create mode 100644 context/chat_history/CONTEXTO_SESSAO_MISSAO_004_CODEX_2026-08-14.md
+create mode 100644 context/commands/comandos_missao_004.md
+```
+
+O Git reconheceu a mudança do primeiro contexto como `rename` de 100%.
+
+Observação importante:
+
+```text
+git add .
+→ prepara todas as mudanças aplicáveis no diretório atual
+```
+
+Portanto, revisar `git status` antes de utilizá-lo continua sendo uma prática
+importante.
+
+------------------------------------------------------------------------
+
+# 27. Sair e retomar uma sessão
+
+Comando praticado dentro do Codex:
+
+```text
+/exit
+```
+
+Depois, no PowerShell:
+
+```powershell
+codex resume
+```
+
+Objetivo:
+
+```text
+/exit
+→ sair da execução atual
+
+codex resume
+→ localizar e retomar uma sessão salva
+```
+
+O primeiro `codex resume` falhou por um problema de resolução do executável no
+PowerShell. Esse erro gerou um laboratório real de debugging.
+
+------------------------------------------------------------------------
+
+# 28. Debugging — `codex` não reconhecido
+
+Sintoma:
+
+```powershell
+codex resume
+```
+
+Erro observado:
+
+```text
+CommandNotFoundException
+```
+
+Primeiros testes:
+
+```powershell
+Get-Command codex -All
+where.exe codex
+```
+
+Resultados:
+
+```text
+Get-Command
+→ não reconheceu codex
+
+where.exe
+→ não localizou arquivo
+```
+
+Conclusão naquele ponto:
+
+```text
+resume ainda não havia sido processado
+↓
+o PowerShell não conseguia resolver "codex"
+```
+
+------------------------------------------------------------------------
+
+# 29. Localizar o executável do Codex
+
+Busca praticada:
+
+```powershell
+Get-ChildItem `
+  "$env:USERPROFILE\.codex", `
+  "$env:LOCALAPPDATA", `
+  "$env:APPDATA" `
+  -Filter "codex*.exe" `
+  -Recurse `
+  -ErrorAction SilentlyContinue |
+  Select-Object FullName
+```
+
+Entre os resultados foi encontrado:
+
+```text
+C:\Users\richard.feitosa\.codex\packages\standalone\releases\0.147.0-x86_64-pc-windows-msvc\bin\codex.exe
+```
+
+O executável foi testado diretamente:
+
+```powershell
+& "C:\Users\richard.feitosa\.codex\packages\standalone\releases\0.147.0-x86_64-pc-windows-msvc\bin\codex.exe" resume
+```
+
+Resultado:
+
+```text
+o Codex abriu corretamente
+```
+
+Conclusão:
+
+```text
+instalação funcional
++
+falha ao executar apenas "codex"
+=
+problema de resolução/PATH
+```
+
+------------------------------------------------------------------------
+
+# 30. Diretório estável do Codex
+
+Foi verificado:
+
+```powershell
+Get-ChildItem "$env:LOCALAPPDATA\Programs\OpenAI\Codex\bin"
+```
+
+Resultado observado:
+
+```text
+codex-code-mode-host.exe
+codex.exe
+```
+
+Diretório:
+
+```text
+C:\Users\richard.feitosa\AppData\Local\Programs\OpenAI\Codex\bin
+```
+
+Esse diretório estável foi utilizado para a correção do PATH, evitando apontar
+manualmente para a pasta versionada `0.147.0`.
+
+------------------------------------------------------------------------
+
+# 31. Corrigir o PATH do usuário
+
+Código praticado:
+
+```powershell
+$codexBin = "$env:LOCALAPPDATA\Programs\OpenAI\Codex\bin"
+
+$userPath = [Environment]::GetEnvironmentVariable("Path", "User")
+
+if (($userPath -split ";") -notcontains $codexBin) {
+    [Environment]::SetEnvironmentVariable(
+        "Path",
+        ($userPath.TrimEnd(";") + ";" + $codexBin),
+        "User"
+    )
+}
+```
+
+**O que faz:** adiciona o diretório estável do Codex ao `Path` persistente do
+usuário, caso ainda não esteja presente.
+
+**Altera o sistema:** sim, altera uma variável de ambiente do usuário.
+
+Validação do PATH persistente:
+
+```powershell
+[Environment]::GetEnvironmentVariable("Path", "User") -split ";" |
+Where-Object { $_ -like "*OpenAI*Codex*" }
+```
+
+Resultado:
+
+```text
+C:\Users\richard.feitosa\AppData\Local\Programs\OpenAI\Codex\bin
+```
+
+Comparação com a sessão PowerShell já aberta:
+
+```powershell
+$env:PATH -split ";" |
+Where-Object { $_ -like "*OpenAI*Codex*" }
+```
+
+Inicialmente:
+
+```text
+<sem saída>
+```
+
+Conceito consolidado:
+
+```text
+PATH persistente do usuário
+≠
+$env:PATH de um processo PowerShell já aberto
+```
+
+Foi necessário abrir um novo processo/terminal para herdar o PATH atualizado.
+
+------------------------------------------------------------------------
+
+# 32. Validar a correção do PATH
+
+Em um novo terminal:
+
+```powershell
+Get-Command codex
+codex --version
+codex resume
+```
+
+Resultado final:
+
+```text
+codex voltou a ser resolvido pelo PowerShell
+codex resume abriu a tela de sessões salvas
+```
+
+Fluxo de debugging praticado:
+
+```text
+SINTOMA
+↓
+Get-Command / where.exe
+↓
+EXECUTÁVEL ENCONTRADO
+↓
+TESTE POR CAMINHO ABSOLUTO
+↓
+INSTALAÇÃO FUNCIONA
+↓
+PATH INVESTIGADO
+↓
+PATH PERSISTENTE CORRIGIDO
+↓
+NOVO PROCESSO
+↓
+VALIDAÇÃO
+```
+
+------------------------------------------------------------------------
+
+# 33. Continuidade de sessão validada
+
+Na tela de `codex resume`, foi selecionada a sessão anterior.
+
+Depois:
+
+```text
+/status
+```
+
+A sessão retomada apresentou:
+
+```text
+Session: 01a00095-7351-7c63-ba1c-45e608fdf0db
+Directory: ~\Documents\ia\software_engineer_ai_first_mentor
+Permissions: Workspace (Ask for approval)
+Model: gpt-5.6-sol
+```
+
+O Session ID era o mesmo observado antes de sair.
+
+Conclusão:
+
+```text
+/exit
+↓
+codex resume
+↓
+seleção da sessão salva
+↓
+mesmo Session ID
+↓
+CONTINUIDADE COMPROVADA
+```
+
+------------------------------------------------------------------------
+
+# 34. Fluxo Codex final praticado
+
+```text
+INSTALAR
+↓
+AUTENTICAR
+↓
+ENTENDER SANDBOX
+↓
+TAREFA SOMENTE LEITURA
+↓
+REVISAR RESPOSTA
+↓
+git status --short
+↓
+AUTORIZAR ALTERAÇÃO CONTROLADA
+↓
+git diff -- README.md
+↓
+VALIDAR ESCOPO
+↓
+/status
+↓
+/permissions
+↓
+ENTENDER SESSÃO E CONTEXTO
+↓
+/diff
+↓
+/review
+↓
+TRATAR FINDING COMO HIPÓTESE
+↓
+VALIDAR COM POWERSHELL / GIT
+↓
+AUTORIZAR CORREÇÃO LIMITADA
+↓
+VALIDAR NOVAMENTE
+↓
+DECISÃO HUMANA
+↓
+/exit
+↓
+codex resume
+↓
+DEBUGGING DE PATH
+↓
+CONTINUIDADE DE SESSÃO CONFIRMADA
+```
+
+------------------------------------------------------------------------
+
+# 35. Conceitos consolidados — Codex Foundations
+
+```text
+Codex CLI
+coding agent
+autenticação
+diretório de trabalho
+workspace
+sandbox
+permissões
+sandbox ≠ somente leitura
+capacidade ≠ autorização
+autonomia com escopo
+sessão
+context window
+continuidade
+resume
+compact em nível conceitual
+slash commands
+/diff
+/review
+finding de IA como hipótese
+Git como guardrail
+PowerShell como ferramenta de evidência
+debugging de resolução de comando
+PATH persistente
+PATH de processo
+review humano
+decisão humana
+```
+
+------------------------------------------------------------------------
+
+# 36. Claude Code Foundations — adiado
+
+A Parte B da MISSÃO 004 não foi executada.
+
+Motivo:
+
+```text
+a empresa ainda não liberou a licença
++
+Claude CLI ainda não foi instalado/configurado pela infraestrutura
+```
+
+Status correto:
+
+```text
+ADIADO / BLOQUEADO POR DEPENDÊNCIA CORPORATIVA
+```
+
+Não tratar Claude Code como concluído.
+
+Não instalar ou contornar controles corporativos por conta própria.
+
+Quando a dependência for resolvida, retomar:
+
+```text
+CLAUDE CODE FOUNDATIONS
+↓
+documentação oficial atual
+↓
+validar pré-requisitos e configuração corporativa
+↓
+autenticação
+↓
+permissões
+↓
+tarefa somente leitura
+↓
+alteração controlada
+↓
+Git diff / status
+↓
+validação humana
+↓
+comparação Codex × Claude Code
+```
+
+Somente depois atualizar novamente esta cartilha com comandos e evidências
+efetivamente praticados.
+
+------------------------------------------------------------------------
+
+# 37. Regra de ouro da MISSÃO 004
 
 ```text
 NÃO PERGUNTE APENAS:
@@ -575,6 +1483,8 @@ PERGUNTE:
 ↓
 "O diff corresponde à intenção?"
 ↓
+"O finding da IA foi validado?"
+↓
 "Como validamos?"
 ↓
 "Quem decide aceitar?"
@@ -588,20 +1498,53 @@ O HUMANO CONTINUA RESPONSÁVEL PELA DECISÃO.
 
 ------------------------------------------------------------------------
 
-# 19. Estado parcial da MISSÃO 004
+# 38. Estado atual da MISSÃO 004
 
 ```text
 MISSÃO 001 — Terminal e PowerShell          ✅
 MISSÃO 002 — Git Foundations                ✅
 MISSÃO 003 — GitHub                         ✅
-MISSÃO 004 — AI Coding Tools Foundations    ← EM ANDAMENTO
-             ├── Codex
-             │   ├── instalação             ✅
-             │   ├── autenticação           ✅
-             │   ├── sandbox inicial        ✅
-             │   ├── tarefa leitura         ✅
-             │   ├── revisão                ✅
-             │   ├── alteração controlada   ✅
-             │   └── operação aprofundada   ← PRÓXIMA
-             └── Claude Code                ← DEPOIS
+MISSÃO 004 — AI Coding Tools Foundations    ◐ PARCIAL
+             ├── Codex Foundations          ✅ CONCLUÍDO
+             └── Claude Code Foundations    ⏸ ADIADO / BLOQUEADO
+                                                aguardando licença +
+                                                CLI/configuração corporativa
 ```
+
+A Parte Codex está fechada no nível Foundations.
+
+A MISSÃO 004 completa permanece aberta até que Claude Code esteja disponível e
+a comparação controlada entre as duas ferramentas seja realizada.
+
+Enquanto a dependência corporativa permanece bloqueada, a formação pode avançar
+para a próxima missão disponível do roadmap.
+
+------------------------------------------------------------------------
+
+# 39. Regra de continuidade
+
+Ao retomar Claude Code futuramente:
+
+```text
+não reconstruir Codex Foundations do zero
+↓
+usar esta cartilha como referência
+↓
+executar somente a Parte B
+↓
+registrar evidências reais
+↓
+comparar Codex × Claude Code
+↓
+atualizar esta cartilha
+↓
+fechar MISSÃO 004 completa
+```
+
+Antes de qualquer nova operação Git:
+
+```powershell
+git status --short
+```
+
+Não assumir Working Tree clean com base em uma sessão anterior.

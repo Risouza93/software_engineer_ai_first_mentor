@@ -3,10 +3,16 @@
 ## Perfil de evolução
 
 ### Git/GitHub
-Nível atual: N2 forte — executa fluxo Git/GitHub guiado; entrando em N3
+Nível atual: **N2 forte — executa fluxo Git/GitHub guiado; entrando em N3.**
 
 ### PowerShell
-Nível atual: N2 forte — em transição para N3
+Nível atual: **N2 forte — em transição para N3.**
+
+### AI Coding Tools — Codex
+Nível atual: **N2 forte — Codex Foundations concluído de forma guiada, com debugging real e validação por evidências.**
+
+### AI Coding Tools — Claude Code
+Nível atual: **não avaliado / não iniciado.**
 
 ### Leitura de código
 Nível atual: preencher
@@ -853,4 +859,395 @@ LEITURA
 ALTERAÇÃO
 >
 EXECUÇÃO AUTÔNOMA
+```
+
+## MISSÃO 004 — AI Coding Tools Foundations — Parte A: Codex
+
+### Data
+
+14/08/2026
+
+### Tema
+
+Codex Foundations — coding agent local, sandbox, permissões, sessão, contexto, tarefas somente leitura, alterações controladas, Git como evidência, AI review, continuidade de sessão e debugging de PATH.
+
+### Problema real
+
+Aprender a utilizar um coding agent com autonomia progressiva e rastreável, sem tratar a saída da IA como fonte de verdade e sem delegar responsabilidade humana.
+
+Também foi resolvido um problema real em que o executável do Codex existia e funcionava, mas o comando `codex` não era resolvido pelo PowerShell por causa do PATH da sessão.
+
+### Nível inicial
+
+**N0/N1 específico em Codex CLI.**
+
+O usuário já possuía base N2 forte em PowerShell/Git e fluxo GitHub guiado, mas ainda não havia consolidado operação consciente de coding agents locais.
+
+### Nível atual
+
+**N2 forte — executa Codex Foundations de forma guiada, compreende os guardrails e realizou debugging real por evidências.**
+
+Há sinais úteis de progressão, especialmente na explicação de que capacidade técnica não elimina revisão humana e na execução do diagnóstico de PATH, mas N3 não deve ser concedido sem desafio autônomo posterior.
+
+---
+
+## Objetivo
+
+Construir o modelo:
+
+```text
+OBJETIVO
+↓
+CONTEXTO
+↓
+PERMISSÃO
+↓
+AGENTE
+↓
+ALTERAÇÃO
+↓
+GIT / EVIDÊNCIA
+↓
+REVIEW
+↓
+VALIDAÇÃO
+↓
+DECISÃO HUMANA
+```
+
+E preservar a progressão:
+
+```text
+LEITURA
+>
+ALTERAÇÃO
+>
+EXECUÇÃO AUTÔNOMA
+```
+
+---
+
+## O que executei
+
+- instalei e autentiquei o Codex standalone no Windows;
+- trabalhei com Codex v0.147.0;
+- identifiquei diretório de trabalho e sandbox;
+- diferenciei sandbox de modo somente leitura;
+- executei tarefa de análise somente leitura;
+- validei ausência de mudanças com `git status --short`;
+- autorizei alteração controlada somente no `README.md`;
+- revisei a alteração com `git diff -- README.md`;
+- inspecionei sessão com `/status`;
+- inspecionei opções de permissão com `/permissions`;
+- mantive `Workspace (Ask for approval)` sem ampliar para Full Access;
+- distingui capacidade técnica, autorização operacional e revisão humana;
+- explorei os slash commands disponíveis sem executar recursos sem necessidade;
+- usei `/diff` e comparei com Git direto;
+- usei `/review`;
+- tratei finding da IA como hipótese;
+- validei um finding real com PowerShell;
+- autorizei uma correção limitada após confirmar o finding;
+- validei a correção;
+- compreendi sessão, contexto e context window;
+- compreendi `/compact` sem executá-lo artificialmente;
+- saí do Codex e retomei uma sessão salva;
+- confirmei continuidade pelo mesmo Session ID;
+- investiguei `CommandNotFoundException` ao executar `codex resume`;
+- usei `Get-Command`, `where.exe`, busca de executável e caminho absoluto;
+- distingui PATH persistente do usuário de `$env:PATH` de processo já aberto;
+- corrigi o PATH do usuário para o diretório estável do Codex;
+- validei `codex resume` após abrir novo processo;
+- realizei commit/push por decisão humana ao final do trabalho documental.
+
+---
+
+## Comandos / recursos praticados
+
+### Codex
+
+```text
+/status
+/permissions
+/diff
+/review
+/exit
+/resume
+```
+
+### PowerShell / diagnóstico
+
+```powershell
+Get-Command codex -All
+where.exe codex
+
+Get-ChildItem `
+  "$env:USERPROFILE\.codex", `
+  "$env:LOCALAPPDATA", `
+  "$env:APPDATA" `
+  -Filter "codex*.exe" `
+  -Recurse `
+  -ErrorAction SilentlyContinue |
+  Select-Object FullName
+
+Get-ChildItem "$env:LOCALAPPDATA\Programs\OpenAI\Codex\bin"
+
+[Environment]::GetEnvironmentVariable("Path", "User") -split ";" |
+Where-Object { $_ -like "*OpenAI*Codex*" }
+
+$env:PATH -split ";" |
+Where-Object { $_ -like "*OpenAI*Codex*" }
+
+Get-ChildItem .\context\chat_history\*MISSAO_004* |
+Select-Object Name
+
+Select-String `
+  -Path .\context\chat_history\CONTEXTO_SESSAO_MISSAO_004_CODEX_2026-08-14.md `
+  -Pattern "CONTEXTO.*MISSAO_004"
+```
+
+### Git
+
+```powershell
+git status --short
+git diff -- README.md
+git add .
+git commit -m "Correções no contexto"
+git push
+```
+
+---
+
+## Erros / situações encontradas
+
+### Warning LF / CRLF
+
+Foi observado warning indicando conversão futura de LF para CRLF.
+
+Tratamento: não alterar configuração nesta missão, pois line endings não eram o objetivo do laboratório.
+
+### Finding de AI review
+
+`/review` apontou referências internas para arquivos inexistentes/renomeados.
+
+O finding não foi aceito automaticamente.
+
+Validação independente confirmou:
+
+```text
+nomes reais no filesystem
+≠
+referências antigas dentro do documento
+```
+
+Classificação pedagógica: **verdadeiro positivo confirmado por evidência**.
+
+### `codex` não reconhecido
+
+Sintoma:
+
+```text
+CommandNotFoundException
+```
+
+O executável existia e funcionava por caminho absoluto.
+
+Causa confirmada:
+
+```text
+diretório estável do Codex não estava disponível no PATH do processo PowerShell utilizado
+```
+
+Também foi observado que atualizar o PATH persistente não atualiza retroativamente `$env:PATH` de processos já abertos.
+
+---
+
+## Como diagnostiquei
+
+Fluxo aplicado:
+
+```text
+SINTOMA
+↓
+CAMADA
+↓
+EVIDÊNCIA
+↓
+HIPÓTESE
+↓
+TESTE
+↓
+CAUSA
+↓
+CORREÇÃO
+↓
+VALIDAÇÃO
+```
+
+Para o PATH:
+
+```text
+codex resume falhou
+↓
+Get-Command / where.exe não localizaram
+↓
+busca encontrou codex.exe
+↓
+execução absoluta funcionou
+↓
+PATH persistente e PATH da sessão foram comparados
+↓
+diretório estável foi adicionado
+↓
+novo processo herdou configuração
+↓
+codex resume funcionou
+```
+
+---
+
+## Evidências
+
+- tarefa somente leitura validada por `git status --short`;
+- alteração do README revisada por Git;
+- `/diff` coincidiu com o diff relevante observado diretamente;
+- `/review` encontrou um finding posteriormente confirmado;
+- nomes reais dos artefatos foram confirmados com `Get-ChildItem`;
+- referências internas foram verificadas com `Select-String`;
+- correção foi novamente validada;
+- Codex foi localizado em diretório versionado e em diretório estável;
+- execução por caminho absoluto provou que a instalação estava funcional;
+- PATH persistente foi comparado com PATH do processo;
+- `codex resume` funcionou após correção;
+- a sessão retomada apresentou o mesmo Session ID:
+  `01a00095-7351-7c63-ba1c-45e608fdf0db`;
+- commit observado no encerramento: `72ab9b3`;
+- usuário informou push concluído.
+
+---
+
+## O que consigo explicar agora
+
+- coding agent versus mentor;
+- coding agent versus Git;
+- sandbox versus somente leitura;
+- workspace e permissões;
+- capacidade técnica versus autorização operacional;
+- por que revisão humana continua necessária;
+- sessão versus filesystem versus Git versus contexto do modelo;
+- context window em nível introdutório;
+- finalidade de `/status`;
+- finalidade de `/permissions`;
+- diferença entre `/diff` e Git direto;
+- `/review` como análise, não prova;
+- finding de IA como hipótese;
+- autonomia com escopo;
+- Git como guardrail/evidência;
+- continuidade com `resume`;
+- diferença entre sair e apagar uma sessão;
+- resolução de comandos pelo PowerShell;
+- PATH persistente versus PATH do processo atual;
+- por que não se deve ampliar permissões sem necessidade.
+
+---
+
+## O que ainda não tratar como dominado
+
+- Codex N3 autônomo;
+- execução autônoma ampla;
+- Full Access;
+- bypass de controles;
+- skills do Codex em profundidade;
+- hooks;
+- MCP;
+- plugins;
+- subagents;
+- memories;
+- configuração avançada;
+- automação avançada com Codex;
+- Claude Code;
+- comparação Codex × Claude Code.
+
+---
+
+## Claude Code — dependência externa
+
+A Parte B da MISSÃO 004 foi **adiada**, não concluída.
+
+Motivo:
+
+```text
+licença ainda não liberada pela empresa
++
+Claude CLI ainda não instalado/configurado pela infraestrutura
+```
+
+Quando liberado:
+
+```text
+retomar MISSÃO 004 — Parte B
+↓
+validar documentação oficial atual
+↓
+validar instalação/configuração corporativa
+↓
+autenticação
+↓
+permissões
+↓
+somente leitura
+↓
+alteração controlada
+↓
+Git diff/status
+↓
+validação
+↓
+comparação Codex × Claude Code
+```
+
+Não contornar controles corporativos.
+
+---
+
+## Próxima missão disponível
+
+**MISSÃO 005 — Branching**
+
+A formação pode avançar para Branching enquanto Claude Code permanece bloqueado.
+
+Quando a dependência corporativa for liberada, retomar Claude Code em ponto seguro e completar a MISSÃO 004 antes de registrar a comparação final.
+
+---
+
+## Retrospectiva
+
+Principal aprendizado:
+
+```text
+IA pode ler
+IA pode editar
+IA pode revisar
+IA pode encontrar problemas
+
+MAS
+
+capacidade
+≠
+autorização
+≠
+correção
+≠
+aceitação
+```
+
+Modelo consolidado:
+
+```text
+IA auxilia
+↓
+ferramentas produzem evidência
+↓
+humano valida
+↓
+humano decide
 ```
