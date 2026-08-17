@@ -3,7 +3,21 @@
 ## Perfil de evolução
 
 ### Git/GitHub
-Nível atual: **N2 forte — executa fluxo Git/GitHub guiado; entrando em N3.**
+Nível atual: **N2 forte — executa branching, divergência, merge e resolução de conflito de forma guiada; em transição para N3.**
+
+Evidências adicionais:
+- cria e troca branches conscientemente;
+- interpreta `HEAD`, branch e commit como referências distintas;
+- compara conteúdo e commits entre branches;
+- diferencia fast-forward de three-way merge;
+- interpreta grafo de branches divergentes;
+- diagnostica conflito por `git status` e conflict markers;
+- resolve conflito manualmente e entende as etapas necessárias para concluir o merge;
+- remove branches integradas com segurança.
+
+Não promover automaticamente para N3. A autonomia deverá ser comprovada em desafios posteriores sem receita pronta.
+
+---
 
 ### PowerShell
 Nível atual: **N2 forte — em transição para N3.**
@@ -1369,3 +1383,470 @@ MISSÃO 005 — Branching
 
 Claude Code Foundations continua adiado por dependência corporativa e deverá ser
 retomado quando licença e CLI/configuração estiverem disponíveis.
+
+### MISSÃO 005 — Branching
+
+### Data
+
+17/08/2026
+
+### Tema
+
+Git Branching — branches, HEAD, divergência, comparação, fast-forward, three-way merge, conflito controlado e resolução manual.
+
+### Problema real
+
+Aprofundar o uso de branches além da simples execução de comandos, compreendendo como referências Git se movimentam, como linhas de desenvolvimento divergem e como mudanças independentes são comparadas, integradas e eventualmente resolvidas quando existe conflito.
+
+### Nível inicial
+
+**N2 forte — já havia criado e trocado branches anteriormente de forma guiada.**
+
+O conhecimento operacional básico existia, mas ainda precisava consolidar:
+- modelo mental de branch como referência;
+- relação entre `HEAD`, branch e commit;
+- divergência;
+- fast-forward;
+- three-way merge;
+- conflito;
+- resolução manual orientada por evidências.
+
+### Nível final
+
+**N2 forte — em transição para N3 em branching.**
+
+Executou de forma guiada o ciclo completo de branching, incluindo divergência real, merges com comportamentos diferentes e resolução de conflito.
+
+Ainda precisa demonstrar execução autônoma, sem receita pronta, para estabelecer N3.
+
+---
+
+## Objetivo
+
+Consolidar o modelo:
+
+```text
+COMMIT
+→ snapshot
+
+BRANCH
+→ referência móvel para commit
+
+HEAD
+→ referência da branch/posição ativa
+```
+
+E executar:
+
+```text
+OBSERVAR ESTADO
+↓
+CRIAR BRANCH
+↓
+ALTERAR
+↓
+COMMIT
+↓
+COMPARAR
+↓
+CRIAR DIVERGÊNCIA
+↓
+INTEGRAR
+↓
+DIAGNOSTICAR CONFLITO
+↓
+RESOLVER
+↓
+VALIDAR HISTÓRICO
+```
+
+---
+
+## O que executei
+
+- validei Working Tree antes de alterar estado;
+- confirmei a branch atual;
+- criei branches com `git switch -c`;
+- observei `HEAD`, `main` e feature apontando inicialmente para o mesmo commit;
+- criei commit exclusivo em feature branch;
+- observei a feature avançar enquanto `main` permaneceu no commit anterior;
+- troquei entre branches e observei alteração correspondente no Working Tree;
+- comparei conteúdo entre branches;
+- comparei commits exclusivos de uma branch;
+- executei merge fast-forward;
+- removi branch integrada com segurança;
+- criei divergência real entre `main` e feature;
+- interpretei o grafo divergente;
+- executei three-way merge automático sem conflito;
+- observei a estratégia `ort`;
+- criei conflito controlado alterando a mesma linha em duas branches;
+- inspecionei `git status` durante conflito;
+- interpretei `both modified`;
+- inspecionei conflict markers;
+- diferenciei a versão de `HEAD` da versão recebida da feature;
+- resolvi manualmente o conteúdo conflitante;
+- observei `UU` após editar o arquivo;
+- marquei a resolução com `git add`;
+- concluí o merge com commit;
+- validei o merge commit no grafo;
+- removi a branch integrada;
+- finalizei na `main` com `git status --short` sem saída.
+
+---
+
+## Comandos praticados
+
+```powershell
+git status --short
+git branch --show-current
+git switch -c <branch>
+git switch main
+git branch
+git branch -d <branch>
+git log --oneline --decorate --graph -5
+git log --oneline --decorate --graph --all -7
+git log --oneline --decorate --graph --all -8
+git diff main..feature/missao-005-branching
+git log main..feature/missao-005-branching --oneline
+git add <arquivo>
+git commit -m "<mensagem>"
+git merge <branch>
+Get-ChildItem <arquivo>
+Get-Content <arquivo>
+New-Item <arquivo> -ItemType File
+Set-Content <arquivo> "<conteúdo>"
+```
+
+Também foi apresentado pelo próprio Git durante o conflito:
+
+```powershell
+git merge --abort
+```
+
+Esse comando **não foi executado** no laboratório.
+
+---
+
+## Evidências — Fast-forward
+
+Commit criado exclusivamente na primeira feature:
+
+```text
+6adf5ab lab: pratica branching na missao 005
+```
+
+Antes do merge:
+
+```text
+6adf5ab (HEAD -> feature/missao-005-branching)
+d8e6688 (main)
+```
+
+Depois do merge fast-forward:
+
+```text
+6adf5ab (HEAD -> main, feature/missao-005-branching)
+```
+
+Conclusão:
+
+```text
+main não havia divergido
+↓
+Git não precisou criar merge commit
+↓
+main avançou para o commit da feature
+```
+
+---
+
+## Evidências — Divergência e three-way merge
+
+Commit exclusivo da feature:
+
+```text
+b5dcbba lab: adiciona alteracao na feature divergente
+```
+
+Commit exclusivo da `main`:
+
+```text
+2954d75 lab: adiciona alteracao divergente na main
+```
+
+Grafo observado:
+
+```text
+* 2954d75 (HEAD -> main)
+| * b5dcbba (feature/missao-005-divergencia)
+|/
+* 6adf5ab
+```
+
+Merge:
+
+```text
+Merge made by the 'ort' strategy.
+```
+
+Merge commit:
+
+```text
+cd0f534 Merge branch 'feature/missao-005-divergencia'
+```
+
+Conclusão:
+
+```text
+divergência
+≠
+conflito
+
+three-way merge
+→ pode ser resolvido automaticamente pelo Git
+```
+
+---
+
+## Erro intencional — Merge Conflict
+
+Foi criado deliberadamente um conflito de conteúdo.
+
+Na `main`:
+
+```text
+MISSÃO 005 - versão da MAIN
+```
+
+Na feature:
+
+```text
+MISSÃO 005 - versão da FEATURE
+```
+
+Merge:
+
+```powershell
+git merge feature/missao-005-conflito
+```
+
+Erro observado:
+
+```text
+CONFLICT (content): Merge conflict in branching_lab.txt
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+---
+
+## Como diagnostiquei
+
+### Sintoma
+
+O Git não conseguiu concluir automaticamente o merge.
+
+### Evidência 1
+
+```text
+You have unmerged paths.
+both modified: branching_lab.txt
+```
+
+### Evidência 2
+
+O arquivo continha:
+
+```text
+<<<<<<< HEAD
+MISSÃO 005 - versão da MAIN
+=======
+MISSÃO 005 - versão da FEATURE
+>>>>>>> feature/missao-005-conflito
+```
+
+### Causa
+
+As duas branches alteraram a mesma região do mesmo arquivo para conteúdos diferentes e o Git não tinha informação suficiente para decidir qual intenção deveria prevalecer.
+
+### Resolução humana
+
+Foi escolhido explicitamente:
+
+```text
+MISSÃO 005 - versão resolvida: MAIN + FEATURE
+```
+
+Após editar o arquivo:
+
+```text
+UU branching_lab.txt
+```
+
+### Aprendizado
+
+```text
+editar o arquivo
+≠
+marcar resolução no Git
+≠
+concluir o merge
+```
+
+Foi necessário:
+
+```text
+editar
+↓
+git add
+↓
+git commit
+```
+
+Merge commit final:
+
+```text
+b859067 lab: resolve conflito entre main e feature
+```
+
+---
+
+## O que consigo explicar agora
+
+Consigo explicar:
+
+- o que é branch;
+- branch como referência móvel;
+- relação entre branch e commit;
+- papel de `HEAD`;
+- por que criar branch não copia fisicamente todo o projeto;
+- por que duas branches podem inicialmente apontar para o mesmo commit;
+- por que uma branch avança quando um commit é criado nela;
+- como `git switch` pode alterar o Working Tree;
+- diferença entre `git diff` de branches e `git log` entre branches;
+- o que é divergência;
+- ancestral comum;
+- fast-forward;
+- three-way merge;
+- merge commit;
+- por que divergência não significa necessariamente conflito;
+- o que é merge conflict;
+- `both modified`;
+- conflict markers;
+- significado de `HEAD` nos conflict markers;
+- significado de `UU`;
+- por que editar o arquivo não basta para concluir a resolução;
+- papel do `git add` durante resolução;
+- papel do commit final do merge;
+- remoção segura de branch integrada com `git branch -d`.
+
+---
+
+## Introdução operacional adicional — Vim
+
+Durante a missão houve contato com Vim como editor utilizado pelo Git.
+
+Foi introduzido:
+
+```text
+NORMAL
+→ navegação/comandos
+
+INSERT
+→ edição
+```
+
+Comandos estudados:
+
+```text
+i
+Esc
+:w
+:q
+:wq
+:q!
+:qa
+:qa!
+```
+
+Navegação básica:
+
+```text
+h
+j
+k
+l
+```
+
+`Vim` não deve ser considerado dominado. Foi realizada apenas introdução operacional suficiente para não ficar bloqueado quando o Git abrir o editor.
+
+---
+
+## O que ainda não domino
+
+- branching totalmente autônomo sem consulta;
+- escolha autônoma de estratégia de integração em cenários complexos;
+- conflitos com múltiplos arquivos;
+- conflitos mais complexos que uma única linha;
+- conflitos envolvendo rename/delete;
+- rebase;
+- conflitos durante rebase;
+- recuperação avançada de merges;
+- investigação avançada com merge-base;
+- estratégias avançadas de branching;
+- workflow colaborativo completo com Pull Request;
+- review de diff profissional em PR;
+- Vim além do uso operacional básico.
+
+---
+
+## Estado final observado
+
+Branch:
+
+```text
+main
+```
+
+Validação:
+
+```powershell
+git status --short
+```
+
+Resultado informado:
+
+```text
+<sem saída>
+```
+
+Esse estado é evidência da sessão de 17/08/2026 e **não deve ser assumido em outra sessão sem nova validação**.
+
+---
+
+## Próxima missão
+
+**MISSÃO 006 — PR / Diff**
+
+Objetivo inicial:
+
+```text
+intenção
+↓
+commits
+↓
+arquivos alterados
+↓
+diff
+↓
+comportamento
+↓
+risco
+↓
+review
+↓
+Pull Request
+```
+
+A próxima missão deve reutilizar os conceitos consolidados de branching e histórico, sem reconstruí-los como conteúdo introdutório.
+
+A MISSÃO 004 — Claude Code Foundations permanece **bloqueada/adiada por dependência corporativa** e deverá ser retomada posteriormente quando licença e CLI/configuração forem disponibilizadas.
