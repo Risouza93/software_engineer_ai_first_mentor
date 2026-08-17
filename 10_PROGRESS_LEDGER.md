@@ -3,19 +3,21 @@
 ## Perfil de evolução
 
 ### Git/GitHub
-Nível atual: **N2 forte — executa branching, divergência, merge e resolução de conflito de forma guiada; em transição para N3.**
+Nível atual: **N2 forte, com evidências adicionais de transição para N3 em Git/GitHub.**
 
-Evidências adicionais:
-- cria e troca branches conscientemente;
-- interpreta `HEAD`, branch e commit como referências distintas;
-- compara conteúdo e commits entre branches;
-- diferencia fast-forward de three-way merge;
-- interpreta grafo de branches divergentes;
-- diagnostica conflito por `git status` e conflict markers;
-- resolve conflito manualmente e entende as etapas necessárias para concluir o merge;
-- remove branches integradas com segurança.
+Não promover automaticamente para N3 completo. A autonomia deverá ser
+comprovada em novos cenários sem receita pronta.
 
-Não promover automaticamente para N3. A autonomia deverá ser comprovada em desafios posteriores sem receita pronta.
+Evidências novas: - interpreta diff local e staged; - compara branches
+divergentes com `..` e `...`; - usa merge-base para entender o escopo
+introduzido pela feature; - cria e acompanha PR com base/compare; -
+revisa PR por intenção, arquivos, diff, riscos, testes e evidências; -
+diferencia Comment, Approve e Request changes; - diferencia self-review
+de peer review; - diagnostica commit local que ainda não chegou à branch
+remota; - entende que push na compare branch atualiza PR aberto; -
+participa de decisão de merge baseada em evidências; - valida estado
+pós-merge; - remove branches local e remota integradas com segurança; -
+realizou debugging real de encoding e adicionou prevenção automatizada.
 
 ---
 
@@ -1850,3 +1852,284 @@ Pull Request
 A próxima missão deve reutilizar os conceitos consolidados de branching e histórico, sem reconstruí-los como conteúdo introdutório.
 
 A MISSÃO 004 — Claude Code Foundations permanece **bloqueada/adiada por dependência corporativa** e deverá ser retomada posteriormente quando licença e CLI/configuração forem disponibilizadas.
+
+## MISSÃO 006 --- PR / Diff
+
+### Data
+
+17/08/2026
+
+### Tema
+
+Pull Request, diff, comparação entre branches divergentes, review,
+risco, validação, decisão de merge e debugging real de encoding.
+
+### Problema real
+
+Compreender o que uma feature realmente introduz em relação à base,
+revisar um Pull Request com evidências e corrigir um problema real de
+encoding detectado durante o review.
+
+### Nível inicial
+
+Git/GitHub N2 forte, em transição para N3, com Branching concluído de
+forma guiada.
+
+### Nível final
+
+**N2 forte, com avanço concreto em direção a N3 em Git/GitHub.**
+
+A missão adicionou evidências de análise de diff, investigação de PR,
+debugging, avaliação de risco e ciclo completo até merge/limpeza. N3
+ainda deve ser comprovado em cenário posterior com menos orientação.
+
+### Objetivo
+
+Praticar:
+
+``` text
+diff
+→ divergência
+→ merge-base
+→ Pull Request
+→ review
+→ risco
+→ validação
+→ decisão
+→ merge
+→ pós-merge
+→ limpeza
+```
+
+### O que executei
+
+-   diferenciei `git diff` de `git diff --staged`;
+-   usei `git add -N` para inspecionar arquivo novo no diff;
+-   interpretei anatomia básica de diff;
+-   comparei `main..feature` e `main...feature`;
+-   observei na prática como divergência afeta comparação ponta a ponta;
+-   identifiquei o merge-base como referência útil para analisar o que a
+    feature introduziu;
+-   criei e acompanhei o PR #2;
+-   diferenciei base e compare;
+-   fiz review do diff;
+-   encontrei problema real de encoding;
+-   investiguei o incidente por evidências;
+-   corrigi quatro arquivos inválidos como UTF-8;
+-   integrei `.editorconfig`;
+-   integrei `scripts/validate-utf8.ps1`;
+-   validei UTF-8 estrito com zero arquivos inválidos;
+-   usei `git diff --check`;
+-   diagnostiquei por que um commit local ainda não aparecia no PR;
+-   publiquei a atualização correta da feature;
+-   confirmei atualização automática do PR;
+-   pratiquei Comment, Approve e Request changes em nível
+    conceitual/operacional;
+-   observei que o autor não pode aprovar o próprio PR como aprovação
+    independente;
+-   avaliei riscos e evidências antes da decisão;
+-   considerei o PR pronto para merge;
+-   realizei merge do PR #2;
+-   executei `fetch`, `switch main` e `pull` após o merge;
+-   confirmei o merge commit;
+-   removi a branch local integrada;
+-   removi a branch remota integrada;
+-   confirmei `origin/main` como única branch remota listada;
+-   finalizei com Working Tree clean.
+
+### Comandos principais praticados
+
+``` powershell
+git status --short
+git branch --show-current
+git diff
+git diff --staged
+git add -N <arquivo>
+git diff main..feature/missao-006-pr-diff
+git diff main...feature/missao-006-pr-diff
+git rev-parse --show-toplevel
+git diff --check
+.\scripts\validate-utf8.ps1
+git diff --stat
+git log --oneline --decorate --graph --all -6
+git push
+git fetch
+git switch main
+git pull
+git branch -d feature/missao-006-pr-diff
+git push origin --delete feature/missao-006-pr-diff
+git branch -r
+```
+
+### Erros / situações encontradas
+
+#### Encoding inválido
+
+Caracteres acentuados apareceram corrompidos no diff/GitHub.
+
+A investigação mostrou quatro arquivos inválidos como UTF-8:
+
+``` text
+branching_lab.txt
+feature_divergencia.txt
+main_divergencia.txt
+pr_diff_lab.txt
+```
+
+#### Falsos positivos na varredura
+
+A primeira tentativa de validação usou caminhos relativos resolvidos
+incorretamente e produziu `DirectoryNotFoundException`.
+
+Correção: - obter raiz com `git rev-parse --show-toplevel`; - construir
+caminho absoluto com `Join-Path`.
+
+#### Commit não aparecia no PR
+
+Evidência:
+
+``` text
+1f5e1c5 (HEAD -> feature/missao-006-pr-diff)
+6ae77ee (origin/feature/missao-006-pr-diff)
+```
+
+Conclusão: commit existia localmente, mas a branch remota ainda não
+havia avançado.
+
+Após `git push`:
+
+``` text
+1f5e1c5 (HEAD -> feature/missao-006-pr-diff, origin/feature/missao-006-pr-diff)
+```
+
+O PR foi atualizado.
+
+#### Autor não pode aprovar o próprio PR
+
+O GitHub apresentou `Comment`, `Approve` e `Request changes`, mas
+informou que autores não podem aprovar seus próprios Pull Requests.
+
+Aprendizado:
+
+``` text
+self-review
+≠
+peer approval
+```
+
+### Como diagnostiquei
+
+Foi aplicado:
+
+``` text
+FATO
+↓
+EVIDÊNCIA
+↓
+HIPÓTESE
+↓
+TESTE
+↓
+CONCLUSÃO
+```
+
+E para o PR:
+
+``` text
+intenção
+↓
+arquivos
+↓
+diff
+↓
+riscos
+↓
+testes/validações
+↓
+evidências
+↓
+decisão
+```
+
+### Evidências finais
+
+``` text
+Arquivos UTF-8 inválidos: 0
+git diff --check: sem saída
+validate-utf8.ps1: passou
+diff revisado: dentro do escopo esperado
+Working Tree antes do merge: clean
+PR #2: mergeado
+merge commit: 0b8d169
+main = origin/main = 0b8d169
+feature local: removida
+feature remota: removida
+git branch -r: origin/main
+git status --short final: sem saída
+```
+
+### Commits relevantes
+
+``` text
+6ae77ee  lab: adiciona arquivo para pratica de PR e diff
+1f5e1c5  Adição de script para validação de encoding e Conversão de arquivos com encoding ANSI para UTF-8
+31d1136  lab: adiciona alteracao exclusiva da main
+0b8d169  Merge pull request #2 from Risouza93/feature/missao-006-pr-diff
+```
+
+### O que consigo explicar agora
+
+``` text
+git diff vs git diff --staged
+git add -N
+anatomia básica de diff
+.. vs ...
+merge-base
+base vs compare
+PR como proposta de integração
+push na compare branch atualiza PR
+Comment vs Approve vs Request changes
+self-review vs peer review
+mergeável vs aprovado vs pronto para merge
+risco e evidência em code review
+encoding vs exibição local
+UTF-8 estrito
+prevenção com .editorconfig
+validação automatizada de encoding
+commit local vs branch remota
+validação pós-merge
+remoção de branch local vs remota
+```
+
+### O que ainda não domino / não foi comprovado
+
+-   review real de PR criado por outro engenheiro;
+-   aprovação independente em fluxo de equipe;
+-   branch protection e required reviews;
+-   checks obrigatórios de CI no PR;
+-   rebase;
+-   estratégias de merge comparadas em profundidade;
+-   resolução autônoma de cenários Git/GitHub mais complexos;
+-   Git/GitHub N3 comprovado sem orientação.
+
+### Próxima missão
+
+``` text
+MISSÃO 007 — Leitura de código
+```
+
+Fluxo inicial:
+
+``` text
+ENTRADA
+↓
+FUNÇÕES
+↓
+DECISÕES
+↓
+DEPENDÊNCIAS
+↓
+SAÍDA
+```
+
+Claude Code permanece bloqueado/adiado na MISSÃO 004.
