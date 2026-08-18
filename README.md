@@ -269,6 +269,7 @@ Exemplo:
 ``` text
 context/codes/
 └── codigos_lidos.md
+└── codigos_escritos.md
 ```
 
 Objetivo:
