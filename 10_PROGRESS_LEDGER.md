@@ -2,64 +2,66 @@
 
 ## 1. Estado atual
 
-**Missão atual/próxima:** M007 --- Leitura de código\
-**Última missão concluída:** M006 --- PR / Diff\
-**Data da última atualização:** 17/08/2026
+**Missão atual/próxima:** M008 --- Programação\
+**Última missão concluída:** M007 --- Leitura de código\
+**Data da última atualização:** 18/08/2026
 
 M004 permanece parcial: Codex Foundations concluído; Claude Code
 bloqueado/adiado por dependência corporativa.
 
 ## 2. Matriz de competências
 
-  ---------------------------------------------------------------------------
-  Skill               Nível           Evidência atual      Próximo critério
-  ------------------- --------------- -------------------- ------------------
-  PowerShell          N2 forte → N3   filesystem,          scripts,
-                                      objetos/pipelines,   tratamento de
-                                      processos/rede,      erros e
-                                      debugging por        diagnóstico mais
-                                      evidências e         autônomo
-                                      PSReadLine           
+  --------------------------------------------------------------------------
+  Skill               Nível          Evidência atual      Próximo critério
+  ------------------- -------------- -------------------- ------------------
+  PowerShell          N2 forte → N3  filesystem,          scripts,
+                                     objetos/pipelines,   tratamento de
+                                     processos/rede,      erros e
+                                     debugging por        diagnóstico mais
+                                     evidências e         autônomo
+                                     PSReadLine           
 
-  Git/GitHub          N2 forte → N3   Git local/remoto,    cenário autônomo,
-                                      branching            peer review e
-                                      divergente,          fluxos protegidos
-                                      conflitos, PR/diff,  
-                                      review e merge       
+  Git/GitHub          N2 forte → N3  Git local/remoto,    cenário autônomo,
+                                     branching            peer review e
+                                     divergente,          fluxos protegidos
+                                     conflitos, PR/diff,  
+                                     review e merge       
 
-  AI Coding Tools --- N2 forte        foundations,         desafio autônomo e
-  Codex                               permissões, review,  recursos avançados
-                                      Git como evidência e 
-                                      debugging de PATH    
+  AI Coding Tools --- N2 forte       foundations,         desafio autônomo e
+  Codex                              permissões, review,  recursos avançados
+                                     Git como evidência e 
+                                     debugging de PATH    
 
-  AI Coding Tools --- ---             bloqueado/adiado     licença e
-  Claude Code                                              CLI/configuração
-                                                           corporativa
+  AI Coding Tools --- ---            bloqueado/adiado     licença e
+  Claude Code                                             CLI/configuração
+                                                          corporativa
 
-  Leitura de código   ---             não iniciado         iniciar M007
+  Leitura de código   N3             análise autônoma de  consolidar em
+                                     fluxo, dados, riscos código real e
+                                     e testes             debugging
 
-  JavaScript          ---             não iniciado         missão futura
+  JavaScript          ---            não iniciado         missão futura
 
-  TypeScript          ---             não iniciado         missão futura
+  TypeScript          ---            não iniciado         missão futura
 
-  Python              ---             não iniciado         missão futura
+  Python              ---            não iniciado         missão futura
 
-  APIs                ---             não iniciado         missão futura
+  APIs                ---            não iniciado         missão futura
 
-  SQL/PostgreSQL      ---             não iniciado         missão futura
+  SQL/PostgreSQL      ---            não iniciado         missão futura
 
-  Containers/Podman   ---             não iniciado         missão futura
+  Containers/Podman   ---            não iniciado         missão futura
 
-  Playwright          ---             não iniciado         missão futura
+  Playwright          ---            não iniciado         missão futura
 
-  CI/CD               ---             não iniciado         missão futura
+  CI/CD               ---            não iniciado         missão futura
 
-  Observabilidade     ---             não iniciado         missão futura
+  Observabilidade     ---            não iniciado         missão futura
 
-  Arquitetura         ---             não iniciado         missão futura
+  Arquitetura         ---            não iniciado         missão futura
 
-  AI Engineering      ---             não iniciado         missão futura
-  ---------------------------------------------------------------------------
+  AI Engineering      ---            não iniciado         missão futura
+  --------------------------------------------------------------------------
 
 ## 3. Missões
 
@@ -196,6 +198,28 @@ profundidade; - Git/GitHub N3 ainda requer cenário autônomo.
 `context/chat_history/CONTEXTO_SESSAO_MISSAO_006_PR_DIFF_CONCLUIDA_2026-08-17.md`
 e cartilha/comandos da M006.
 
+### M007 --- Leitura de código --- CONCLUÍDA
+
+**Data:** 18/08/2026\
+**Evolução:** Leitura de código --- não iniciado → N3.
+
+**Comprovado** - localiza ponto de entrada e distingue definição de
+execução; - reconstrói call flow e data flow entre múltiplas funções; -
+acompanha decisões, `return`, caminhos não alcançados e dependências
+externas; - distingue retornos propagados, armazenados e ignorados sem
+inventar comportamento; - deriva riscos e testes, separando fatos do
+código de hipóteses de negócio.
+
+**Debugging-chave** - corrigiu ao longo da missão confusões entre
+argumentos/retornos e fluxo após `return`, sem reincidência relevante no
+checkpoint final.
+
+**Lacunas** - consolidar leitura em código real de maior escala e
+integrar a habilidade a debugging/implementação.
+
+**Detalhes:**
+`CONTEXTO_SESSAO_MISSAO_007_LEITURA_CODIGO_CONCLUIDA_2026-08-18.md`
+
 ## 4. Bloqueios e pendências
 
 -   **Claude Code / M004:** bloqueado/adiado --- licença e
@@ -208,10 +232,10 @@ e cartilha/comandos da M006.
 
 ## 5. Próximo passo
 
-**M007 --- Leitura de código**
+**M008 --- Programação**
 
-Objetivo: identificar entrada → funções → decisões → dependências →
-saída antes de avançar para escrita de código.
+Objetivo: construir fundamentos de lógica, variáveis, tipos, condições,
+loops e funções, iniciando pela escrita consciente de código.
 
 ## 6. Regras de manutenção
 
