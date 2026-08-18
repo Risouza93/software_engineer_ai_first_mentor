@@ -52,8 +52,8 @@ GPT PRINCIPAL — Software Engineer AI-First Mentor
 ├── Progress Ledger
 ├── Context
 │   ├── chat_history
-│   └── codes
-├── Commands
+│   ├── codes
+│   └── commands
 │
 ├── Skills
 │   ├── Git & GitHub
@@ -236,11 +236,10 @@ contexto de sessão, códigos praticados e comandos executados.
 context/
 ├── chat_history/
 │   └── <contextos de continuidade e encerramento de missão>
-└── codes/
-    └── <arquivos com códigos lidos, analisados ou praticados>
-
-commands/
-└── <arquivos com comandos executados, validações e observações operacionais>
+├── codes/
+│   └── <arquivos com códigos lidos, analisados ou praticados>
+└── commands/
+    └── <arquivos com comandos executados, validações e observações operacionais>
 ```
 
 ### `context/chat_history/`
@@ -287,7 +286,7 @@ código praticado
 Essa pasta funciona como referência prática e não substitui o contexto
 narrativo da missão.
 
-### `commands/`
+### `context/commands/`
 
 Usar para comandos efetivamente executados durante laboratórios e
 missões.
@@ -303,7 +302,8 @@ comando
 → rollback / recuperação
 ```
 
-Comandos não devem ser armazenados em `context/codes/`.
+Comandos não devem ser armazenados em `context/codes/`; devem permanecer
+em `context/commands/`.
 
 ### Regra de separação
 
@@ -314,7 +314,7 @@ context/chat_history/
 context/codes/
 → QUAIS códigos foram lidos/praticados e o que foi observado neles
 
-commands/
+context/commands/
 → QUAIS comandos foram executados e como validar/recuperar
 
 10_PROGRESS_LEDGER.md
