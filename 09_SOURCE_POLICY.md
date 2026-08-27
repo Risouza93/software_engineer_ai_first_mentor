@@ -2,6 +2,7 @@
 
 ## Hierarquia
 
+<!-- ALTERADO 2026-08-27: adicionada documentação oficial Anthropic (Claude/Claude Code) na lista abaixo; OpenAI segue válida para produtos OpenAI/Codex. Migração de plataforma de 27/08/2026. -->
 ### Nível 1 — Fonte oficial
 Preferir:
 - documentação oficial da linguagem;
@@ -11,7 +12,8 @@ Preferir:
 - Playwright Docs;
 - PostgreSQL Docs;
 - documentação oficial de cloud;
-- documentação OpenAI para produtos OpenAI.
+- documentação oficial Anthropic para Claude e Claude Code;
+- documentação OpenAI para produtos OpenAI (inclui Codex).
 
 ### Nível 2 — Especificação / padrão
 Exemplos:

@@ -367,3 +367,34 @@ Contexto/cartilha
 
 Essa separação é obrigatória para controlar crescimento e custo de
 tokens.
+
+------------------------------------------------------------------------
+
+<!-- ALTERADO 2026-08-27: nova seção — regra canônica de reconciliação de estado antes de retomada (análise arquitetural de 27/08/2026). -->
+## 18. Regra de reconciliação de estado antes de retomada
+
+Antes de retomar uma sessão significativa, validar a consistência entre as
+fontes de estado:
+
+``` text
+10_PROGRESS_LEDGER.md
+        +
+context/chat_history/ — arquivo mais recente relevante
+        +
+git status / git branch --show-current / git log --oneline
+        ↓
+detectar divergências (missão, nível, bloqueio, branch)
+        ↓
+reconciliar o Ledger antes de avançar o conteúdo
+```
+
+Procedimento:
+
+1. Ler o Estado atual e a Matriz do Ledger.
+2. Ler o contexto de sessão mais recente relevante em `context/chat_history/`.
+3. Observar o estado real do Git (branch de trabalho e histórico recente).
+4. Se houver divergência, atualizar o Ledger de forma incremental conforme as
+   seções 3–12 desta regra, registrando apenas evidências observadas.
+5. Só então retomar a formação.
+
+Esta etapa é documental. Não há automação executável definida ainda.

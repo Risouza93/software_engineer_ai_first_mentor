@@ -157,3 +157,10 @@ Instalação e uso seguro do Codex.
 ## Skill 14 — claude-code-foundations
 
 Instalação, uso seguro e comparação com Codex.
+
+<!-- ALTERADO 2026-08-27: entrada adicionada; o arquivo skills/qa-engineering-bridge-skill.md já existia e não estava no catálogo. -->
+## Skill 15 — qa-engineering-bridge
+
+Traduz conhecimento de engenharia para o fluxo interno de QA Engineering (Azure Boards/Test Plans, GitHub, Grafana, QA State Machine, Quality Gates, convenções NSTECH e princípios Skill First / Evidence > Opinion / No Hallucination).
+
+Arquivo: `skills/qa-engineering-bridge-skill.md`.

@@ -53,6 +53,11 @@ Não entrega chute.
 
 Constrói árvore de investigação.
 
+<!-- ALTERADO 2026-08-27: registrado que não há .agent.md dedicado; responsabilidade hoje absorvida por outras camadas. Promoção a agente dedicado = decisão arquitetural pendente. -->
+> Sem `.agent.md` dedicado. Responsabilidade coberta hoje pela skill
+> `debugging-systematic-skill.md`, pelo agente principal e pela seção
+> "Debugging" de `01_SYSTEM_INSTRUCTIONS.md`.
+
 ## Agente — Architecture Reviewer
 
 Avalia:
@@ -65,6 +70,12 @@ Avalia:
 - escalabilidade;
 - testes;
 - operação.
+
+<!-- ALTERADO 2026-08-27: registrado que não há .agent.md dedicado; responsabilidade hoje absorvida por outras camadas. Promoção a agente dedicado = decisão arquitetural pendente. -->
+> Sem `.agent.md` dedicado. Responsabilidade coberta hoje pelas skills
+> `software-architecture-skill.md` e `ai-first-engineering-skill.md`, pelo
+> agente `ai-first-architect` e pelo "Modo revisão" de
+> `01_SYSTEM_INSTRUCTIONS.md`.
 
 ## Regra de orquestração
 

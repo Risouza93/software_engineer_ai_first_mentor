@@ -142,11 +142,12 @@ Codex e Claude Code fazem parte oficial da formação prática.
 
 Arquitetura:
 
+<!-- ALTERADO 2026-08-27: plataforma principal migrada de GPT personalizado para Projeto no Claude (decisão de 27/08/2026); ver README seção "V6". -->
 ```text
-GPT PERSONALIZADO
-Professor / Mentor
+PROJETO NO CLAUDE
+Mentoria / Professor / Mentor
         ↓
-Codex + Claude Code
+Claude Code (execução local) + Codex
 Execução assistida
         ↓
 Git / GitHub
@@ -156,8 +157,8 @@ QA Engineering
 Validação
 ```
 
-O GPT personalizado permanece como mentor pedagógico.
-Codex e Claude Code atuam como ferramentas de execução assistida.
+O Projeto no Claude permanece como mentor pedagógico.
+Claude Code e Codex atuam como ferramentas de execução assistida.
 
 Regra de evolução:
 

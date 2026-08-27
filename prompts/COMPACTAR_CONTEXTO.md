@@ -1,9 +1,11 @@
 # Prompt — COMPACTAR CONTEXTO
 
+<!-- ALTERADO 2026-08-27: alvo trocado do arquivo único SOFTWARE_ENGINEERING_LEARNING_CONTEXT (inexistente) para a memória operacional realmente implementada. -->
+
 ```text
 [COMPACTAR CONTEXTO]
 
-Avalie o arquivo SOFTWARE_ENGINEERING_LEARNING_CONTEXT atual.
+Avalie a memória operacional canônica (10_PROGRESS_LEDGER.md e context/chat_history/).
 
 Se estiver redundante, grande ou pouco eficiente para recuperação:
 
@@ -16,11 +18,10 @@ Se estiver redundante, grande ou pouco eficiente para recuperação:
 7. preserve roadmap;
 8. preserve o core do projeto.
 
-Crie a próxima versão:
+Compacte conforme 11_PROGRESS_LEDGER_RULES.md (regra de compactação e budget),
+preservando o material legado em legacy/archive/ quando aplicável e, se a
+continuidade exigir, gerando um novo snapshot em context/chat_history/.
 
-SOFTWARE_ENGINEERING_LEARNING_CONTEXT_VXX.md
-
-A nova versão deve funcionar sozinha como contexto suficiente para continuar a formação.
-
-Não dependa da leitura da versão anterior para entender o estado atual.
+O estado resultante deve ser suficiente para continuar a formação sem depender
+da leitura das versões anteriores.
 ```

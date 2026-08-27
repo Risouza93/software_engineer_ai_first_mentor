@@ -2,8 +2,9 @@
 
 ## Missão
 
-Este pacote define a fundação de um GPT personalizado que atua
-simultaneamente como:
+<!-- ALTERADO 2026-08-27: plataforma principal migrada de GPT personalizado para Projeto no Claude (decisão de 27/08/2026); ver seção "V6". -->
+Este pacote define a fundação de um **Projeto no Claude** (originalmente
+concebido como GPT personalizado) que atua simultaneamente como:
 
 -   Software Engineer Sênior;
 -   Professor ELI5 de Engenharia de Software;
@@ -15,7 +16,8 @@ simultaneamente como:
 -   Mentor AI First;
 -   Ponte permanente com o projeto **QA Engineering**.
 
-O objetivo não é apenas responder dúvidas. O GPT deve formar capacidade
+<!-- ALTERADO 2026-08-27: "O GPT" -> "O mentor" (plataforma migrada para Projeto no Claude). -->
+O objetivo não é apenas responder dúvidas. O mentor deve formar capacidade
 técnica progressiva, do nível iniciante até arquitetura e engenharia
 avançada.
 
@@ -39,8 +41,9 @@ ENSINAR A DECIDIR
 
 ## Arquitetura
 
+<!-- ALTERADO 2026-08-27: "GPT PRINCIPAL" -> "PROJETO NO CLAUDE" (migração de plataforma). -->
 ``` text
-GPT PRINCIPAL — Software Engineer AI-First Mentor
+PROJETO NO CLAUDE — Software Engineer AI-First Mentor
 │
 ├── System Instructions
 ├── Master Context
@@ -70,7 +73,8 @@ GPT PRINCIPAL — Software Engineer AI-First Mentor
     └── QA Bridge
 ```
 
-## Ordem recomendada de upload no GPT
+<!-- ALTERADO 2026-08-27: título (upload no GPT -> carregamento no Projeto no Claude) e inclusão de 11_ e 12_ na ordem. -->
+## Ordem recomendada de carregamento no Projeto no Claude
 
 1.  `00_MASTER_CONTEXT.md`
 2.  `01_SYSTEM_INSTRUCTIONS.md`
@@ -83,6 +87,8 @@ GPT PRINCIPAL — Software Engineer AI-First Mentor
 9.  `08_PROMPT_LIBRARY.md`
 10. `09_SOURCE_POLICY.md`
 11. `10_PROGRESS_LEDGER.md`
+12. `11_PROGRESS_LEDGER_RULES.md`
+13. `12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md`
 
 Depois, adicionar os documentos existentes do projeto QA Engineering.
 
@@ -222,7 +228,8 @@ ALTERAÇÃO
 EXECUÇÃO AUTÔNOMA
 ```
 
-O GPT personalizado é o mentor principal. Codex e Claude Code são
+<!-- ALTERADO 2026-08-27: "O GPT personalizado" -> "O Projeto no Claude" (migração de plataforma). -->
+O Projeto no Claude é o mentor principal. Codex e Claude Code são
 ferramentas de execução assistida.
 
 ## V5 --- Organização de Contexto, Códigos e Comandos
@@ -355,3 +362,56 @@ context/codes/
 A partir desta versão, novos artefatos de código devem seguir
 `context/codes/`, e novos artefatos de comandos devem seguir
 `commands/`.
+
+<!-- ALTERADO 2026-08-27: nova seção registrando a migração de plataforma decidida em 27/08/2026. -->
+## V6 --- Migração para Projeto no Claude
+
+A partir de 27/08/2026, a plataforma principal de orquestração deixa de ser
+um GPT personalizado / Custom GPT e passa a ser um **Projeto no Claude**.
+
+Arquitetura operacional:
+
+``` text
+PROJETO NO CLAUDE
+Mentoria + contexto + regras + orquestração
+        ↓
+CLAUDE CODE
+Execução local no repositório
+        ↓
+GIT
+Rastreabilidade + evidência
+        ↓
+HUMANO
+Revisão + aprovação de commit/push/merge
+```
+
+Consequências:
+
+-   referências operacionais a "GPT personalizado", "Custom GPT" e "upload no
+    GPT" passam a significar "Projeto no Claude" / "carregamento no Projeto no
+    Claude";
+-   referências claramente históricas são preservadas como legado;
+-   a política de fontes (`09_SOURCE_POLICY.md`) escolhe a documentação oficial
+    da tecnologia efetivamente usada (Anthropic para Claude/Claude Code; OpenAI
+    para produtos OpenAI/Codex; GitHub Docs; Microsoft Learn);
+-   `prompts/PROMPT_MESTRE_CONTINUIDADE.md` deixa de fixar uma missão inicial e
+    passa a descobrir o estado atual pelas fontes canônicas;
+-   a memória operacional canônica é `10_PROGRESS_LEDGER.md` + `context/`; não
+    há arquivo único `SOFTWARE_ENGINEERING_LEARNING_CONTEXT_V0X.md`.
+
+### Papel de cada camada
+
+``` text
+SKILL    → conhecimento/método especializado reutilizável (skills/*-skill.md)
+AGENT    → papel/orquestrador especializado que aplica métodos (agents/*.agent.md)
+PROMPT   → comando reutilizável que inicia um fluxo/tarefa (prompts/*.md)
+CONTEXT  → evidência e memória operacional (context/**)
+LEDGER   → índice sintético de progresso (10_PROGRESS_LEDGER.md)
+```
+
+### Automação de manutenção de artefatos
+
+Pedidos de criação/atualização de artefatos (contexto, comandos, códigos,
+Ledger, README) seguem `12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md`: o
+Projeto no Claude define escopo e evidências; o Claude Code executa a edição
+local mínima; o Git é a evidência; o humano aprova commit/push/merge.
