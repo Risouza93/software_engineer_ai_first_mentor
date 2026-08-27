@@ -2,12 +2,13 @@
 
 ## 1. Estado atual
 
-**Missão atual/próxima:** M008 --- Programação\
+<!-- ALTERADO 2026-08-27: reconciliado com contextos de 25/08 e 27/08 (Claude Code em N2, M008 em andamento) e data de atualização. -->
+**Missão atual/próxima:** M008 --- Programação (em andamento)\
 **Última missão concluída:** M007 --- Leitura de código\
-**Data da última atualização:** 18/08/2026
+**Data da última atualização:** 27/08/2026
 
-M004 permanece parcial: Codex Foundations concluído; Claude Code
-bloqueado/adiado por dependência corporativa.
+M004 permanece PARCIAL: Codex e Claude Code Foundations concluídos de forma
+guiada (N2); pendente a comparação controlada Codex × Claude Code.
 
 ## 2. Matriz de competências
 
@@ -32,15 +33,21 @@ bloqueado/adiado por dependência corporativa.
                                      Git como evidência e 
                                      debugging de PATH    
 
-  AI Coding Tools --- ---            bloqueado/adiado     licença e
-  Claude Code                                             CLI/configuração
-                                                          corporativa
+  AI Coding Tools --- N2             instalação,          comparação
+  Claude Code                        autenticação,        controlada Codex
+                                     leitura + alteração  × Claude Code;
+                                     mínima com rollback  desafio autônomo
+                                     (guiado)
 
   Leitura de código   N3             análise autônoma de  consolidar em
                                      fluxo, dados, riscos código real e
                                      e testes             debugging
 
-  JavaScript          ---            não iniciado         missão futura
+  JavaScript          N1 → N2        variáveis, tipos,    loops e funções;
+                      (guiado,       operadores e         checkpoint
+                      M008)          if/else if           autônomo da M008
+                                     guiados; debug de
+                                     sintaxe assistido
 
   TypeScript          ---            não iniciado         missão futura
 
@@ -128,26 +135,30 @@ remoto mais complexo; - review real de PR de outro engenheiro.
 
 ### M004 --- AI Coding Tools Foundations --- PARCIAL
 
-**Data:** 14/08/2026\
-**Evolução:** Codex N0/N1 → N2 forte; Claude Code não iniciado.
+<!-- ALTERADO 2026-08-27: Claude Code deixou de estar bloqueado e foi concluído em N2 guiado (contextos 25/08 e 27/08). M004 segue PARCIAL pela comparação Codex × Claude Code pendente. -->
+**Data:** 14/08/2026 (Codex) / 25/08/2026 (Claude Code)\
+**Evolução:** Codex N0/N1 → N2 forte; Claude Code não iniciado → N2 (guiado).
 
 **Comprovado** - opera Codex com sandbox/permissões e progressão leitura
-→ alteração controlada; - usa Git como evidência e trata AI
-review/finding como hipótese a validar; - distingue capacidade técnica,
-autorização operacional, correção e decisão humana; - retoma sessão e
-diagnosticou resolução do executável/PATH por evidências; - mantém
-autonomia limitada ao escopo necessário, sem ampliar permissões por
-conveniência.
+→ alteração controlada; - instala, autentica e opera Claude Code em
+leitura controlada, alteração mínima e rollback, com escopo restrito; -
+usa Git como evidência independente e trata AI review/finding como
+hipótese a validar; - distingue capacidade técnica, autorização
+operacional, correção e decisão humana; - mantém autonomia limitada ao
+escopo necessário, sem ampliar permissões nem contornar controles.
 
 **Debugging-chave** - confirmou finding real da IA antes de corrigir; -
-diagnosticou `CommandNotFoundException` distinguindo instalação
-funcional, PATH persistente e PATH do processo.
+diagnosticou `CommandNotFoundException` (Codex e Claude Code)
+distinguindo instalação funcional de resolução no PATH da sessão.
 
-**Lacunas** - Codex N3 autônomo e recursos avançados; - Claude Code e
-comparação Codex × Claude Code permanecem pendentes.
+**Lacunas** - Codex e Claude Code N3 autônomos e recursos avançados; -
+comparação controlada Codex × Claude Code permanece pendente e mantém a
+M004 PARCIAL.
 
-**Detalhes:** artefatos/contextos da M004 e registro detalhado no Ledger
-legado.
+**Detalhes:**
+`context/chat_history/CONTEXTO_SESSAO_MISSAO_004_CLAUDE_CODE_FOUNDATIONS_2026-08-25.md`,
+`context/chat_history/CONTEXTO_SESSAO_MISSAO_004_MIGRACAO_PROJETO_CLAUDE_2026-08-27.md`
+e registro detalhado no Ledger legado.
 
 ### M005 --- Branching --- CONCLUÍDA
 
@@ -220,11 +231,34 @@ integrar a habilidade a debugging/implementação.
 **Detalhes:**
 `CONTEXTO_SESSAO_MISSAO_007_LEITURA_CODIGO_CONCLUIDA_2026-08-18.md`
 
+<!-- ALTERADO 2026-08-27: bloco criado; a M008 já possuía atividade registrada em contexto e não constava aqui. -->
+### M008 --- Programação --- EM ANDAMENTO
+
+**Data:** 18/08/2026\
+**Evolução:** JavaScript não iniciado → N1/N2 (guiado); sem promoção a N3.
+
+**Comprovado** - transforma regras aritméticas simples em variáveis e
+operações e acompanha valores intermediários; - identifica tipos básicos
+(String, Number, Boolean, `null`) em exemplos simples; - constrói e
+corrige `if/else` e `if/else if/else`, identificando fronteiras e caminho
+alcançado; - corrige erros simples de sintaxe com orientação.
+
+**Debugging-chave** - separa lógica correta de sintaxe correta ao depurar
+aspas/parênteses/identificadores; correções ainda guiadas.
+
+**Lacunas** - loops e uso consciente de `let`; - funções, módulos,
+exceções e estruturas de dados; - checkpoint autônomo abrangente da
+missão (necessário para N3).
+
+**Detalhes:**
+`context/chat_history/CONTEXTO_SESSAO_MISSAO_008_PROGRAMACAO_EM_ANDAMENTO_2026-08-18.md`
+e `context/codes/codigos_escritos.md`.
+
 ## 4. Bloqueios e pendências
 
--   **Claude Code / M004:** bloqueado/adiado --- licença e
-    CLI/configuração corporativa ainda indisponíveis; não contornar
-    controles corporativos.
+<!-- ALTERADO 2026-08-27: bloqueio de Claude Code resolvido (instalado/autenticado, N2 guiado); substituído pela pendência ativa da comparação. -->
+-   **M004 --- comparação Codex × Claude Code:** pendente; mantém a M004
+    PARCIAL. Claude Code deixou de estar bloqueado.
 -   **Git/GitHub N3:** depende de demonstração autônoma em cenário
     posterior, além de experiência com peer review/fluxos protegidos.
 -   **Codex N3:** depende de desafio autônomo posterior; foundations
@@ -232,10 +266,12 @@ integrar a habilidade a debugging/implementação.
 
 ## 5. Próximo passo
 
-**M008 --- Programação**
+<!-- ALTERADO 2026-08-27: M008 já em andamento; objetivo ajustado para o ponto de retomada real + pendência paralela da M004. -->
+**M008 --- Programação (em andamento)**
 
-Objetivo: construir fundamentos de lógica, variáveis, tipos, condições,
-loops e funções, iniciando pela escrita consciente de código.
+Objetivo imediato: consolidar loops e uso consciente de `let`, retomando no
+checkpoint do primeiro `for`; depois funções. Em paralelo, resolver a
+comparação Codex × Claude Code (M004).
 
 ## 6. Regras de manutenção
 
@@ -255,5 +291,8 @@ loops e funções, iniciando pela escrita consciente de código.
 -   Ao atualizar: alterar Estado atual → skill afetada → missão afetada
     → bloqueios se necessário → Próximo passo.
 -   Não reescrever missões históricas sem mudança real.
+-   Antes de retomar uma sessão significativa, reconciliar este Ledger com
+    o `context/chat_history/` mais recente e o estado do Git (ver
+    `11_PROGRESS_LEDGER_RULES.md`, seção 18).
 -   A especificação completa desta estrutura está em
     `11_PROGRESS_LEDGER_RULES.md`.

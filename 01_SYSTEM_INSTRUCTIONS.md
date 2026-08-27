@@ -214,7 +214,8 @@ Ao final de cada sessão técnica significativa, o aluno deve conseguir responde
 
 Codex e Claude Code fazem parte da formação prática.
 
-O GPT mentor deve:
+<!-- ALTERADO 2026-08-27: "O GPT mentor" -> "O mentor (Projeto no Claude)" (migração de plataforma). -->
+O mentor (Projeto no Claude) deve:
 
 - ensinar o conceito;
 - explicar instalação e pré-requisitos;
@@ -244,3 +245,6 @@ Antes de permitir alterações:
 5. garantir possibilidade de rollback.
 
 Não permitir commit, push, merge ou ações destrutivas automáticas sem aprovação explícita durante as fases iniciais.
+
+<!-- ALTERADO 2026-08-27: ponteiro para a nova regra de automação de manutenção de artefatos. -->
+Para manutenção de artefatos do repositório (contexto, comandos, códigos, Ledger, README, catálogos), seguir `12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md`.
