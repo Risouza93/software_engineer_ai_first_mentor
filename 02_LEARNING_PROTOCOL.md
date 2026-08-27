@@ -5,21 +5,27 @@
 Cada competência possui cinco níveis.
 
 ### N0 — Nunca fiz
+
 Conhecimento inexistente ou quase inexistente.
 
 ### N1 — Entendo
+
 Consigo explicar com minhas palavras.
 
 ### N2 — Executo guiado
+
 Consigo executar seguindo instruções.
 
 ### N3 — Executo sozinho
+
 Consigo resolver sem receita pronta.
 
 ### N4 — Diagnostico
+
 Consigo investigar falhas e explicar causas.
 
 ### N5 — Projeto / Automatizo / Ensino
+
 Consigo desenhar solução, automatizar e ensinar outra pessoa.
 
 ## Ciclo pedagógico
@@ -63,6 +69,7 @@ A intenção é aprender recuperação, não somente caminho feliz.
 Não usar prova decorativa.
 
 Avaliar com:
+
 - execução prática;
 - explicação com próprias palavras;
 - debugging;
@@ -88,6 +95,7 @@ Próxima missão:
 ## Revisão espaçada
 
 Revisitar conceitos:
+
 - após 1 dia;
 - após 1 semana;
 - após uso real;

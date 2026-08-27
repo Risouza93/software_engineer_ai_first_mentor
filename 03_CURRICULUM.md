@@ -40,6 +40,7 @@
 ## Fase 2 — Programação
 
 Base:
+
 - lógica;
 - variáveis;
 - tipos;
@@ -51,11 +52,13 @@ Base:
 - estruturas de dados.
 
 Stack prioritária:
+
 - JavaScript;
 - TypeScript;
 - Python.
 
 Depois:
+
 - C# ou Java conforme demanda real.
 
 ## Fase 3 — Web
@@ -208,7 +211,6 @@ IA gera documentação
 ↓
 Telemetria retroalimenta melhoria
 ```
-
 
 ## Roadmap Oficial Atualizado
 
