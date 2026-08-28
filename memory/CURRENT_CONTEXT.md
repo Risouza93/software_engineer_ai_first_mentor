@@ -1,18 +1,18 @@
 <!-- CRIADO 2026-08-28: primeira versão da memory operacional (regra 13). Sem backup anterior porque não existia CURRENT_CONTEXT.md. -->
-<!-- ALTERADO 2026-08-28: GIT STATE / PENDING / NEXT reconciliados para a branch chore/versiona-memory-operacional-e-reports; esta infra (memory/, backup_context/, relatórios) está sendo versionada em PR guiada. -->
+<!-- ALTERADO 2026-08-28: reconciliado pós-merge da PR #4; a infra de memory (memory/, backup_context/, relatórios) está publicada em main. -->
 
 # CURRENT CONTEXT
 
 ## NOW
 
-Projeto **Software Engineering AI First Mentor**. A base de governança para o
-Claude Code está estabelecida e **publicada em `main`**. A PR #3 (regras 12–15 +
-migração para Projeto no Claude + reconciliação do Ledger) foi **MERGED** em
-27/08/2026 (merge commit `1425fb0`).
+Projeto **Software Engineering AI First Mentor**. A base de governança (regras
+12–15) e a infra de memory operacional (regra 13) estão **publicadas em `main`**:
+PR #3 (regras + migração para Projeto no Claude + Ledger) merged em 27/08; PR #4
+(`memory/`, `backup_context/`, relatórios/contexto pendentes) merged em 28/08
+(merge commit `b85c763`).
 
-Fase atual: **PR guiada** que versiona a infra de memory operacional (regra 13) e
-os relatórios/contexto pendentes, na branch `chore/versiona-memory-operacional-e-reports`.
-Depois: análise/draft de Skills operacionais e/ou retomada da M008.
+Fase atual: **sem trabalho Git em curso.** Próximo: draftar as Skills operacionais
+`git-closure` e `execution-report`, ou retomar a M008.
 
 ## ARCHITECTURE
 
@@ -56,18 +56,12 @@ Git                → O QUE TECNICAMENTE MUDOU (evidência)
 
 ## GIT STATE
 
-- Branch de trabalho: `chore/versiona-memory-operacional-e-reports`, criada a
-  partir de `main@1425fb0` (sincronizada com `origin/main`). Objetivo: versionar
-  a infra de memory operacional + relatórios/contexto pendentes.
-- `main` local **sincronizada** com `origin/main` em `1425fb0` (fast-forward de
-  `8575674` em 28/08).
-- Branch antiga `lab/codex-claude-comparison`: merged na PR #3, remoto deletado,
-  `upstream: gone` — pode ser removida localmente (`git branch -d`).
-- Working tree: 5 itens **untracked** em vias de versionamento nesta PR —
-  `memory/CURRENT_CONTEXT.md`, `backup_context/README.md`,
-  `reports/report_task_28-08-26_11-22.md`, `reports/report_task_27-08-26_11-27.md`,
-  `context/chat_history/CONTEXTO_CONTINUIDADE_CLAUDE_CODE_RULES_REPORTS_PR_2026-08-28.md`.
-- Última reconciliação: 2026-08-28, contra `origin/main@1425fb0`.
+- `main` local **sincronizada** com `origin/main` em `b85c763` (merge da PR #4).
+- Nenhuma branch de trabalho ativa. As branches de feature `lab/codex-claude-comparison`
+  (PR #3) e `chore/versiona-memory-operacional-e-reports` (PR #4) foram mergeadas
+  e removidas (local + remoto).
+- Working tree limpa. Novo trabalho começa com branch a partir de `main` atualizada.
+- Última reconciliação: 2026-08-28, contra `origin/main@b85c763`.
 
 ## PEDAGOGICAL STATE
 
@@ -93,21 +87,18 @@ Fonte: `10_PROGRESS_LEDGER.md` (reconciliado 27/08, já em `main`).
 
 ## PENDING
 
-1. PR guiada em curso: versiona `memory/`, `backup_context/` e os relatórios/
-   contexto pendentes. Aguardando Gates 1/2 e autorização de PR.
-2. Análise de Skills candidatas: `git-closure` e `execution-report` já
-   identificadas como as duas com mais evidência; drafts ainda não escritos.
-3. `backup_context/` só terá backups reais na primeira compactação de memory.
-4. Branch `lab/codex-claude-comparison` já merged — remover localmente.
-5. M004 — comparação Codex × Claude Code continua pendente.
-6. Gates humanos para commit/push/PR permanecem obrigatórios.
+1. Draftar as Skills operacionais `git-closure` e `execution-report` (as duas
+   com mais evidência; drafts ainda não escritos).
+2. `backup_context/` só terá backups reais na primeira compactação de memory.
+3. M004 — comparação Codex × Claude Code continua pendente.
+4. Gates humanos para commit/push/PR permanecem obrigatórios.
 
 ## NEXT
 
-Concluir a PR guiada (Gate 1 → commit → Gate 2 → push → PR). Depois do merge:
-atualizar esta memory, remover a branch antiga e escolher entre (a) draftar as
-Skills operacionais `git-closure` e `execution-report`, ou (b) retomar a M008
-(loops + `let`, checkpoint do primeiro `for`).
+Escolher entre (a) draftar as Skills operacionais `git-closure` e
+`execution-report` (evidência em `reports/` + regras 14/15), ou (b) retomar a
+M008 (loops + `let`, checkpoint do primeiro `for`). Qualquer alteração passa por
+branch + Gates 1/2 + PR.
 
 ## LOAD ON DEMAND
 
