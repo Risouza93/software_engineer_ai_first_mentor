@@ -473,11 +473,12 @@ Nunca priorizar velocidade sobre rastreabilidade.
 ---
 
 <!-- ALTERADO 2026-08-27: relatórios persistentes de execução delegados à regra canônica 15. -->
+<!-- ALTERADO 2026-09-01: nome do arquivo da regra 15 atualizado para o caminho real em rules/. -->
 ## 17. Relatório da execução
 
 A persistência do relatório técnico da execução segue:
 
-`15_UNIVERSAL_EXECUTION_REPORTS_RULES.md`
+`rules/15-universal-execution-reports.md`
 
 A criação do relatório não concede autorização para staging, commit ou push.
 

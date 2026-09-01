@@ -1,9 +1,11 @@
+<!-- ALTERADO 2026-09-01: caminhos das regras atualizados para rules/; status atualizado — a versão executável já existe em .claude/skills/execution-report/SKILL.md (PR #7). Este arquivo é o companion legível. -->
 # Skill operacional — execution-report
 
 **Tipo:** operacional (procedimento do Claude Code)
-**Autoridade:** `15_UNIVERSAL_EXECUTION_REPORTS_RULES.md` — em qualquer conflito, a Regra vence.
-**Relacionadas:** `14_..._GIT_SAFE_PUBLISHING_...` (o relatório entra no commit só pelo Gate 1), `13_..._MEMORY_...` (relatório ≠ memory).
-**Status:** draft para validação — ainda não é Skill executável.
+**Autoridade:** `rules/15-universal-execution-reports.md` — em qualquer conflito, a Regra vence.
+**Relacionadas:** `rules/14-git-safe-publishing.md` (o relatório entra no commit só pelo Gate 1), `rules/13-universal-memory-context-compaction.md` (relatório ≠ memory).
+**Status:** companion legível. A versão executável e canônica do procedimento é
+`.claude/skills/execution-report/SKILL.md`; em divergência entre os dois, vale a executável (e, acima dela, a Regra 15).
 
 ## Use when
 Ao FINAL de toda execução significativa: criação/alteração/remoção de arquivos,

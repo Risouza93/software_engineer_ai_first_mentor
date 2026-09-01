@@ -2,7 +2,8 @@
 
 ## 1. Finalidade
 
-O `10_PROGRESS_LEDGER.md` é um **índice operacional de evolução**, não
+<!-- ALTERADO 2026-09-01: nome do Progress Ledger atualizado para o caminho real em instructions/ (pós-reorganização da raiz). -->
+O `instructions/10-progress-ledger.md` é um **índice operacional de evolução**, não
 um histórico detalhado de sessões.
 
 Ele deve permitir responder com baixo custo de leitura:
@@ -45,7 +46,7 @@ artefatos.
 
 ## 3. Estrutura obrigatória
 
-Toda versão futura do `10_PROGRESS_LEDGER.md` DEVE usar exatamente estas
+Toda versão futura do `instructions/10-progress-ledger.md` DEVE usar exatamente estas
 seções de primeiro nível, nesta ordem:
 
 ``` markdown
@@ -340,9 +341,9 @@ O Ledger legado não deve ser destruído durante a migração.
 Procedimento:
 
 ``` text
-10_PROGRESS_LEDGER.md atual
+instructions/10-progress-ledger.md atual
 → preservar como archive/progress-ledger-legacy.md
-→ gerar novo 10_PROGRESS_LEDGER.md conforme V2
+→ gerar novo instructions/10-progress-ledger.md conforme V2
 → conferir missão por missão
 → garantir que nível, competências, lacunas e bloqueios foram preservados
 → detalhes continuam nos contextos/cartilhas
@@ -377,7 +378,7 @@ Antes de retomar uma sessão significativa, validar a consistência entre as
 fontes de estado:
 
 ``` text
-10_PROGRESS_LEDGER.md
+instructions/10-progress-ledger.md
         +
 context/chat_history/ — arquivo mais recente relevante
         +

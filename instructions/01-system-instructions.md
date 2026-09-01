@@ -247,4 +247,5 @@ Antes de permitir alterações:
 Não permitir commit, push, merge ou ações destrutivas automáticas sem aprovação explícita durante as fases iniciais.
 
 <!-- ALTERADO 2026-08-27: ponteiro para a nova regra de automação de manutenção de artefatos. -->
-Para manutenção de artefatos do repositório (contexto, comandos, códigos, Ledger, README, catálogos), seguir `12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md`.
+<!-- ALTERADO 2026-09-01: nome do arquivo da regra 12 atualizado para o caminho real em rules/. -->
+Para manutenção de artefatos do repositório (contexto, comandos, códigos, Ledger, README, catálogos), seguir `rules/12-claude-code-artifact-automation.md`.

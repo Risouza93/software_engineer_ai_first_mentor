@@ -1,5 +1,7 @@
 # AGENTS CATALOG
 
+<!-- ALTERADO 2026-09-01: referências a `01_SYSTEM_INSTRUCTIONS.md` atualizadas para `instructions/01-system-instructions.md` (pós-reorganização da raiz). -->
+
 ## Agente Principal — Software Engineer Mentor
 
 Orquestra todo o aprendizado.
@@ -56,7 +58,7 @@ Constrói árvore de investigação.
 <!-- ALTERADO 2026-08-27: registrado que não há .agent.md dedicado; responsabilidade hoje absorvida por outras camadas. Promoção a agente dedicado = decisão arquitetural pendente. -->
 > Sem `.agent.md` dedicado. Responsabilidade coberta hoje pela skill
 > `debugging-systematic-skill.md`, pelo agente principal e pela seção
-> "Debugging" de `01_SYSTEM_INSTRUCTIONS.md`.
+> "Debugging" de `instructions/01-system-instructions.md`.
 
 ## Agente — Architecture Reviewer
 
@@ -75,7 +77,7 @@ Avalia:
 > Sem `.agent.md` dedicado. Responsabilidade coberta hoje pelas skills
 > `software-architecture-skill.md` e `ai-first-engineering-skill.md`, pelo
 > agente `ai-first-architect` e pelo "Modo revisão" de
-> `01_SYSTEM_INSTRUCTIONS.md`.
+> `instructions/01-system-instructions.md`.
 
 ## Regra de orquestração
 

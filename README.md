@@ -92,21 +92,22 @@ PROJETO NO CLAUDE — Software Engineer AI-First Mentor
 ```
 
 <!-- ALTERADO 2026-08-27: título (upload no GPT -> carregamento no Projeto no Claude) e inclusão de 11_ e 12_ na ordem. -->
+<!-- ALTERADO 2026-09-01: caminhos atualizados para instructions/ e rules/ (pós-reorganização da raiz); ver instructions/README.md e rules/README.md. -->
 ## Ordem recomendada de carregamento no Projeto no Claude
 
-1.  `00_MASTER_CONTEXT.md`
-2.  `01_SYSTEM_INSTRUCTIONS.md`
-3.  `02_LEARNING_PROTOCOL.md`
-4.  `03_CURRICULUM.md`
-5.  `04_POWERSHELL_GIT_GITHUB.md`
-6.  `05_AI_FIRST_ENGINEERING.md`
-7.  `06_SKILLS_CATALOG.md`
-8.  `07_AGENTS_CATALOG.md`
-9.  `08_PROMPT_LIBRARY.md`
-10. `09_SOURCE_POLICY.md`
-11. `10_PROGRESS_LEDGER.md`
-12. `11_PROGRESS_LEDGER_RULES.md`
-13. `12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md`
+1.  `instructions/00-master-context.md`
+2.  `instructions/01-system-instructions.md`
+3.  `instructions/02-learning-protocol.md`
+4.  `instructions/03-curriculum.md`
+5.  `instructions/04-powershell-git-github.md`
+6.  `instructions/05-ai-first-engineering.md`
+7.  `instructions/06-skills-catalog.md`
+8.  `instructions/07-agents-catalog.md`
+9.  `instructions/08-prompt-library.md`
+10. `instructions/09-source-policy.md`
+11. `instructions/10-progress-ledger.md`
+12. `instructions/11-progress-ledger-rules.md`
+13. `rules/12-claude-code-artifact-automation.md` (e, na sequência, as regras 13–16 em `rules/`)
 
 Depois, adicionar os documentos existentes do projeto QA Engineering.
 
@@ -343,7 +344,7 @@ context/codes/
 context/commands/
 → QUAIS comandos foram executados e como validar/recuperar
 
-10_PROGRESS_LEDGER.md
+instructions/10-progress-ledger.md
 → O QUE foi comprovado, O QUE falta e ONDE estão os detalhes
 ```
 
@@ -373,7 +374,7 @@ context/chat_history/
 context/codes/
 └── codigos_lidos.md
 
-10_PROGRESS_LEDGER.md
+instructions/10-progress-ledger.md
 └── mantém somente síntese + ponteiro para os artefatos canônicos
 ```
 
@@ -409,12 +410,12 @@ Consequências:
     GPT" passam a significar "Projeto no Claude" / "carregamento no Projeto no
     Claude";
 -   referências claramente históricas são preservadas como legado;
--   a política de fontes (`09_SOURCE_POLICY.md`) escolhe a documentação oficial
+-   a política de fontes (`instructions/09-source-policy.md`) escolhe a documentação oficial
     da tecnologia efetivamente usada (Anthropic para Claude/Claude Code; OpenAI
     para produtos OpenAI/Codex; GitHub Docs; Microsoft Learn);
 -   `prompts/PROMPT_MESTRE_CONTINUIDADE.md` deixa de fixar uma missão inicial e
     passa a descobrir o estado atual pelas fontes canônicas;
--   a memória operacional canônica é `10_PROGRESS_LEDGER.md` + `context/`; não
+-   a memória operacional canônica é `instructions/10-progress-ledger.md` + `context/`; não
     há arquivo único `SOFTWARE_ENGINEERING_LEARNING_CONTEXT_V0X.md`.
 
 ### Papel de cada camada
@@ -424,12 +425,12 @@ SKILL    → conhecimento/método especializado reutilizável (skills/*-skill.md
 AGENT    → papel/orquestrador especializado que aplica métodos (agents/*.agent.md)
 PROMPT   → comando reutilizável que inicia um fluxo/tarefa (prompts/*.md)
 CONTEXT  → evidência e memória operacional (context/**)
-LEDGER   → índice sintético de progresso (10_PROGRESS_LEDGER.md)
+LEDGER   → índice sintético de progresso (instructions/10-progress-ledger.md)
 ```
 
 ### Automação de manutenção de artefatos
 
 Pedidos de criação/atualização de artefatos (contexto, comandos, códigos,
-Ledger, README) seguem `12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md`: o
+Ledger, README) seguem `rules/12-claude-code-artifact-automation.md`: o
 Projeto no Claude define escopo e evidências; o Claude Code executa a edição
 local mínima; o Git é a evidência; o humano aprova commit/push/merge.
