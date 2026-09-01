@@ -155,6 +155,9 @@ git branch -d <branch-merged>          # -d (não -D): recusa se não merged
 
 Reconciliar a memory (regra 13) em novo fluxo se o estado operacional mudou.
 
+Concluído o pós-merge, **parar** — Checkpoint 4 da Regra 16 (Fronteira): não
+iniciar a próxima unidade de trabalho sem novo pedido do humano.
+
 ## Interrupções obrigatórias (parar e consultar o humano)
 
 - local atrás do remoto com mais de uma estratégia razoável;

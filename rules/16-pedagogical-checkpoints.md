@@ -179,6 +179,30 @@ Quais branches você quer manter?
 
 ---
 
+<!-- ALTERADO 2026-09-01: adicionado o Checkpoint 4 (Fronteira / Encerramento) — codifica a regra "parar ao fim de cada unidade de trabalho". -->
+### 2.5. CHECKPOINT QUATRO — Fronteira / Encerramento
+
+**Quando**: Ao concluir uma unidade de trabalho — tipicamente o ciclo
+Gate 1 → Gate 2 → PR → merge → pós-merge → limpeza de branches, mas também uma
+tarefa que terminou sem Git (análise, diagnóstico, decisão).
+
+**O que fazer**:
+
+1. Confirmar que a unidade está fechada (working tree limpa, sync feito, branches
+   tratadas, relatório escrito).
+2. Resumir o que mudou e o que ficou pendente.
+3. **Parar (🛑)** — não iniciar a próxima unidade de trabalho.
+4. Pedir o próximo passo.
+
+**O que NÃO fazer**: encadear para o próximo item de pendências, começar o
+próximo commit, ou aproveitar o embalo para uma melhoria adjacente. Cada unidade
+de trabalho termina num ponto de parada limpo sob controle do mentorado.
+
+**Exceção**: apenas quando o mentorado autorizou explicitamente uma sequência
+("faça A, depois B, depois pare") — e mesmo aí, parar ao fim da sequência.
+
+---
+
 ## 3. Relatório Pedagógico
 
 Além do `execution-report` técnico (Regra 15), registrar em `reports/` um resumo compacto das **decisões e aprendizados**:
@@ -203,6 +227,10 @@ Além do `execution-report` técnico (Regra 15), registrar em `reports/` um resu
 - Merge detectado: Sim
 - Branches deletadas: feature/pr-5, feature/pr-6
 - Local sincronizado: Sim
+
+### Checkpoint 4 — Fronteira / Encerramento
+- Unidade fechada: Sim (working tree limpa, relatório escrito)
+- Parou e pediu o próximo passo: Sim
 
 ### Aprendizados Registrados
 - <conceito 1>: <breve reflexão>
@@ -239,6 +267,8 @@ REGRA 16 → CHECKPOINT 3 (sync & cleanup)
 ↓
 REGRA 14
 → GATE 2 (push, se houver)
+↓
+REGRA 16 → CHECKPOINT 4 (fronteira — parar ao fechar a unidade de trabalho)
 ```
 
 **Hierarquia**: se houver conflito entre esta Regra e outra, a **pedagogia não pode ser comprometida** — pausas nunca são opcionais.
@@ -262,7 +292,7 @@ Registrar a exceção no `reports/` da execução.
 
 ## 6. Registro das Decisões
 
-Toda decisão tomada com o mentorado (Checkpoint 0–3) deve:
+Toda decisão tomada com o mentorado (Checkpoint 0–4) deve:
 
 1. Ser **anotada** no relatório técnico (Regra 15)
 2. Ser **refletida** no relatório pedagógico (Seção 3 desta Regra)
@@ -293,6 +323,8 @@ Esta Regra funciona quando:
 Mentorado sente-se guiado, não apressado
 ↓
 Cada checkpoint traz clareza antes de ação
+↓
+Cada unidade de trabalho fecha num ponto de parada limpo
 ↓
 Decisões são registradas com "por quê"
 ↓
