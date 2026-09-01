@@ -1,5 +1,23 @@
 # Software Engineer AI-First Mentor --- Pacote Base
 
+## 🧭 Como Navegar
+
+Novo no projeto? Comece aqui:
+
+### 1. **Pedagogia & Aprendizado** → [`instructions/`](instructions/README.md)
+   Currículo, protocolos, políticas de ensino. Comece em [Master Context](instructions/00-master-context.md).
+
+### 2. **Regras Canônicas (Autoridades)** → [`rules/`](rules/README.md)
+   Regras de automação, Git, Reports, Pedagogia. Leia na ordem 12 → 13 → 14 → 15 → 16.
+
+### 3. **Execução** → [`.claude/skills/`](.claude/skills/)
+   Skills operacionais: `git-closure`, `execution-report`, `pedagogical-checkpoint`.
+
+### 4. **Contexto & Estado** → [`memory/`](memory/)
+   Estado atual do projeto (hot context). Leia [`CURRENT_CONTEXT.md`](memory/CURRENT_CONTEXT.md).
+
+---
+
 ## Missão
 
 <!-- ALTERADO 2026-08-27: plataforma principal migrada de GPT personalizado para Projeto no Claude (decisão de 27/08/2026); ver seção "V6". -->
