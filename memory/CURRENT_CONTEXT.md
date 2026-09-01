@@ -5,13 +5,14 @@
 <!-- ALTERADO 2026-09-01: reconciliado pós-merge das PRs #9-#11 (relatórios da colisão; referências de arquivo pós-reorg; §8 + digest + compactação da Regra 13). -->
 <!-- ALTERADO 2026-09-01: reconciliado pós-merge da PR #13 (Regra 16 §2.5 = Checkpoint 4 Fronteira); PENDING #3 resolvido; ACTIVE RULES = 5 checkpoints. -->
 <!-- ALTERADO 2026-09-01: Tarefa 2 (prompts/ de continuidade realinhados à Regra 13) concluída; PROMPT_MESTRE_CONTINUIDADE.md movido para legacy/; PENDING de prompts/ resolvido. -->
+<!-- ALTERADO 2026-09-01: reconciliação leve pós-merge das PRs #14-#15 — NOW e GIT STATE em main@66c7a94; histórico de PRs até #15. -->
 
 # CURRENT CONTEXT
 
 ## NOW
 
 Projeto **Software Engineering AI First Mentor**. Toda a governança está
-**publicada em `main`** (`1b73f52`): regras `00` (digest operacional) e `12–16`,
+**publicada em `main`** (`66c7a94`): regras `00` (digest operacional) e `12–16`,
 memory operacional, Skills executáveis (`git-closure`, `execution-report`,
 `pedagogical-checkpoint`), raiz em `rules/` + `instructions/`.
 
@@ -22,7 +23,10 @@ reorganização da raiz); #9 (relatórios históricos da colisão de sessões); 
 consolidação de commits por escopo; `rules/00`; `skills/operational/*` reduzidas
 a ponteiros; dedupe do modelo de gates 12→14; Regra 13 compactada 628→550);
 PR #13 (Regra 16 §2.5 = Checkpoint 4 "Fronteira/Encerramento", codifica
-`stop-after-closure`; Tarefa 1 do plano de exercitar `pedagogical-checkpoint`).
+`stop-after-closure`; Tarefa 1 do plano de exercitar `pedagogical-checkpoint`);
+PR #14 (reconciliação de memory pós-#13); PR #15 (Tarefa 2 —
+`prompts/ATUALIZAR_CONTEXTO.md` e `COMPACTAR_CONTEXTO.md` realinhados à Regra 13,
+`PROMPT_MESTRE_CONTINUIDADE.md` → `legacy/`).
 
 Fase atual: `pedagogical-checkpoint` exercitada em 2 fluxos reais (Tarefas 1 e 2
 do plano). Próximo: reavaliar CC Agent / CC Reviewer / skill `cc-flow` à luz
@@ -79,8 +83,8 @@ Git                → O QUE TECNICAMENTE MUDOU (evidência)
 
 ## GIT STATE
 
-- `main` local **sincronizada** com `origin/main` em `1b73f52` (merge da PR #13).
-- Nenhuma branch de trabalho ativa. Branches das PRs #3–#13 mergeadas e removidas
+- `main` local **sincronizada** com `origin/main` em `66c7a94` (merge da PR #15).
+- Nenhuma branch de trabalho ativa. Branches das PRs #3–#15 mergeadas e removidas
   **local e remotamente** (Gate 3b).
 - Working tree limpa. Novo trabalho começa com branch a partir de `main` atualizada.
 - Nota operacional: evitar 2ª sessão Git (Claude/VSCode) no mesmo worktree em
@@ -88,7 +92,7 @@ Git                → O QUE TECNICAMENTE MUDOU (evidência)
 - **Checkpoint 4 / Fronteira (Regra 16 §2.5, agora canônico):** ao fim de uma
   unidade de trabalho (ciclo Git completo ou tarefa sem Git), parar e pedir o
   próximo passo — não encadear.
-- Última reconciliação: 2026-09-01, contra `origin/main@1b73f52`.
+- Última reconciliação: 2026-09-01, contra `origin/main@66c7a94`.
 
 ## PEDAGOGICAL STATE
 
