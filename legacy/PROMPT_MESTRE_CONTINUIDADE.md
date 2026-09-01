@@ -1,5 +1,8 @@
 # PROMPT MESTRE — CONTINUIDADE SOFTWARE ENGINEERING AI FIRST
 
+<!-- ARQUIVADO 2026-09-01: superado por memory/CURRENT_CONTEXT.md + rules/00-operating-model.md.
+     Mantido como registro histórico do bootstrap pré-Regra 13. Não usar como fonte de estado. -->
+
 <!--
 ALTERADO 2026-08-27 (edições dentro do prompt abaixo; comentário fora do bloco para não poluir o texto colável):
 - Seção 1 e Seção 20: removida a fixação na MISSÃO 001; retomada passa a descobrir o estado pelas fontes canônicas.

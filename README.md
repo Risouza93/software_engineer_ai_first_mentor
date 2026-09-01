@@ -190,9 +190,10 @@ Regra oficial de nomenclatura:
 
 Estrutura:
 
+<!-- ALTERADO 2026-09-01: PROMPT_MESTRE_CONTINUIDADE.md movido para legacy/ (superado por memory/CURRENT_CONTEXT.md + rules/00). -->
+
 ``` text
 prompts/
-├── PROMPT_MESTRE_CONTINUIDADE.md
 ├── CONTINUAR.md
 ├── AULA.md
 ├── LAB.md
@@ -210,9 +211,9 @@ prompts/
 └── AI_FIRST.md
 ```
 
-Os prompts devem ser pequenos e específicos, exceto o
-`PROMPT_MESTRE_CONTINUIDADE.md`, responsável por iniciar ou restaurar a
-formação completa.
+Os prompts devem ser pequenos e específicos. A retomada da formação parte de
+`memory/CURRENT_CONTEXT.md` + `rules/00-operating-model.md`; o antigo
+`PROMPT_MESTRE_CONTINUIDADE.md` foi arquivado em `legacy/`.
 
 ## Versão Final --- AI Coding Tools Foundations
 
@@ -413,10 +414,12 @@ Consequências:
 -   a política de fontes (`instructions/09-source-policy.md`) escolhe a documentação oficial
     da tecnologia efetivamente usada (Anthropic para Claude/Claude Code; OpenAI
     para produtos OpenAI/Codex; GitHub Docs; Microsoft Learn);
--   `prompts/PROMPT_MESTRE_CONTINUIDADE.md` deixa de fixar uma missão inicial e
-    passa a descobrir o estado atual pelas fontes canônicas;
--   a memória operacional canônica é `instructions/10-progress-ledger.md` + `context/`; não
-    há arquivo único `SOFTWARE_ENGINEERING_LEARNING_CONTEXT_V0X.md`.
+<!-- ALTERADO 2026-09-01: PROMPT_MESTRE_CONTINUIDADE.md arquivado em legacy/; retomada agora parte de memory/CURRENT_CONTEXT.md + rules/00. -->
+-   a retomada da formação deixa de fixar uma missão inicial e descobre o estado
+    atual pelas fontes canônicas — hoje `memory/CURRENT_CONTEXT.md` (Regra 13) +
+    `rules/00-operating-model.md`; o antigo `PROMPT_MESTRE_CONTINUIDADE.md` está
+    em `legacy/` como registro histórico;
+-   não há arquivo único `SOFTWARE_ENGINEERING_LEARNING_CONTEXT_V0X.md`.
 
 ### Papel de cada camada
 
