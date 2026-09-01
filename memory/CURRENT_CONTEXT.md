@@ -3,13 +3,14 @@
 <!-- ALTERADO 2026-09-01: reconciliado pós-merge das PRs #5-#8 (memory, Skills operacionais draft+executáveis, Regra 16 + reorganização rules/instructions). -->
 <!-- ALTERADO 2026-09-01: +rules/00-operating-model (digest); Regra 16 §8 (consolidação de commits); skills/operational reduzidas a ponteiros. -->
 <!-- ALTERADO 2026-09-01: reconciliado pós-merge das PRs #9-#11 (relatórios da colisão; referências de arquivo pós-reorg; §8 + digest + compactação da Regra 13). -->
+<!-- ALTERADO 2026-09-01: reconciliado pós-merge da PR #13 (Regra 16 §2.5 = Checkpoint 4 Fronteira); PENDING #3 resolvido; ACTIVE RULES = 5 checkpoints. -->
 
 # CURRENT CONTEXT
 
 ## NOW
 
 Projeto **Software Engineering AI First Mentor**. Toda a governança está
-**publicada em `main`** (`109e8b4`): regras `00` (digest operacional) e `12–16`,
+**publicada em `main`** (`1b73f52`): regras `00` (digest operacional) e `12–16`,
 memory operacional, Skills executáveis (`git-closure`, `execution-report`,
 `pedagogical-checkpoint`), raiz em `rules/` + `instructions/`.
 
@@ -18,7 +19,9 @@ Histórico de PRs: #3 (regras + Ledger, 27/08); #4 (`memory/`, `backup_context/`
 reorganização da raiz); #9 (relatórios históricos da colisão de sessões); #10
 (correção de referências de arquivo quebradas pós-reorg); #11 (Regra 16 §8 =
 consolidação de commits por escopo; `rules/00`; `skills/operational/*` reduzidas
-a ponteiros; dedupe do modelo de gates 12→14; Regra 13 compactada 628→550).
+a ponteiros; dedupe do modelo de gates 12→14; Regra 13 compactada 628→550);
+PR #13 (Regra 16 §2.5 = Checkpoint 4 "Fronteira/Encerramento", codifica
+`stop-after-closure`; Tarefa 1 do plano de exercitar `pedagogical-checkpoint`).
 
 Fase atual: **sem trabalho Git em curso.** Próximo: validar `pedagogical-checkpoint`
 em uso real (ainda sem execução), ou retomar a M008.
@@ -56,8 +59,9 @@ Regras canônicas na raiz do repo (não copiar conteúdo; abrir sob demanda):
   1 relatório em `reports/report_task_DD-MM-YY_HH-mm.md`. Nunca sobrescrever;
   nunca relatório sobre relatório; criar o relatório não autoriza `git add`.
 - `rules/16-pedagogical-checkpoints.md` — pausas pedagógicas obrigatórias:
-  4 checkpoints (Análise, Proposta, Validação, Sync&Cleanup), questionamento de
-  abordagem, relatórios pedagógicos com decisões, limpeza de branches pós-merge.
+  5 checkpoints (Análise, Proposta, Validação, Sync&Cleanup, **Fronteira/
+  Encerramento** = parar ao fim de cada unidade de trabalho, §2.5), questionamento
+  de abordagem, relatórios pedagógicos com decisões, limpeza de branches pós-merge.
   **§8: consolidação de commits por escopo** (heurística "1 frase = 1 commit").
   Skill complementar: `pedagogical-checkpoint` em `.claude/skills/`.
 
@@ -73,16 +77,16 @@ Git                → O QUE TECNICAMENTE MUDOU (evidência)
 
 ## GIT STATE
 
-- `main` local **sincronizada** com `origin/main` em `109e8b4` (merge da PR #11).
-- Nenhuma branch de trabalho ativa. Branches das PRs #3–#11 mergeadas e removidas
-  **local e remotamente** (Gate 3b feito em 01/09).
+- `main` local **sincronizada** com `origin/main` em `1b73f52` (merge da PR #13).
+- Nenhuma branch de trabalho ativa. Branches das PRs #3–#13 mergeadas e removidas
+  **local e remotamente** (Gate 3b).
 - Working tree limpa. Novo trabalho começa com branch a partir de `main` atualizada.
 - Nota operacional: evitar 2ª sessão Git (Claude/VSCode) no mesmo worktree em
   paralelo — em 01/09 isso descartou um Gate 1 não commitado (ver `reports/`).
-- Regra vigente (memory `stop-after-closure`): ao fim de um ciclo de encerramento
-  (Gate 1→2→PR→merge→pós-merge), **parar e aguardar prompt explícito** — não
-  encadear para a próxima unidade de trabalho.
-- Última reconciliação: 2026-09-01, contra `origin/main@109e8b4`.
+- **Checkpoint 4 / Fronteira (Regra 16 §2.5, agora canônico):** ao fim de uma
+  unidade de trabalho (ciclo Git completo ou tarefa sem Git), parar e pedir o
+  próximo passo — não encadear.
+- Última reconciliação: 2026-09-01, contra `origin/main@1b73f52`.
 
 ## PEDAGOGICAL STATE
 
@@ -108,16 +112,17 @@ Fonte: `instructions/10-progress-ledger.md` (reconciliado 27/08, já em `main`).
 
 ## PENDING
 
-1. Validar `pedagogical-checkpoint` em uso real (ainda sem execução). O destino de
-   `skills/operational/*` já está resolvido: são **ponteiros** (PR #11).
-2. `prompts/` (`PROMPT_MESTRE_CONTINUIDADE.md`, `ATUALIZAR_CONTEXTO.md`,
-   `COMPACTAR_CONTEXTO.md`) ainda citam nomes achatados antigos do Ledger/currículo;
-   decisão separada (atualizar refs ou aposentar o master prompt legado).
-3. Codificar a regra `stop-after-closure` em `rules/` e nas skills, pelo fluxo
-   normal (a memory já registra a expectativa).
-4. `backup_context/` só terá backups reais na primeira compactação de memory.
-5. M004 — comparação Codex × Claude Code continua pendente.
-6. Gates humanos para commit/push/PR permanecem obrigatórios.
+1. Validar `pedagogical-checkpoint` em uso real — **plano em curso**: exercitá-la
+   em 2 tarefas reais registrando nos relatórios. Tarefa 1 (Checkpoint 4 da
+   Regra 16) feita, PR #13. **Tarefa 2 pendente:** referências antigas em
+   `prompts/` (ver abaixo). Só depois reavaliar CC Agent / CC Reviewer.
+2. `prompts/` (`PROMPT_MESTRE_CONTINUIDADE.md` 622 l. — legado; `ATUALIZAR_CONTEXTO.md`,
+   `COMPACTAR_CONTEXTO.md`) citam nomes achatados antigos do Ledger/currículo.
+   Decisão pendente: corrigir refs, apontar para skills/regras, ou `git mv` do
+   master prompt para `legacy/`. (= Tarefa 2 do plano acima.)
+3. `backup_context/` só terá backups reais na primeira compactação de memory.
+4. M004 — comparação Codex × Claude Code continua pendente.
+5. Gates humanos para commit/push/PR permanecem obrigatórios.
 
 ## NEXT
 
