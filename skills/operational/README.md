@@ -23,14 +23,14 @@ SKILL   → procedimento repetível que cumpre a política
 
 Em qualquer conflito, **a Regra vence** e a Skill deve ser corrigida.
 
-<!-- ALTERADO 2026-09-01: drafts validados e convertidos em Skills executáveis (PR #7); este diretório passa a ser companion legível. Nomes das regras atualizados para rules/. -->
+<!-- ALTERADO 2026-09-01: os 3 arquivos deixaram de ser companions de corpo completo e viraram ponteiros — o procedimento não é mais duplicado; a única cópia é a versão executável em .claude/skills/. -->
 ## Estado
 
-`git-closure` e `execution-report` foram validados em uso real e **convertidos**
-em Skills executáveis do Claude Code (`.claude/skills/<nome>/SKILL.md`, PR #7).
-Os arquivos aqui são o **companion legível** desses procedimentos: mesma
-substância, prosa mais discursiva. Em divergência, vale a versão executável e,
-acima dela, a Regra canônica.
+Os procedimentos foram validados em uso real e vivem, como **cópia única**, nas
+Skills executáveis do Claude Code (`.claude/skills/<nome>/SKILL.md`, PR #7). Os
+arquivos deste diretório são **ponteiros** — cabeçalho + resumo de uma frase +
+link para a versão executável e para a Regra. Não duplicam o procedimento. Em
+divergência, vale a versão executável e, acima dela, a Regra canônica.
 
 ## Catálogo
 

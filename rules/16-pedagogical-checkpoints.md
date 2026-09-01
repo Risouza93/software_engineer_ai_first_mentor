@@ -303,13 +303,26 @@ Autonomia cresce, mas pedagogia não é perdida
 
 ---
 
-## 8. Nota sobre Commits Pequenos
+<!-- ALTERADO 2026-09-01: seção promovida de nota descritiva para regra normativa de consolidação de commits por escopo. -->
+## 8. Consolidação de commits por escopo
 
-Como decorrência desta Regra:
+Commits refletem **aprovações pedagógicas por escopo**, não microações por arquivo.
 
-- Commits serão **maiores e mais significativos**, pois refletem aprovações pedagógicas, não microações
-- Branches viverão **mais tempo**, o que é saudável — tempo para revisar, questionar, aprender
-- PRs terão **histórico claro** de decisões e aprendizados, útil para futuros mentees
+**Heurística:** *"Consigo descrever este commit em uma frase, sem usar "e" nem
+"também" para juntar propósitos diferentes?"*
 
-Isto **NÃO é ineficiência** — é design pedagógico.
+- **Sim → 1 commit.** Mesmo propósito atravessando N arquivos é um commit só
+  (ex.: renomear uma referência em 14 arquivos; corrigir typos num conjunto de
+  docs; atualizar paths em `rules/` + `skills/`).
+- **Não → N commits**, um por propósito lógico independente (ex.: *criar* uma
+  regra nova; *atualizar* as referências a ela; *gerar* o relatório — três
+  propósitos, três commits).
 
+Consequências: commits maiores e mais significativos, branches com vida mais
+longa, PRs com histórico legível de decisões. Isto **não é ineficiência** — é
+design pedagógico e reduz ruído de histórico.
+
+Relação com as outras regras: a **Regra 12** define *como* editar (cirúrgico,
+comentário no ponto alterado); esta seção define *quando agrupar* as edições num
+commit. A skill `git-closure` (Regra 14) aplica a heurística no passo de proposta
+de commit.

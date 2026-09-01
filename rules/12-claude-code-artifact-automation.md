@@ -203,26 +203,12 @@ Quando houver alteração estrutural, o Claude Code deve verificar se existem re
 
 ---
 
+<!-- ALTERADO 2026-09-01: lista de operações Git/destrutivas proibidas removida daqui; a lista canônica vive em rules/14 §12. Mantidos só os pontos específicos desta regra. -->
 ## 8. Segurança operacional
 
 Por padrão, o prompt gerado pelo Projeto no Claude deve permitir apenas alterações locais explicitamente relacionadas ao objetivo.
 
-Durante esta fase de formação, Claude Code NÃO deve executar automaticamente:
-
-```text
-git commit
-git push
-git merge
-git rebase
-git reset --hard
-git clean
-remoção destrutiva de arquivos
-instalação de dependências
-alteração de credenciais
-alteração de configuração global
-```
-
-salvo autorização explícita posterior do usuário.
+Publicação (commit, push, PR) e operações destrutivas: seguir `rules/14-git-safe-publishing.md` — nada automático sem gate humano; a lista de operações proibidas por padrão está na §12 daquela regra. Instalação de dependências e alteração de configuração/credenciais também exigem autorização explícita.
 
 Nunca incluir segredos, tokens ou credenciais nos prompts/artefatos.
 
@@ -454,23 +440,10 @@ O script nunca deve incluir segredo real.
 
 ---
 
+<!-- ALTERADO 2026-09-01: fronteira Claude/humano descrita 1× em rules/14 §1; aqui só o ponteiro + a nota de evolução, específica desta regra. -->
 ## 14. Aprovação e autonomia
 
-Esta regra automatiza a **edição local dos artefatos**, não a publicação.
-
-A fronteira padrão permanece:
-
-```text
-Claude Code
-→ pode editar artefatos autorizados localmente
-→ pode validar o diff
-
-Humano
-→ revisa evidências
-→ decide commit
-→ decide push
-→ decide merge
-```
+Esta regra automatiza a **edição local dos artefatos**, não a publicação. A fronteira Claude Code (edita + valida diff) × humano (decide commit/push/merge) é definida em `rules/14-git-safe-publishing.md` §1.
 
 A autonomia pode evoluir posteriormente conforme o Learning Protocol e evidência formal de competência.
 

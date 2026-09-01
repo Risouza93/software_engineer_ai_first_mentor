@@ -92,9 +92,14 @@ regra 15. Registrar como benignos, não "corrigir".
 Arquivos que entram / que não entram / resumo do diff / validações /
 mensagem(ns) sugerida(s) / comandos exatos. **Não** executar `git add` / `commit`.
 
-Se o escopo contém mudanças lógicas independentes (ex.: regras novas + migração +
-renames), propor **N commits**, um por mudança lógica, cada um com sua mensagem —
-não um commit único agregando tudo.
+Consolidação por escopo (Regra 16 §8) — heurística *"descrevo em 1 frase, sem
+'e'/'também'?"*:
+
+- **1 frase → 1 commit.** Mesmo propósito em N arquivos = um commit só (ex.:
+  atualizar uma referência em 14 arquivos).
+- **Vários propósitos → N commits**, um por mudança lógica independente (ex.:
+  regra nova + migração + renames), cada um com sua mensagem — nunca um commit
+  único agregando propósitos distintos.
 
 ### 5. 🛑 GATE 1 — staging + commit
 
@@ -185,6 +190,7 @@ Working tree limpa e branch com upstream conhecido ao final.
 - `git add .` quando dá para listar os arquivos.
 - Commitar arquivo só porque está na working tree.
 - Um commit único quando o escopo tem mudanças lógicas independentes.
+- N commits para o mesmo propósito só porque toca vários arquivos (Regra 16 §8).
 - Refactor oportunista junto do commit.
 - Seguir de um gate para o outro sem autorização nova.
 - Reutilizar branch já merged ou empilhar sobre PR aberta.

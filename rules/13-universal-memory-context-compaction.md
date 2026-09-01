@@ -5,29 +5,21 @@
 **Escopo:** universal — aplicável a qualquer repositório/projeto assistido por Claude/Claude Code  
 **Objetivo prioritário:** minimizar ao máximo o consumo de tokens de retomada sem sacrificar estado, decisões, segurança ou rastreabilidade.
 
+<!-- ALTERADO 2026-09-01: §1 compactada (3 blocos redundantes → 1); regra e objetivo em uma linha. -->
 ## 1. Princípio máximo
 
-O agente NÃO deve reconstruir o entendimento do projeto relendo todo o repositório a cada nova sessão.
-
-A memória persistente deve funcionar como um **bootstrap operacional compacto**:
+O agente NÃO deve reconstruir o entendimento do projeto relendo todo o repositório a cada nova sessão. A memória persistente funciona como **bootstrap operacional compacto**:
 
 ```text
 NOVA SESSÃO
 → ler memory/CURRENT_CONTEXT.md
 → entender estado + arquitetura + regras + próximo passo
-→ ler SOMENTE arquivos exigidos pela tarefa atual
+→ ler SOMENTE arquivos exigidos pela tarefa
 → executar
-→ atualizar memory apenas se o estado relevante mudou
+→ atualizar memory só se o estado relevante mudou
 ```
 
-Regra:
-
-```text
-NÃO REDESCOBRIR O QUE JÁ FOI CONSOLIDADO.
-NÃO CARREGAR O QUE NÃO É NECESSÁRIO PARA A TAREFA.
-```
-
-O objetivo é reduzir tokens de contexto ao mínimo necessário.
+Regra: **não redescobrir o que já foi consolidado; não carregar o que a tarefa não exige.** Objetivo: reduzir tokens de contexto ao mínimo necessário.
 
 ---
 
@@ -137,7 +129,9 @@ FONTE CANÔNICA GUARDA "OS DETALHES"
 
 A memory deve conter apenas informação necessária para retomar trabalho sem redescoberta global.
 
-Estrutura padrão:
+Estrutura padrão (universal — um projeto pode renomear/estender as seções por
+regra local, §17, desde que preserve estado, próximo passo, decisões, pendências
+e mapa de fontes):
 
 ```markdown
 # CURRENT CONTEXT
@@ -360,54 +354,21 @@ Se o custo cresce e o valor não, compactar.
 
 ---
 
+<!-- ALTERADO 2026-09-01: §13 condensada — passos 13.1/13.2/13.3 em prosa contínua, sem perder nenhum item normativo. -->
 ## 13. Compactação obrigatória
 
 Quando a memory estiver inchada:
 
-### 13.1 Backup primeiro
-
-Antes de compactar, preservar a versão atual:
-
-```text
-backup_context/MEMORY_BACKUP_YYYY-MM-DD_HHMM.md
-```
-
-Nunca sobrescrever backup existente.
-
-### 13.2 Compactar
-
-Manter na memory ativa somente:
-
-```text
-estado atual
-próximo passo
-decisões vigentes
-pendências/bloqueios ativos
-mapa mínimo de fontes
-mudanças recentes indispensáveis
-última reconciliação
-```
-
-Remover da memory ativa:
-- narrativa histórica;
-- decisões substituídas;
-- pendências encerradas;
-- explicações longas;
-- outputs;
-- conteúdo duplicado;
-- detalhes recuperáveis por ponteiro.
-
-### 13.3 Preservação
-
-Nenhuma informação importante deve desaparecer irreversivelmente.
-
-Ela deve permanecer recuperável em pelo menos uma fonte:
-
-```text
-backup_context/
-documentação/contexto canônico
-Git
-```
+1. **Backup primeiro** — preservar a versão atual em
+   `backup_context/MEMORY_BACKUP_YYYY-MM-DD_HHMM.md`. Nunca sobrescrever backup existente.
+2. **Compactar** — manter na memory ativa só: estado atual, próximo passo, decisões
+   vigentes, pendências/bloqueios ativos, mapa mínimo de fontes, mudanças recentes
+   indispensáveis, última reconciliação. Remover: narrativa histórica, decisões
+   substituídas, pendências encerradas, explicações longas, outputs, conteúdo
+   duplicado, detalhes recuperáveis por ponteiro.
+3. **Preservação** — nenhuma informação importante desaparece irreversivelmente;
+   deve continuar recuperável em pelo menos uma fonte (`backup_context/`,
+   documentação/contexto canônico, ou Git).
 
 ---
 
@@ -524,32 +485,8 @@ Se isso exigir dezenas de milhares de tokens de releitura, a política falhou.
 
 ---
 
-## 20. Critério de sucesso de eficiência
-
-Objetivo operacional:
-
-```text
-ANTES
-nova sessão
-→ dezenas de arquivos
-→ reconstrução global
-→ alto consumo de tokens
-→ trabalho
-
-DEPOIS
-nova sessão
-→ CURRENT_CONTEXT.md
-→ 1–3 fontes específicas quando necessárias
-→ trabalho
-```
-
-Não existe garantia de número fixo de tokens, pois tarefas variam.
-
-Porém, uma retomada comum NÃO deve consumir dezenas de milhares de tokens apenas para compreender novamente o projeto.
-
----
-
-## 21. Algoritmo universal de retomada
+<!-- ALTERADO 2026-09-01: §20 "Critério de sucesso de eficiência" removida (restatement de §1 e §19); §§21–23 renumeradas para 20–22. -->
+## 20. Algoritmo universal de retomada
 
 ```text
 1. Existe memory/CURRENT_CONTEXT.md?
@@ -577,7 +514,7 @@ Porém, uma retomada comum NÃO deve consumir dezenas de milhares de tokens apen
 
 ---
 
-## 22. Anti-padrões proibidos
+## 21. Anti-padrões proibidos
 
 ```text
 "Vou ler todo o repo para me familiarizar"
@@ -604,25 +541,10 @@ Porém, uma retomada comum NÃO deve consumir dezenas de milhares de tokens apen
 
 ---
 
-## 23. Princípio final
+## 22. Princípio final
 
-```text
-MEMORY
-→ MAPA ATUAL MÍNIMO
-
-FONTES CANÔNICAS
-→ DETALHES SOB DEMANDA
-
-BACKUP_CONTEXT
-→ HISTÓRICO FRIO
-
-GIT / TESTES
-→ EVIDÊNCIA
-
-OBJETIVO
-→ MÍNIMO DE TOKENS
-   SEM PERDER CONTINUIDADE
-   NEM CONFIABILIDADE
-```
+Memory = mapa atual mínimo · fontes canônicas = detalhes sob demanda ·
+`backup_context/` = histórico frio · Git/testes = evidência. Objetivo: mínimo de
+tokens sem perder continuidade nem confiabilidade.
 
 A memory existe para que o agente CONTINUE o trabalho, não para que precise REAPRENDER o projeto.
