@@ -43,6 +43,10 @@ Regras canônicas na raiz do repo (não copiar conteúdo; abrir sob demanda):
 - `15_UNIVERSAL_EXECUTION_REPORTS_RULES.md` — toda execução significativa gera
   1 relatório em `reports/report_task_DD-MM-YY_HH-mm.md`. Nunca sobrescrever;
   nunca relatório sobre relatório; criar o relatório não autoriza `git add`.
+- `16_PEDAGOGICAL_CHECKPOINTS_RULES.md` — pausas pedagógicas obrigatórias:
+  4 checkpoints (Análise, Proposta, Validação, Sync&Cleanup), questionamento de
+  abordagem, relatórios pedagógicos com decisões, limpeza de branches pós-merge.
+  Skill complementar: `pedagogical-checkpoint` em `.claude/skills/`.
 
 Arquitetura de contexto:
 
