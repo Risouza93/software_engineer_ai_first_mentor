@@ -7,15 +7,15 @@ description: >-
   debugging relevante, manutenção de contexto / memory, compactação, preparação de
   commit, commit / push autorizados, ou falha que afete o estado do trabalho. Use
   ao FINAL de toda execução significativa, antes de encerrar o turno. Autoridade:
-  15_UNIVERSAL_EXECUTION_REPORTS_RULES.md — em qualquer conflito, a Regra vence.
+  rules/15-universal-execution-reports.md — em qualquer conflito, a Regra vence.
 ---
 
 # execution-report
 
 Procedimento operacional do Claude Code para registrar execuções.
-**Autoridade:** `15_UNIVERSAL_EXECUTION_REPORTS_RULES.md`.
-Relacionadas: `14_GIT_SAFE_PUBLISHING_RULES.md` (o relatório entra no commit só
-pelo Gate 1), `13_UNIVERSAL_MEMORY_CONTEXT_COMPACTION_RULES.md` (relatório ≠
+**Autoridade:** `rules/15-universal-execution-reports.md`.
+Relacionadas: `rules/14-git-safe-publishing.md` (o relatório entra no commit só
+pelo Gate 1), `rules/13-universal-memory-context-compaction.md` (relatório ≠
 memory).
 
 ## Use when

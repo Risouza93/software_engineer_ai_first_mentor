@@ -30,19 +30,23 @@ abrir só os arquivos que a tarefa exige. Não reauditar o repositório.
 
 Regras canônicas na raiz do repo (não copiar conteúdo; abrir sob demanda):
 
-- `12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md` — automação de artefatos:
+- `rules/12-claude-code-artifact-automation.md` — automação de artefatos:
   edição cirúrgica, comentário `<!-- ALTERADO YYYY-MM-DD: ... -->`, preservar o
   resto, delegar publicação à 14 e relatório à 15.
-- `13_UNIVERSAL_MEMORY_CONTEXT_COMPACTION_RULES.md` — memory/backup_context e
+- `rules/13-universal-memory-context-compaction.md` — memory/backup_context e
   eficiência de tokens. `memory/` = hot context; `backup_context/` = cold.
   Meta desta memory: ~500–1.500 palavras (menos quando possível).
-- `14_GIT_SAFE_PUBLISHING_RULES.md` — inspeção/diff/proposta automáticos;
+- `rules/14-git-safe-publishing.md` — inspeção/diff/proposta automáticos;
   **staging+commit = Gate 1 humano**, **push = Gate 2 humano**, **PR = autorização
   separada**. Operações destrutivas (reset --hard, rebase, amend, push --force,
   restore .) nunca automáticas.
-- `15_UNIVERSAL_EXECUTION_REPORTS_RULES.md` — toda execução significativa gera
+- `rules/15-universal-execution-reports.md` — toda execução significativa gera
   1 relatório em `reports/report_task_DD-MM-YY_HH-mm.md`. Nunca sobrescrever;
   nunca relatório sobre relatório; criar o relatório não autoriza `git add`.
+- `rules/16-pedagogical-checkpoints.md` — pausas pedagógicas obrigatórias:
+  4 checkpoints (Análise, Proposta, Validação, Sync&Cleanup), questionamento de
+  abordagem, relatórios pedagógicos com decisões, limpeza de branches pós-merge.
+  Skill complementar: `pedagogical-checkpoint` em `.claude/skills/`.
 
 Arquitetura de contexto:
 
@@ -65,7 +69,7 @@ Git                → O QUE TECNICAMENTE MUDOU (evidência)
 
 ## PEDAGOGICAL STATE
 
-Fonte: `10_PROGRESS_LEDGER.md` (reconciliado 27/08, já em `main`).
+Fonte: `instructions/10-progress-ledger.md` (reconciliado 27/08, já em `main`).
 
 - **M008 — Programação (JavaScript): EM ANDAMENTO.** Nível N1→N2 guiado.
   Retomar no checkpoint do primeiro `for` (loops + uso consciente de `let`);
@@ -106,8 +110,8 @@ Não carregar automaticamente; consultar só se a tarefa exigir:
 
 - `reports/` (histórico de execuções) — abrir no máximo o relatório mais recente.
 - `context/chat_history/` — contexto narrativo detalhado por sessão.
-- `11_PROGRESS_LEDGER_RULES.md` — só ao editar o Ledger.
-- `skills/`, `agents/`, `06_SKILLS_CATALOG.md`, `07_AGENTS_CATALOG.md` — conteúdo
+- `instructions/11-progress-ledger-rules.md` — só ao editar o Ledger.
+- `skills/`, `agents/`, `instructions/06-skills-catalog.md`, `instructions/07-agents-catalog.md` — conteúdo
   **pedagógico** (mentor), eixo diferente das Skills operacionais do Claude Code;
   divergências catálogo × filesystem conhecidas e não urgentes.
 - `prompts/PROMPT_MESTRE_CONTINUIDADE.md` — bootstrap antigo, ainda com resíduos
