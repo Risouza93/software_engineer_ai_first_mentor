@@ -1,13 +1,14 @@
 ---
 name: pedagogical-checkpoint
 description: >-
-  Inserir pausas pedagógicas obrigatórias — 4 checkpoints (Análise, Proposta,
-  Execução/Validação, Sync & Cleanup) — em qualquer tarefa significativa de
-  edição, refactoring, diagnóstico ou decisão arquitetural conduzida com um
-  mentorado. Automação não deve virar autonomia silenciosa: cada checkpoint para
-  e pergunta antes de avançar. Use sempre que a tarefa envolver ensino/mentoria,
-  não só execução técnica. Autoridade: rules/16-pedagogical-checkpoints.md — em
-  qualquer conflito, a Regra vence.
+  Inserir pausas pedagógicas obrigatórias — 5 checkpoints (Análise, Proposta,
+  Execução/Validação, Sync & Cleanup, Fronteira/Encerramento) — em qualquer
+  tarefa significativa de edição, refactoring, diagnóstico ou decisão
+  arquitetural conduzida com um mentorado. Automação não deve virar autonomia
+  silenciosa: cada checkpoint para e pergunta antes de avançar, e a unidade de
+  trabalho fecha num ponto de parada. Use sempre que a tarefa envolver
+  ensino/mentoria, não só execução técnica. Autoridade:
+  rules/16-pedagogical-checkpoints.md — em qualquer conflito, a Regra vence.
 ---
 
 # pedagogical-checkpoint
@@ -38,7 +39,8 @@ mentorado aprender/decidir, não só o código mudar.
 
 - A tarefa proposta e o motivo pedagógico de trazê-la ao mentorado.
 - Opções técnicas viáveis, com vantagem/risco de cada uma.
-- Estado Git relevante (para o Checkpoint 3 — merge detectado).
+- Estado Git relevante (para o Checkpoint 3 — merge detectado; e o Checkpoint 4
+  — confirmar que a unidade está fechada).
 - Autorização explícita do mentorado em cada checkpoint — obtida durante o
   procedimento, nunca assumida.
 
@@ -131,6 +133,23 @@ Quer que eu execute? Quais branches manter?
 **Não prosseguir** sem aprovação explícita — isto se soma, não substitui, os
 Gates 2/3/3b da skill `git-closure`.
 
+### Checkpoint 4 — Fronteira / Encerramento
+
+Ao concluir a unidade de trabalho (ciclo Git completo, ou tarefa sem Git):
+
+```text
+UNIDADE CONCLUÍDA:
+- working tree limpa · sync feito · branches tratadas · relatório escrito
+- resumo do que mudou + o que ficou pendente
+
+Paro aqui. Qual o próximo passo?
+```
+
+**Parar (🛑) — não iniciar a próxima unidade de trabalho:** nada de puxar o
+próximo item de pendências, começar o próximo commit, ou "aproveitar o embalo".
+Exceção: sequência explicitamente autorizada pelo mentorado ("faça A, depois B,
+depois pare") — e mesmo aí, parar ao fim da sequência.
+
 ### Relatório pedagógico
 
 Ao final, incluir no `reports/` (junto ou anexo ao relatório técnico da regra
@@ -153,6 +172,9 @@ Ao final, incluir no `reports/` (junto ou anexo ao relatório técnico da regra
 - Merge detectado: sim/não
 - Branches removidas: <lista>
 
+### Checkpoint 4 — Fronteira / Encerramento
+- Unidade fechada e parou para pedir o próximo passo: sim/não
+
 ### Aprendizados registrados
 - <conceito>: <breve reflexão>
 
@@ -168,6 +190,7 @@ Não é recursão (não relatar o relatório pedagógico) — só registra as es
 - qualquer edição de arquivo antes do checkpoint 1 aprovado;
 - qualquer commit (Gate 1 da regra 14) antes do checkpoint 2 confirmado;
 - merge detectado sem checkpoint 3 apresentado;
+- unidade de trabalho concluída sem checkpoint 4 (parar e pedir o próximo passo);
 - pedido de pular checkpoints sem autorização explícita registrada.
 
 ## Validações (Definition of Done)

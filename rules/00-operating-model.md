@@ -31,8 +31,9 @@ específica): `git merge`, `git rebase`, `git reset --hard`, `git clean`,
 
 Pausar e consultar o mentorado em: **Análise** (opções + recomendação), **Proposta
 técnica** (plano antes de editar), **Execução/Validação** (resultado antes do
-Gate 1), **Sync & Cleanup** (após merge detectado). Não emendar a próxima unidade
-de trabalho sem prompt explícito.
+Gate 1), **Sync & Cleanup** (após merge detectado) e **Fronteira** (ao fechar a
+unidade de trabalho — parar, não encadear para a próxima sem prompt explícito;
+Regra 16 §2.5).
 
 ## Edição e evidência
 

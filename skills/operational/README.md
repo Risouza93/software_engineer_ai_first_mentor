@@ -38,4 +38,4 @@ divergência, vale a versão executável e, acima dela, a Regra canônica.
 |---|---|---|---|
 | `git-closure-skill.md` | `.claude/skills/git-closure/SKILL.md` | `rules/14-git-safe-publishing.md` | encerrar alterações com Git de forma auditável e com gates humanos |
 | `execution-report-skill.md` | `.claude/skills/execution-report/SKILL.md` | `rules/15-universal-execution-reports.md` | registrar cada execução significativa em `reports/` |
-| `pedagogical-checkpoint-skill.md` | `.claude/skills/pedagogical-checkpoint/SKILL.md` | `rules/16-pedagogical-checkpoints.md` | inserir as 4 pausas pedagógicas obrigatórias em tarefas de mentoria |
+| `pedagogical-checkpoint-skill.md` | `.claude/skills/pedagogical-checkpoint/SKILL.md` | `rules/16-pedagogical-checkpoints.md` | inserir as 5 pausas pedagógicas obrigatórias em tarefas de mentoria |
