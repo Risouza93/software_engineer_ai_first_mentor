@@ -6,15 +6,15 @@ description: >-
   evidência, proposta de commit, e os gates humanos — Gate 1 (staging + commit),
   Gate 2 (push) e PR (autorização separada) — mais a limpeza pós-merge. Use sempre
   que for commitar, dar push ou abrir PR neste repositório. Autoridade:
-  14_GIT_SAFE_PUBLISHING_RULES.md — em qualquer conflito, a Regra vence.
+  rules/14-git-safe-publishing.md — em qualquer conflito, a Regra vence.
 ---
 
 # git-closure
 
 Procedimento operacional do Claude Code para publicar alterações com Git de forma
-auditável e com gates humanos. **Autoridade:** `14_GIT_SAFE_PUBLISHING_RULES.md`.
-Relacionadas: `12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md` (edição),
-`15_UNIVERSAL_EXECUTION_REPORTS_RULES.md` (relatório da execução).
+auditável e com gates humanos. **Autoridade:** `rules/14-git-safe-publishing.md`.
+Relacionadas: `rules/12-claude-code-artifact-automation.md` (edição),
+`rules/15-universal-execution-reports.md` (relatório da execução).
 
 ## Use when
 

@@ -38,15 +38,15 @@ ls -d rules instructions
 
 ```powershell
 # Renomear enquanto move (git mv preserva history)
-git mv 12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md `
+git mv rules/12-claude-code-artifact-automation.md `
        rules/12-claude-code-artifact-automation.md
-git mv 13_UNIVERSAL_MEMORY_CONTEXT_COMPACTION_RULES.md `
+git mv rules/13-universal-memory-context-compaction.md `
        rules/13-universal-memory-context-compaction.md
-git mv 14_GIT_SAFE_PUBLISHING_RULES.md `
+git mv rules/14-git-safe-publishing.md `
        rules/14-git-safe-publishing.md
-git mv 15_UNIVERSAL_EXECUTION_REPORTS_RULES.md `
+git mv rules/15-universal-execution-reports.md `
        rules/15-universal-execution-reports.md
-git mv 16_PEDAGOGICAL_CHECKPOINTS_RULES.md `
+git mv rules/16-pedagogical-checkpoints.md `
        rules/16-pedagogical-checkpoints.md
 ```
 
@@ -65,18 +65,18 @@ git status
 **Duração:** 3-4 min | **Tokens:** Mínimo | **Risco:** Baixo
 
 ```powershell
-git mv 00_MASTER_CONTEXT.md instructions/00-master-context.md
-git mv 01_SYSTEM_INSTRUCTIONS.md instructions/01-system-instructions.md
-git mv 02_LEARNING_PROTOCOL.md instructions/02-learning-protocol.md
-git mv 03_CURRICULUM.md instructions/03-curriculum.md
-git mv 04_POWERSHELL_GIT_GITHUB.md instructions/04-powershell-git-github.md
-git mv 05_AI_FIRST_ENGINEERING.md instructions/05-ai-first-engineering.md
-git mv 06_SKILLS_CATALOG.md instructions/06-skills-catalog.md
-git mv 07_AGENTS_CATALOG.md instructions/07-agents-catalog.md
-git mv 08_PROMPT_LIBRARY.md instructions/08-prompt-library.md
-git mv 09_SOURCE_POLICY.md instructions/09-source-policy.md
-git mv 10_PROGRESS_LEDGER.md instructions/10-progress-ledger.md
-git mv 11_PROGRESS_LEDGER_RULES.md instructions/11-progress-ledger-rules.md
+git mv instructions/00-master-context.md instructions/00-master-context.md
+git mv instructions/01-system-instructions.md instructions/01-system-instructions.md
+git mv instructions/02-learning-protocol.md instructions/02-learning-protocol.md
+git mv instructions/03-curriculum.md instructions/03-curriculum.md
+git mv instructions/04-powershell-git-github.md instructions/04-powershell-git-github.md
+git mv instructions/05-ai-first-engineering.md instructions/05-ai-first-engineering.md
+git mv instructions/06-skills-catalog.md instructions/06-skills-catalog.md
+git mv instructions/07-agents-catalog.md instructions/07-agents-catalog.md
+git mv instructions/08-prompt-library.md instructions/08-prompt-library.md
+git mv instructions/09-source-policy.md instructions/09-source-policy.md
+git mv instructions/10-progress-ledger.md instructions/10-progress-ledger.md
+git mv instructions/11-progress-ledger-rules.md instructions/11-progress-ledger-rules.md
 ```
 
 **Verificação:**
@@ -97,11 +97,11 @@ git status --short
 
 ```markdown
 ANTES:
-- `14_GIT_SAFE_PUBLISHING_RULES.md` — ...
-- `15_UNIVERSAL_EXECUTION_REPORTS_RULES.md` — ...
-- `16_PEDAGOGICAL_CHECKPOINTS_RULES.md` — ...
-- `12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md` — ...
-- `13_UNIVERSAL_MEMORY_CONTEXT_COMPACTION_RULES.md` — ...
+- `rules/14-git-safe-publishing.md` — ...
+- `rules/15-universal-execution-reports.md` — ...
+- `rules/16-pedagogical-checkpoints.md` — ...
+- `rules/12-claude-code-artifact-automation.md` — ...
+- `rules/13-universal-memory-context-compaction.md` — ...
 
 DEPOIS:
 - `rules/14-git-safe-publishing.md` — ...
@@ -118,23 +118,23 @@ DEPOIS:
 ```python
 # Simples find-replace em memory/CURRENT_CONTEXT.md
 replacements = [
-    ('14_GIT_SAFE_PUBLISHING_RULES.md', 'rules/14-git-safe-publishing.md'),
-    ('15_UNIVERSAL_EXECUTION_REPORTS_RULES.md', 'rules/15-universal-execution-reports.md'),
-    ('16_PEDAGOGICAL_CHECKPOINTS_RULES.md', 'rules/16-pedagogical-checkpoints.md'),
-    ('12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md', 'rules/12-claude-code-artifact-automation.md'),
-    ('13_UNIVERSAL_MEMORY_CONTEXT_COMPACTION_RULES.md', 'rules/13-universal-memory-context-compaction.md'),
-    ('11_PROGRESS_LEDGER_RULES.md', 'instructions/11-progress-ledger-rules.md'),
-    ('10_PROGRESS_LEDGER.md', 'instructions/10-progress-ledger.md'),
-    ('09_SOURCE_POLICY.md', 'instructions/09-source-policy.md'),
-    ('08_PROMPT_LIBRARY.md', 'instructions/08-prompt-library.md'),
-    ('07_AGENTS_CATALOG.md', 'instructions/07-agents-catalog.md'),
-    ('06_SKILLS_CATALOG.md', 'instructions/06-skills-catalog.md'),
-    ('05_AI_FIRST_ENGINEERING.md', 'instructions/05-ai-first-engineering.md'),
-    ('04_POWERSHELL_GIT_GITHUB.md', 'instructions/04-powershell-git-github.md'),
-    ('03_CURRICULUM.md', 'instructions/03-curriculum.md'),
-    ('02_LEARNING_PROTOCOL.md', 'instructions/02-learning-protocol.md'),
-    ('01_SYSTEM_INSTRUCTIONS.md', 'instructions/01-system-instructions.md'),
-    ('00_MASTER_CONTEXT.md', 'instructions/00-master-context.md'),
+    ('rules/14-git-safe-publishing.md', 'rules/14-git-safe-publishing.md'),
+    ('rules/15-universal-execution-reports.md', 'rules/15-universal-execution-reports.md'),
+    ('rules/16-pedagogical-checkpoints.md', 'rules/16-pedagogical-checkpoints.md'),
+    ('rules/12-claude-code-artifact-automation.md', 'rules/12-claude-code-artifact-automation.md'),
+    ('rules/13-universal-memory-context-compaction.md', 'rules/13-universal-memory-context-compaction.md'),
+    ('instructions/11-progress-ledger-rules.md', 'instructions/11-progress-ledger-rules.md'),
+    ('instructions/10-progress-ledger.md', 'instructions/10-progress-ledger.md'),
+    ('instructions/09-source-policy.md', 'instructions/09-source-policy.md'),
+    ('instructions/08-prompt-library.md', 'instructions/08-prompt-library.md'),
+    ('instructions/07-agents-catalog.md', 'instructions/07-agents-catalog.md'),
+    ('instructions/06-skills-catalog.md', 'instructions/06-skills-catalog.md'),
+    ('instructions/05-ai-first-engineering.md', 'instructions/05-ai-first-engineering.md'),
+    ('instructions/04-powershell-git-github.md', 'instructions/04-powershell-git-github.md'),
+    ('instructions/03-curriculum.md', 'instructions/03-curriculum.md'),
+    ('instructions/02-learning-protocol.md', 'instructions/02-learning-protocol.md'),
+    ('instructions/01-system-instructions.md', 'instructions/01-system-instructions.md'),
+    ('instructions/00-master-context.md', 'instructions/00-master-context.md'),
 ]
 ```
 
@@ -154,8 +154,8 @@ replacements = [
 **Exemplo:**
 ```markdown
 ANTES:
-Autoridade: `14_GIT_SAFE_PUBLISHING_RULES.md`
-Relacionadas: `12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md`
+Autoridade: `rules/14-git-safe-publishing.md`
+Relacionadas: `rules/12-claude-code-artifact-automation.md`
 
 DEPOIS:
 Autoridade: `rules/14-git-safe-publishing.md`
@@ -196,10 +196,10 @@ Novo no projeto? Comece aqui:
 3. **Atualizar TOC** (Table of Contents):
 ```markdown
 ANTES:
-- [00_MASTER_CONTEXT.md](00_MASTER_CONTEXT.md)
-- [01_SYSTEM_INSTRUCTIONS.md](01_SYSTEM_INSTRUCTIONS.md)
+- [instructions/00-master-context.md](instructions/00-master-context.md)
+- [instructions/01-system-instructions.md](instructions/01-system-instructions.md)
 ...
-- [12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md](12_CLAUDE_CODE_ARTIFACT_AUTOMATION_RULES_FINAL.md)
+- [rules/12-claude-code-artifact-automation.md](rules/12-claude-code-artifact-automation.md)
 ...
 
 DEPOIS:
