@@ -231,7 +231,8 @@ git commit
 git push
 ```
 
-Se existir `14_GIT_SAFE_PUBLISHING_RULES.md`, ela continua governando staging, commit e push.
+<!-- ALTERADO 2026-09-01: nome do arquivo da regra 14 atualizado para o caminho real em rules/. -->
+A regra `rules/14-git-safe-publishing.md` continua governando staging, commit e push.
 
 O relatório criado deve entrar no conjunto de arquivos candidatos ao commit SOMENTE após ser mostrado no Gate 1 e aprovado pelo humano.
 

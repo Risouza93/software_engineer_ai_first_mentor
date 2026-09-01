@@ -1,7 +1,8 @@
 # backup_context/ — COLD CONTEXT
 
+<!-- ALTERADO 2026-09-01: nome do arquivo da regra 13 atualizado para o caminho real em rules/. -->
 Versões históricas de `memory/CURRENT_CONTEXT.md`, preservadas conforme a
-regra `13_UNIVERSAL_MEMORY_CONTEXT_COMPACTION_RULES.md` (§13–§14).
+regra `rules/13-universal-memory-context-compaction.md` (§13–§14).
 
 - Cada compactação da memory grava aqui `MEMORY_BACKUP_YYYY-MM-DD_HHMM.md`
   **antes** de reescrever a memory ativa. Nunca sobrescrever um backup existente.

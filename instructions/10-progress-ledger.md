@@ -291,8 +291,9 @@ comparação Codex × Claude Code (M004).
 -   Ao atualizar: alterar Estado atual → skill afetada → missão afetada
     → bloqueios se necessário → Próximo passo.
 -   Não reescrever missões históricas sem mudança real.
+<!-- ALTERADO 2026-09-01: nome da regra do Ledger atualizado para o caminho real em instructions/. -->
 -   Antes de retomar uma sessão significativa, reconciliar este Ledger com
     o `context/chat_history/` mais recente e o estado do Git (ver
-    `11_PROGRESS_LEDGER_RULES.md`, seção 18).
+    `instructions/11-progress-ledger-rules.md`, seção 18).
 -   A especificação completa desta estrutura está em
-    `11_PROGRESS_LEDGER_RULES.md`.
+    `instructions/11-progress-ledger-rules.md`.

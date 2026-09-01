@@ -1,9 +1,11 @@
+<!-- ALTERADO 2026-09-01: caminhos das regras atualizados para rules/; status atualizado — a versão executável já existe em .claude/skills/git-closure/SKILL.md (PR #7). Este arquivo é o companion legível. -->
 # Skill operacional — git-closure
 
 **Tipo:** operacional (procedimento do Claude Code)
-**Autoridade:** `14_GIT_SAFE_PUBLISHING_RULES.md` — em qualquer conflito, a Regra vence.
-**Relacionadas:** `12_..._ARTIFACT_AUTOMATION_...` (edição), `15_..._EXECUTION_REPORTS_...` (relatório).
-**Status:** draft para validação — ainda não é Skill executável.
+**Autoridade:** `rules/14-git-safe-publishing.md` — em qualquer conflito, a Regra vence.
+**Relacionadas:** `rules/12-claude-code-artifact-automation.md` (edição), `rules/15-universal-execution-reports.md` (relatório).
+**Status:** companion legível. A versão executável e canônica do procedimento é
+`.claude/skills/git-closure/SKILL.md`; em divergência entre os dois, vale a executável (e, acima dela, a Regra 14).
 
 ## Use when
 Encerrar com Git qualquer execução que tenha alterado arquivos (ou que precise

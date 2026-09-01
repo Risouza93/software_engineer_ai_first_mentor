@@ -48,7 +48,7 @@ O Claude Code atua como executor local:
 
 Aplicar esta regra quando o usuário pedir criação, atualização, encerramento ou manutenção de artefatos do repositório, incluindo:
 
-- `10_PROGRESS_LEDGER.md`;
+- `instructions/10-progress-ledger.md`;
 - contexto de sessão em `context/chat_history/`;
 - códigos praticados em `context/codes/`;
 - comandos executados em `context/commands/` ou no caminho canônico vigente;
@@ -115,11 +115,12 @@ Arquivos de regras devem ter precedência sobre suposições do agente.
 
 Para Progress Ledger, consultar obrigatoriamente a regra canônica vigente, atualmente:
 
+<!-- ALTERADO 2026-09-01: nomes do Progress Ledger e da sua regra atualizados para os caminhos reais em instructions/. -->
 ```text
-11_PROGRESS_LEDGER_RULES.md
+instructions/11-progress-ledger-rules.md
 ```
 
-e localizar o `10_PROGRESS_LEDGER.md` real antes de alterá-lo.
+e localizar o `instructions/10-progress-ledger.md` real antes de alterá-lo.
 
 Para organização de contexto, respeitar a estrutura canônica vigente no repositório e não criar uma estrutura paralela apenas porque ela foi mencionada no prompt.
 
@@ -127,7 +128,7 @@ Para organização de contexto, respeitar a estrutura canônica vigente no repos
 
 ## 5. Progress Ledger
 
-Toda atualização do `10_PROGRESS_LEDGER.md` deve respeitar a regra canônica do Progress Ledger.
+Toda atualização do `instructions/10-progress-ledger.md` deve respeitar a regra canônica do Progress Ledger.
 
 Princípios obrigatórios:
 
@@ -286,11 +287,12 @@ PRESERVAR TODO O RESTANTE
 ```
 
 <!-- ALTERADO 2026-08-27: publicação Git delegada à regra 14 e relatórios de execução delegados à regra 15. -->
+<!-- ALTERADO 2026-09-01: nomes de arquivo das regras 14 e 15 atualizados para os caminhos reais em rules/ (pós-reorganização da raiz). -->
 ## 8.2. Publicação Git
 
 Para inspeção Git, `git diff`, validação de diff, staging, commit, `git show`, push e Pull Request, seguir obrigatoriamente:
 
-`14_GIT_SAFE_PUBLISHING_RULES.md`
+`rules/14-git-safe-publishing.md`
 
 A autorização para editar artefatos NÃO implica autorização para staging, commit ou push. Esses passos dependem dos gates humanos da regra 14 (Gate 1 = staging + commit; Gate 2 = push; Pull Request = autorização separada).
 
@@ -355,7 +357,7 @@ O relatório do Claude Code não substitui a evidência Git.
 
 Além do resumo no terminal (seção 10), ao final de cada execução significativa gerar o relatório persistente conforme:
 
-`15_UNIVERSAL_EXECUTION_REPORTS_RULES.md`
+`rules/15-universal-execution-reports.md`
 
 O relatório é salvo em `reports/` (nome `report_task_DD-MM-YY_HH-mm.md`), permanece compacto, factual e orientado a auditoria, e nunca sobrescreve um relatório anterior. Criá-lo não autoriza staging/commit/push: ele só entra no staging após o Gate 1 da regra 14.
 

@@ -23,16 +23,19 @@ SKILL   → procedimento repetível que cumpre a política
 
 Em qualquer conflito, **a Regra vence** e a Skill deve ser corrigida.
 
+<!-- ALTERADO 2026-09-01: drafts validados e convertidos em Skills executáveis (PR #7); este diretório passa a ser companion legível. Nomes das regras atualizados para rules/. -->
 ## Estado
 
-Estes arquivos são **drafts para validação** (etapa `RULES → VALIDATION → SKILLS`
-do roadmap). Ainda **não** são Skills executáveis do Claude Code
-(`.claude/skills/<nome>/SKILL.md`). A conversão para formato executável é uma
-decisão humana posterior, após a validação em uso real.
+`git-closure` e `execution-report` foram validados em uso real e **convertidos**
+em Skills executáveis do Claude Code (`.claude/skills/<nome>/SKILL.md`, PR #7).
+Os arquivos aqui são o **companion legível** desses procedimentos: mesma
+substância, prosa mais discursiva. Em divergência, vale a versão executável e,
+acima dela, a Regra canônica.
 
 ## Catálogo
 
-| Skill | Autoridade | Responsabilidade |
-|---|---|---|
-| `git-closure-skill.md` | `14_GIT_SAFE_PUBLISHING_RULES.md` | encerrar alterações com Git de forma auditável e com gates humanos |
-| `execution-report-skill.md` | `15_UNIVERSAL_EXECUTION_REPORTS_RULES.md` | registrar cada execução significativa em `reports/` |
+| Skill (companion) | Versão executável | Autoridade | Responsabilidade |
+|---|---|---|---|
+| `git-closure-skill.md` | `.claude/skills/git-closure/SKILL.md` | `rules/14-git-safe-publishing.md` | encerrar alterações com Git de forma auditável e com gates humanos |
+| `execution-report-skill.md` | `.claude/skills/execution-report/SKILL.md` | `rules/15-universal-execution-reports.md` | registrar cada execução significativa em `reports/` |
+| `pedagogical-checkpoint-skill.md` | `.claude/skills/pedagogical-checkpoint/SKILL.md` | `rules/16-pedagogical-checkpoints.md` | inserir as 4 pausas pedagógicas obrigatórias em tarefas de mentoria |
