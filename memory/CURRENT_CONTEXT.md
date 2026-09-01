@@ -1,18 +1,22 @@
 <!-- CRIADO 2026-08-28: primeira versão da memory operacional (regra 13). Sem backup anterior porque não existia CURRENT_CONTEXT.md. -->
 <!-- ALTERADO 2026-08-28: reconciliado pós-merge da PR #4; a infra de memory (memory/, backup_context/, relatórios) está publicada em main. -->
+<!-- ALTERADO 2026-09-01: reconciliado pós-merge das PRs #5-#8 (memory, Skills operacionais draft+executáveis, Regra 16 + reorganização rules/instructions). -->
 
 # CURRENT CONTEXT
 
 ## NOW
 
-Projeto **Software Engineering AI First Mentor**. A base de governança (regras
-12–15) e a infra de memory operacional (regra 13) estão **publicadas em `main`**:
-PR #3 (regras + migração para Projeto no Claude + Ledger) merged em 27/08; PR #4
-(`memory/`, `backup_context/`, relatórios/contexto pendentes) merged em 28/08
-(merge commit `b85c763`).
+Projeto **Software Engineering AI First Mentor**. Governança (regras 12–16),
+memory operacional, Skills operacionais executáveis (`git-closure`,
+`execution-report`, `pedagogical-checkpoint`) e a raiz reorganizada em
+`rules/` + `instructions/` estão **publicadas em `main`** (`7a8dfdf`): PR #3
+(regras + Ledger, 27/08); PR #4 (`memory/`, `backup_context/`, 28/08); PRs #5–#7
+(reconciliação de memory, Skills operacionais draft e executáveis, 01/09); PR #8
+(Regra 16 + reorganização `rules/`/`instructions/`, 01/09).
 
-Fase atual: **sem trabalho Git em curso.** Próximo: draftar as Skills operacionais
-`git-closure` e `execution-report`, ou retomar a M008.
+Fase atual: **sem trabalho Git em curso.** Próximo: validar as Skills executáveis
+(inclusive `pedagogical-checkpoint`, ainda sem execução real) no próximo fluxo,
+ou retomar a M008.
 
 ## ARCHITECTURE
 
@@ -60,12 +64,13 @@ Git                → O QUE TECNICAMENTE MUDOU (evidência)
 
 ## GIT STATE
 
-- `main` local **sincronizada** com `origin/main` em `b85c763` (merge da PR #4).
-- Nenhuma branch de trabalho ativa. As branches de feature `lab/codex-claude-comparison`
-  (PR #3) e `chore/versiona-memory-operacional-e-reports` (PR #4) foram mergeadas
-  e removidas (local + remoto).
+- `main` local **sincronizada** com `origin/main` em `7a8dfdf` (merge da PR #8).
+- Nenhuma branch de trabalho ativa. Branches das PRs #3–#8 mergeadas e removidas
+  localmente; branches remotas de #5/#6/#7/#8 — deleção pendente de decisão humana.
 - Working tree limpa. Novo trabalho começa com branch a partir de `main` atualizada.
-- Última reconciliação: 2026-08-28, contra `origin/main@b85c763`.
+- Nota operacional: evitar 2ª sessão Git (Claude/VSCode) no mesmo worktree em
+  paralelo — em 01/09 isso descartou um Gate 1 não commitado (ver `reports/`).
+- Última reconciliação: 2026-09-01, contra `origin/main@7a8dfdf`.
 
 ## PEDAGOGICAL STATE
 
@@ -91,18 +96,19 @@ Fonte: `instructions/10-progress-ledger.md` (reconciliado 27/08, já em `main`).
 
 ## PENDING
 
-1. Draftar as Skills operacionais `git-closure` e `execution-report` (as duas
-   com mais evidência; drafts ainda não escritos).
-2. `backup_context/` só terá backups reais na primeira compactação de memory.
-3. M004 — comparação Codex × Claude Code continua pendente.
-4. Gates humanos para commit/push/PR permanecem obrigatórios.
+1. Validar `pedagogical-checkpoint` em uso real (ainda sem execução); decidir se
+   os drafts em `skills/operational/*-skill.md` continuam como companion legível
+   ou são enxugados.
+2. Deletar branches remotas de #5/#6/#7/#8 — decisão humana explícita (Gate 3b).
+3. `backup_context/` só terá backups reais na primeira compactação de memory.
+4. M004 — comparação Codex × Claude Code continua pendente.
+5. Gates humanos para commit/push/PR permanecem obrigatórios.
 
 ## NEXT
 
-Escolher entre (a) draftar as Skills operacionais `git-closure` e
-`execution-report` (evidência em `reports/` + regras 14/15), ou (b) retomar a
-M008 (loops + `let`, checkpoint do primeiro `for`). Qualquer alteração passa por
-branch + Gates 1/2 + PR.
+Escolher entre (a) exercitar `pedagogical-checkpoint` no próximo fluxo real, ou
+(b) retomar a M008 (loops + `let`, checkpoint do primeiro `for`). Qualquer
+alteração passa por branch + Gates 1/2 + PR.
 
 ## LOAD ON DEMAND
 
@@ -111,9 +117,14 @@ Não carregar automaticamente; consultar só se a tarefa exigir:
 - `reports/` (histórico de execuções) — abrir no máximo o relatório mais recente.
 - `context/chat_history/` — contexto narrativo detalhado por sessão.
 - `instructions/11-progress-ledger-rules.md` — só ao editar o Ledger.
-- `skills/`, `agents/`, `instructions/06-skills-catalog.md`, `instructions/07-agents-catalog.md` — conteúdo
-  **pedagógico** (mentor), eixo diferente das Skills operacionais do Claude Code;
-  divergências catálogo × filesystem conhecidas e não urgentes.
+- `.claude/skills/<nome>/SKILL.md` — Skills **operacionais executáveis**
+  (`git-closure` regra 14, `execution-report` regra 15, `pedagogical-checkpoint`
+  regra 16); em conflito, a Regra vence. `skills/operational/*-skill.md` = os
+  mesmos procedimentos em prosa (companion legível).
+- `skills/*-skill.md`, `agents/`, `instructions/06-skills-catalog.md`,
+  `instructions/07-agents-catalog.md` — conteúdo **pedagógico** (mentor), eixo
+  diferente das Skills operacionais; divergências catálogo × filesystem
+  conhecidas e não urgentes.
 - `prompts/PROMPT_MESTRE_CONTINUIDADE.md` — bootstrap antigo, ainda com resíduos
   obsoletos; não usar como fonte de estado.
 - `legacy/` — artefatos de laboratório arquivados.
