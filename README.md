@@ -1,439 +1,140 @@
-# Software Engineer AI-First Mentor --- Pacote Base
+<!-- REESCRITO 2026-09-01: README consolidado como referência de engenheiro sênior — estrutura alinhada ao filesystem atual (rules/, instructions/, .claude/skills/, memory/); acréscimo histórico V1–V6 reduzido a uma tabela de rodapé; comentários de edição linha a linha removidos. -->
 
-## 🧭 Como Navegar
+# Software Engineer AI-First Mentor
 
-Novo no projeto? Comece aqui:
+Pacote base de um **Projeto no Claude** que conduz uma formação progressiva em
+Engenharia de Software — de fundamentos operacionais (Git, terminal, leitura de
+código) até arquitetura, automação e engenharia AI-first. O mentor não só
+responde dúvidas: ensina, mostra, faz junto, deixa o mentorado fazer, revisa e
+só então automatiza.
 
-### 1. **Pedagogia & Aprendizado** → [`instructions/`](instructions/README.md)
-   Currículo, protocolos, políticas de ensino. Comece em [Master Context](instructions/00-master-context.md).
+**Público-alvo:** um engenheiro em formação que aprende praticando em um
+repositório real, com aprovação humana em cada passo que toca o Git.
 
-### 2. **Regras Canônicas (Autoridades)** → [`rules/`](rules/README.md)
-   Regras de automação, Git, Reports, Pedagogia. Leia na ordem 12 → 13 → 14 → 15 → 16.
+**Método:** `EXPLICAR → MOSTRAR → FAZER JUNTO → DEIXAR O ALUNO FAZER → REVISAR →
+AUTOMATIZAR → ENSINAR A DECIDIR`. ELI5 primeiro, evidência sempre, autonomia
+crescente.
 
-### 3. **Execução** → [`.claude/skills/`](.claude/skills/)
-   Skills operacionais: `git-closure`, `execution-report`, `pedagogical-checkpoint`.
+## Quick Start
 
-### 4. **Contexto & Estado** → [`memory/`](memory/)
-   Estado atual do projeto (hot context). Leia [`CURRENT_CONTEXT.md`](memory/CURRENT_CONTEXT.md).
+Para uma sessão nova, leia nesta ordem (só estes três, ~5 min):
 
----
+1. [`instructions/00-master-context.md`](instructions/00-master-context.md) — o que é o projeto.
+2. [`rules/00-operating-model.md`](rules/00-operating-model.md) — digest normativo de todo o modelo operacional (~1 página).
+3. [`memory/CURRENT_CONTEXT.md`](memory/CURRENT_CONTEXT.md) — estado atual: onde paramos, o que está pendente.
 
-## Missão
-
-<!-- ALTERADO 2026-08-27: plataforma principal migrada de GPT personalizado para Projeto no Claude (decisão de 27/08/2026); ver seção "V6". -->
-Este pacote define a fundação de um **Projeto no Claude** (originalmente
-concebido como GPT personalizado) que atua simultaneamente como:
-
--   Software Engineer Sênior;
--   Professor ELI5 de Engenharia de Software;
--   Mentor técnico de longo prazo;
--   Arquiteto de soluções;
--   Mentor de Git/GitHub, código, APIs, banco, containers, CI/CD e
-    observabilidade;
--   Especialista em automação;
--   Mentor AI First;
--   Ponte permanente com o projeto **QA Engineering**.
-
-<!-- ALTERADO 2026-08-27: "O GPT" -> "O mentor" (plataforma migrada para Projeto no Claude). -->
-O objetivo não é apenas responder dúvidas. O mentor deve formar capacidade
-técnica progressiva, do nível iniciante até arquitetura e engenharia
-avançada.
-
-## Filosofia
-
-``` text
-EXPLICAR
-  ↓
-MOSTRAR
-  ↓
-FAZER JUNTO
-  ↓
-DEIXAR O ALUNO FAZER
-  ↓
-REVISAR
-  ↓
-AUTOMATIZAR
-  ↓
-ENSINAR A DECIDIR
-```
+Depois valide o Git (`git status`, `git log --oneline -5`) e identifique a
+próxima tarefa na seção `NEXT` da memory.
 
 ## Arquitetura
 
-<!-- ALTERADO 2026-08-27: "GPT PRINCIPAL" -> "PROJETO NO CLAUDE" (migração de plataforma). -->
-``` text
-PROJETO NO CLAUDE — Software Engineer AI-First Mentor
-│
-├── System Instructions
-├── Master Context
-├── Learning Protocol
-├── Curriculum
-├── AI First Engineering
-├── Source Policy
-├── Prompt Library
-├── Progress Ledger
-├── Context
-│   ├── chat_history
-│   ├── codes
-│   └── commands
-│
-├── Skills
-│   ├── Git & GitHub
-│   ├── Code Reading
-│   ├── Debugging
-│   ├── Architecture
-│   ├── CI/CD
-│   └── AI Engineering
-│
-└── Agents
-    ├── Software Engineer Mentor
-    ├── Git/GitHub Mentor
-    ├── AI First Architect
-    └── QA Bridge
-```
-
-<!-- ALTERADO 2026-08-27: título (upload no GPT -> carregamento no Projeto no Claude) e inclusão de 11_ e 12_ na ordem. -->
-<!-- ALTERADO 2026-09-01: caminhos atualizados para instructions/ e rules/ (pós-reorganização da raiz); ver instructions/README.md e rules/README.md. -->
-## Ordem recomendada de carregamento no Projeto no Claude
-
-1.  `instructions/00-master-context.md`
-2.  `instructions/01-system-instructions.md`
-3.  `instructions/02-learning-protocol.md`
-4.  `instructions/03-curriculum.md`
-5.  `instructions/04-powershell-git-github.md`
-6.  `instructions/05-ai-first-engineering.md`
-7.  `instructions/06-skills-catalog.md`
-8.  `instructions/07-agents-catalog.md`
-9.  `instructions/08-prompt-library.md`
-10. `instructions/09-source-policy.md`
-11. `instructions/10-progress-ledger.md`
-12. `instructions/11-progress-ledger-rules.md`
-13. `rules/12-claude-code-artifact-automation.md` (e, na sequência, as regras 13–16 em `rules/`)
-
-Depois, adicionar os documentos existentes do projeto QA Engineering.
-
-## Regra de evolução
-
-Este pacote é vivo. Sempre que um novo assunto técnico surgir em
-trabalho real, deve-se:
-
-1.  registrar o aprendizado;
-2.  criar ou atualizar uma skill;
-3.  adicionar fontes oficiais;
-4.  criar exercício prático;
-5.  registrar nível atual;
-6.  automatizar quando fizer sentido.
-
-## V2 --- Arquivos explícitos de Skills e contexto QA
-
-A V2 adiciona Skills individuais e snapshots do contexto atual do QA
-Engineering.
-
-### Skills
-
--   `skills/git-foundations-skill.md`
--   `skills/github-pr-analysis-skill.md`
--   `skills/code-reading-eli5-skill.md`
--   `skills/debugging-systematic-skill.md`
--   `skills/powershell-for-engineers-skill.md`
--   `skills/api-engineering-skill.md`
--   `skills/database-engineering-skill.md`
--   `skills/containers-podman-skill.md`
--   `skills/playwright-automation-skill.md`
--   `skills/cicd-quality-gates-skill.md`
--   `skills/software-architecture-skill.md`
--   `skills/ai-first-engineering-skill.md`
--   `skills/qa-engineering-bridge-skill.md`
-
-### Contexto QA incluído
-
--   `knowledge/QA_ENGINEERING_CONTEXT_v4.md`
--   `knowledge/QA_PROCESS_SPECIALIST_CURRENT.md`
--   `knowledge/QA_AUTOMATION_HUB_CURRENT.md`
--   `knowledge/QA_SKILL_CLAUDE_EXAMPLE.md`
--   `knowledge/QA_WORK_NOTES.md`
-
-## V3 --- Estrutura simplificada de Skills
-
-A pasta `skills/` não utiliza mais subpastas por skill.
-
-Padrão oficial:
-
-``` text
-skills/
-├── ai-first-engineering-skill.md
-├── api-engineering-skill.md
-├── cicd-quality-gates-skill.md
-├── code-reading-eli5-skill.md
-├── containers-podman-skill.md
-├── database-engineering-skill.md
-├── debugging-systematic-skill.md
-├── git-foundations-skill.md
-├── github-pr-analysis-skill.md
-├── playwright-automation-skill.md
-├── powershell-for-engineers-skill.md
-├── qa-engineering-bridge-skill.md
-└── software-architecture-skill.md
-```
-
-Regra: toda nova skill deve ser criada diretamente em `skills/` usando o
-padrão `<nome>-skill.md`.
-
-## V4 --- Biblioteca de Prompts
-
-A pasta `prompts/` contém prompts operacionais reutilizáveis.
-
-Regra oficial de nomenclatura:
-
-``` text
-<NOME_DO_PROMPT>.md
-```
-
-Estrutura:
-
-<!-- ALTERADO 2026-09-01: PROMPT_MESTRE_CONTINUIDADE.md movido para legacy/ (superado por memory/CURRENT_CONTEXT.md + rules/00). -->
-
-``` text
-prompts/
-├── CONTINUAR.md
-├── AULA.md
-├── LAB.md
-├── DUVIDA.md
-├── DEBUG.md
-├── LAB_REAL.md
-├── CODE_READING.md
-├── PR_LAB.md
-├── DESAFIO.md
-├── AVALIAR_NIVEL.md
-├── ENCERRAR_MISSAO.md
-├── ATUALIZAR_CONTEXTO.md
-├── COMPACTAR_CONTEXTO.md
-├── REVISAO_SEMANAL.md
-└── AI_FIRST.md
-```
-
-Os prompts devem ser pequenos e específicos. A retomada da formação parte de
-`memory/CURRENT_CONTEXT.md` + `rules/00-operating-model.md`; o antigo
-`PROMPT_MESTRE_CONTINUIDADE.md` foi arquivado em `legacy/`.
-
-## Versão Final --- AI Coding Tools Foundations
-
-A formação passa a incluir oficialmente Codex e Claude Code logo após
-GitHub.
-
-Novos arquivos:
-
-### Skills
-
--   `skills/codex-foundations-skill.md`
--   `skills/claude-code-foundations-skill.md`
-
-### Agent
-
--   `agents/ai-coding-tools-mentor.agent.md`
-
-### Prompts
-
--   `prompts/AI_CODING_TOOLS_FOUNDATIONS.md`
--   `prompts/CODEX_PRIMEIRO_LAB.md`
--   `prompts/CLAUDE_CODE_PRIMEIRO_LAB.md`
--   `prompts/COMPARAR_CODEX_CLAUDE_CODE.md`
-
-Regra oficial de autonomia:
-
-``` text
-LEITURA
->
-ALTERAÇÃO
->
-EXECUÇÃO AUTÔNOMA
-```
-
-<!-- ALTERADO 2026-08-27: "O GPT personalizado" -> "O Projeto no Claude" (migração de plataforma). -->
-O Projeto no Claude é o mentor principal. Codex e Claude Code são
-ferramentas de execução assistida.
-
-## V5 --- Organização de Contexto, Códigos e Comandos
-
-A estrutura de artefatos operacionais passa a separar claramente
-contexto de sessão, códigos praticados e comandos executados.
-
-### Estrutura oficial
-
-``` text
-context/
-├── chat_history/
-│   └── <contextos de continuidade e encerramento de missão>
-├── codes/
-│   └── <arquivos com códigos lidos, analisados ou praticados>
-└── commands/
-    └── <arquivos com comandos executados, validações e observações operacionais>
-```
-
-### `context/chat_history/`
-
-Usar para:
-
--   snapshots de continuidade;
--   contexto detalhado de missões;
--   encerramento de missão;
--   decisões pedagógicas;
--   debugging e evidências narrativas necessárias para retomada.
-
-Exemplo:
-
-``` text
-context/chat_history/
-└── CONTEXTO_SESSAO_MISSAO_007_LEITURA_CODIGO_CONCLUIDA_2026-08-18.md
-```
-
-### `context/codes/`
-
-Usar para arquivos que preservam os códigos efetivamente lidos,
-analisados ou praticados durante a formação.
-
-Exemplo:
-
-``` text
-context/codes/
-└── codigos_lidos.md
-└── codigos_escritos.md
-```
-
-Objetivo:
-
-``` text
-código praticado
-→ trace
-→ comportamento
-→ decisões
-→ dependências
-→ riscos
-→ testes derivados
-```
-
-Essa pasta funciona como referência prática e não substitui o contexto
-narrativo da missão.
-
-### `context/commands/`
-
-Usar para comandos efetivamente executados durante laboratórios e
-missões.
-
-O arquivo deve preservar, quando relevante:
-
-``` text
-comando
-→ objetivo
-→ resultado esperado
-→ validação
-→ risco
-→ rollback / recuperação
-```
-
-Comandos não devem ser armazenados em `context/codes/`; devem permanecer
-em `context/commands/`.
-
-### Regra de separação
-
-``` text
-context/chat_history/
-→ COMO a missão evoluiu e COMO retomar
-
-context/codes/
-→ QUAIS códigos foram lidos/praticados e o que foi observado neles
-
-context/commands/
-→ QUAIS comandos foram executados e como validar/recuperar
-
-instructions/10-progress-ledger.md
-→ O QUE foi comprovado, O QUE falta e ONDE estão os detalhes
-```
-
-### Regra de dependência
-
-Adicionar `context/codes/` não altera a responsabilidade existente de
-`context/chat_history/` nem de `commands/`.
-
-Ao criar ou atualizar artefatos:
-
-1.  não duplicar conteúdo detalhado no Progress Ledger;
-2.  manter o Ledger como índice operacional;
-3.  usar caminhos estáveis relativos à raiz do projeto;
-4.  quando uma missão possuir código relevante, salvar o artefato
-    correspondente em `context/codes/`;
-5.  quando houver comandos executados, salvar o artefato correspondente
-    em `commands/`;
-6.  quando houver contexto de continuidade ou encerramento, salvar em
-    `context/chat_history/`.
-
-### Exemplo aplicado à M007
-
-``` text
-context/chat_history/
-└── CONTEXTO_SESSAO_MISSAO_007_LEITURA_CODIGO_CONCLUIDA_2026-08-18.md
-
-context/codes/
-└── codigos_lidos.md
-
-instructions/10-progress-ledger.md
-└── mantém somente síntese + ponteiro para os artefatos canônicos
-```
-
-A partir desta versão, novos artefatos de código devem seguir
-`context/codes/`, e novos artefatos de comandos devem seguir
-`commands/`.
-
-<!-- ALTERADO 2026-08-27: nova seção registrando a migração de plataforma decidida em 27/08/2026. -->
-## V6 --- Migração para Projeto no Claude
-
-A partir de 27/08/2026, a plataforma principal de orquestração deixa de ser
-um GPT personalizado / Custom GPT e passa a ser um **Projeto no Claude**.
-
-Arquitetura operacional:
-
-``` text
-PROJETO NO CLAUDE
-Mentoria + contexto + regras + orquestração
+```text
+PROJETO NO CLAUDE   mentoria, contexto, regras, decisões pedagógicas
         ↓
-CLAUDE CODE
-Execução local no repositório
+CLAUDE CODE         execução local no repositório (análise + edição cirúrgica)
         ↓
-GIT
-Rastreabilidade + evidência
+GIT / GITHUB        rastreabilidade, versionamento, evidência
         ↓
-HUMANO
-Revisão + aprovação de commit/push/merge
+HUMANO              aprova os gates (commit / push / PR) e decisões relevantes
 ```
 
-Consequências:
+Cada camada de artefato tem um papel fixo:
 
--   referências operacionais a "GPT personalizado", "Custom GPT" e "upload no
-    GPT" passam a significar "Projeto no Claude" / "carregamento no Projeto no
-    Claude";
--   referências claramente históricas são preservadas como legado;
--   a política de fontes (`instructions/09-source-policy.md`) escolhe a documentação oficial
-    da tecnologia efetivamente usada (Anthropic para Claude/Claude Code; OpenAI
-    para produtos OpenAI/Codex; GitHub Docs; Microsoft Learn);
-<!-- ALTERADO 2026-09-01: PROMPT_MESTRE_CONTINUIDADE.md arquivado em legacy/; retomada agora parte de memory/CURRENT_CONTEXT.md + rules/00. -->
--   a retomada da formação deixa de fixar uma missão inicial e descobre o estado
-    atual pelas fontes canônicas — hoje `memory/CURRENT_CONTEXT.md` (Regra 13) +
-    `rules/00-operating-model.md`; o antigo `PROMPT_MESTRE_CONTINUIDADE.md` está
-    em `legacy/` como registro histórico;
--   não há arquivo único `SOFTWARE_ENGINEERING_LEARNING_CONTEXT_V0X.md`.
-
-### Papel de cada camada
-
-``` text
-SKILL    → conhecimento/método especializado reutilizável (skills/*-skill.md)
-AGENT    → papel/orquestrador especializado que aplica métodos (agents/*.agent.md)
-PROMPT   → comando reutilizável que inicia um fluxo/tarefa (prompts/*.md)
-CONTEXT  → evidência e memória operacional (context/**)
-LEDGER   → índice sintético de progresso (instructions/10-progress-ledger.md)
+```text
+REGRA    política / limite / autoridade            (rules/)
+SKILL    procedimento repetível que cumpre a regra  (.claude/skills/ e skills/)
+AGENT    mentor/orquestrador por domínio            (agents/)
+PROMPT   comando colável que inicia um fluxo        (prompts/)
+MEMORY   estado atual (hot)                         (memory/)
+CONTEXT  evidência e narrativa (cold)               (reports/, context/, backup_context/)
 ```
 
-### Automação de manutenção de artefatos
+## Ordem de carregamento no Projeto no Claude
 
-Pedidos de criação/atualização de artefatos (contexto, comandos, códigos,
-Ledger, README) seguem `rules/12-claude-code-artifact-automation.md`: o
-Projeto no Claude define escopo e evidências; o Claude Code executa a edição
-local mínima; o Git é a evidência; o humano aprova commit/push/merge.
+Pedagogia, na ordem: `instructions/00` → `01` → `02` → `03` → `04` → `05` → `06`
+→ `07` → `08` → `09` → `10` → `11`. Índice comentado em
+[`instructions/README.md`](instructions/README.md).
+
+Governança, em seguida: `rules/00-operating-model.md` (sempre) e as regras
+`12`–`16` conforme o domínio da tarefa. Índice em
+[`rules/README.md`](rules/README.md).
+
+Antes de qualquer trabalho: `memory/CURRENT_CONTEXT.md`.
+
+## Regras ativas
+
+Autoridades técnicas do projeto. Em conflito, a regra vence a skill e a memory.
+Precedência interna: 16 > 15 > 14 > 13 > 12.
+
+| Regra | Uma frase |
+|-------|-----------|
+| [`00`](rules/00-operating-model.md) | Digest de ~1 página de todo o modelo — porta de entrada de baixo custo de tokens. |
+| [`12`](rules/12-claude-code-artifact-automation.md) | Edição cirúrgica de artefatos, com comentário `<!-- ALTERADO YYYY-MM-DD: … -->` no ponto alterado. |
+| [`13`](rules/13-universal-memory-context-compaction.md) | `memory/` é hot context enxuto (~500–1.500 palavras); `backup_context/` é cold; compactação obrigatória com backup. |
+| [`14`](rules/14-git-safe-publishing.md) | **Gate 1** = staging + commit; **Gate 2** = push; **PR** = autorização separada. Operações destrutivas nunca automáticas. |
+| [`15`](rules/15-universal-execution-reports.md) | Toda execução significativa gera 1 relatório imutável em `reports/report_task_DD-MM-YY_HH-mm.md`. |
+| [`16`](rules/16-pedagogical-checkpoints.md) | 5 checkpoints pedagógicos obrigatórios; §8 consolida commits por escopo ("1 frase = 1 commit"). |
+
+## Fluxo de trabalho prático
+
+1. **Branch** a partir de `main` atualizada.
+2. **Editar** com edição cirúrgica (Regra 12) — mudar o mínimo, comentar o ponto alterado.
+3. **Checkpoints pedagógicos** (Regra 16): pausar em Análise, Proposta, Validação, Sync & Cleanup e Fronteira. Skill: [`.claude/skills/pedagogical-checkpoint`](.claude/skills/pedagogical-checkpoint/SKILL.md).
+4. **Encerrar com Git** pela skill [`.claude/skills/git-closure`](.claude/skills/git-closure/SKILL.md): proposta de commit → **Gate 1** (commit) → **Gate 2** (push) → **PR**.
+5. **Relatório** pela skill [`.claude/skills/execution-report`](.claude/skills/execution-report/SKILL.md) (Regra 15).
+6. **Pós-merge**: sincronizar `main` (Regra 13 reconcilia a memory), apagar a branch local e — com autorização (Gate 3b) — a remota.
+7. **Parar** ao fim da unidade de trabalho (Regra 16 §2.5) e pedir o próximo passo.
+
+## Mapa de diretórios
+
+```text
+instructions/            pedagogia: currículo, protocolos, catálogos, progress ledger
+rules/                   governança canônica: 00 (digest) + 12–16
+.claude/skills/          skills operacionais executáveis: git-closure, execution-report, pedagogical-checkpoint
+skills/                  skills pedagógicas (ensinam o humano); skills/operational/ = ponteiros para as executáveis
+agents/                  agents pedagógicos (mentores por domínio)
+memory/                  hot context: CURRENT_CONTEXT.md
+backup_context/          cold storage: snapshots de memory pré-compactação
+reports/                 audit trail: 1 relatório por execução significativa
+context/                 chat_history/ (narrativa), codes/ (código praticado), commands/ (comandos)
+prompts/                 prompts operacionais reutilizáveis (coláveis)
+knowledge/               hub de referência QA e material de apoio
+legacy/                  artefatos arquivados — não são fonte de estado
+scripts/                 utilitários (ex.: validate-utf8.ps1)
+laboratorio-powershell/  sandbox de exercícios PowerShell
+```
+
+## Transição entre sessões
+
+Não há arquivo especial de handoff. Uma sessão nova recupera o estado lendo, em
+ordem, `memory/CURRENT_CONTEXT.md` + `rules/00-operating-model.md` e validando o
+Git com comandos baratos. Os procedimentos executáveis vivem em
+`.claude/skills/`. Contexto narrativo detalhado, só se a tarefa exigir, em
+`reports/` (mais recente) e `context/chat_history/`.
+
+## Roadmap pedagógico
+
+Fonte de verdade: [`instructions/10-progress-ledger.md`](instructions/10-progress-ledger.md)
+(módulos M001–M008, matriz de competências, missão atual) e
+[`instructions/03-curriculum.md`](instructions/03-curriculum.md) (roadmap).
+Este README não reproduz o progresso.
+
+## Evolução do pacote
+
+O pacote é vivo: cada assunto técnico novo em trabalho real deve virar
+aprendizado registrado, skill criada/atualizada, fonte oficial adicionada,
+exercício prático e nível registrado no Ledger.
+
+## Histórico de versões
+
+Resumo. O detalhe está no `git log` e em `legacy/`.
+
+| Versão | Data | Mudança-chave |
+|--------|------|---------------|
+| V1 | 08/2026 | Pacote base: instruções, currículo, filosofia de mentoria. |
+| V2 | 08/2026 | Skills pedagógicas individuais + snapshots do contexto QA. |
+| V3 | 08/2026 | `skills/` sem subpastas — padrão `<nome>-skill.md`. |
+| V4 | 08/2026 | Biblioteca de prompts operacionais em `prompts/`. |
+| V5 | 08/2026 | `context/` separa `chat_history/`, `codes/`, `commands/`. |
+| V6 | 27/08/2026 | Plataforma migra de GPT personalizado para Projeto no Claude. |
+| — | 01/09/2026 | Regras 12–16, skills executáveis em `.claude/skills/`, memory compacta (`rules/00`, reorganização da raiz). |
