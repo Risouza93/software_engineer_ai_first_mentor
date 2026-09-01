@@ -1,6 +1,7 @@
 <!-- CRIADO 2026-08-28: primeira versão da memory operacional (regra 13). Sem backup anterior porque não existia CURRENT_CONTEXT.md. -->
 <!-- ALTERADO 2026-08-28: reconciliado pós-merge da PR #4; a infra de memory (memory/, backup_context/, relatórios) está publicada em main. -->
 <!-- ALTERADO 2026-09-01: reconciliado pós-merge das PRs #5-#8 (memory, Skills operacionais draft+executáveis, Regra 16 + reorganização rules/instructions). -->
+<!-- ALTERADO 2026-09-01: +rules/00-operating-model (digest); Regra 16 §8 (consolidação de commits); skills/operational reduzidas a ponteiros. -->
 
 # CURRENT CONTEXT
 
@@ -34,6 +35,9 @@ abrir só os arquivos que a tarefa exige. Não reauditar o repositório.
 
 Regras canônicas na raiz do repo (não copiar conteúdo; abrir sob demanda):
 
+- `rules/00-operating-model.md` — **digest** (~1 pág) do modelo inteiro (gates,
+  checkpoints, edição cirúrgica, memory). Em fluxo rotineiro, ler só este; abrir
+  a regra completa abaixo só ao atuar naquele domínio.
 - `rules/12-claude-code-artifact-automation.md` — automação de artefatos:
   edição cirúrgica, comentário `<!-- ALTERADO YYYY-MM-DD: ... -->`, preservar o
   resto, delegar publicação à 14 e relatório à 15.
@@ -50,6 +54,7 @@ Regras canônicas na raiz do repo (não copiar conteúdo; abrir sob demanda):
 - `rules/16-pedagogical-checkpoints.md` — pausas pedagógicas obrigatórias:
   4 checkpoints (Análise, Proposta, Validação, Sync&Cleanup), questionamento de
   abordagem, relatórios pedagógicos com decisões, limpeza de branches pós-merge.
+  **§8: consolidação de commits por escopo** (heurística "1 frase = 1 commit").
   Skill complementar: `pedagogical-checkpoint` em `.claude/skills/`.
 
 Arquitetura de contexto:
@@ -119,8 +124,9 @@ Não carregar automaticamente; consultar só se a tarefa exigir:
 - `instructions/11-progress-ledger-rules.md` — só ao editar o Ledger.
 - `.claude/skills/<nome>/SKILL.md` — Skills **operacionais executáveis**
   (`git-closure` regra 14, `execution-report` regra 15, `pedagogical-checkpoint`
-  regra 16); em conflito, a Regra vence. `skills/operational/*-skill.md` = os
-  mesmos procedimentos em prosa (companion legível).
+  regra 16); cópia única do procedimento; em conflito, a Regra vence.
+  `skills/operational/*-skill.md` = **ponteiros** (cabeçalho + link), não
+  duplicam mais o procedimento.
 - `skills/*-skill.md`, `agents/`, `instructions/06-skills-catalog.md`,
   `instructions/07-agents-catalog.md` — conteúdo **pedagógico** (mentor), eixo
   diferente das Skills operacionais; divergências catálogo × filesystem
