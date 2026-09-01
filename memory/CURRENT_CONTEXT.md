@@ -2,22 +2,26 @@
 <!-- ALTERADO 2026-08-28: reconciliado pós-merge da PR #4; a infra de memory (memory/, backup_context/, relatórios) está publicada em main. -->
 <!-- ALTERADO 2026-09-01: reconciliado pós-merge das PRs #5-#8 (memory, Skills operacionais draft+executáveis, Regra 16 + reorganização rules/instructions). -->
 <!-- ALTERADO 2026-09-01: +rules/00-operating-model (digest); Regra 16 §8 (consolidação de commits); skills/operational reduzidas a ponteiros. -->
+<!-- ALTERADO 2026-09-01: reconciliado pós-merge das PRs #9-#11 (relatórios da colisão; referências de arquivo pós-reorg; §8 + digest + compactação da Regra 13). -->
 
 # CURRENT CONTEXT
 
 ## NOW
 
-Projeto **Software Engineering AI First Mentor**. Governança (regras 12–16),
-memory operacional, Skills operacionais executáveis (`git-closure`,
-`execution-report`, `pedagogical-checkpoint`) e a raiz reorganizada em
-`rules/` + `instructions/` estão **publicadas em `main`** (`7a8dfdf`): PR #3
-(regras + Ledger, 27/08); PR #4 (`memory/`, `backup_context/`, 28/08); PRs #5–#7
-(reconciliação de memory, Skills operacionais draft e executáveis, 01/09); PR #8
-(Regra 16 + reorganização `rules/`/`instructions/`, 01/09).
+Projeto **Software Engineering AI First Mentor**. Toda a governança está
+**publicada em `main`** (`109e8b4`): regras `00` (digest operacional) e `12–16`,
+memory operacional, Skills executáveis (`git-closure`, `execution-report`,
+`pedagogical-checkpoint`), raiz em `rules/` + `instructions/`.
 
-Fase atual: **sem trabalho Git em curso.** Próximo: validar as Skills executáveis
-(inclusive `pedagogical-checkpoint`, ainda sem execução real) no próximo fluxo,
-ou retomar a M008.
+Histórico de PRs: #3 (regras + Ledger, 27/08); #4 (`memory/`, `backup_context/`,
+28/08); #5–#7 (memory, Skills draft e executáveis, 01/09); #8 (Regra 16 +
+reorganização da raiz); #9 (relatórios históricos da colisão de sessões); #10
+(correção de referências de arquivo quebradas pós-reorg); #11 (Regra 16 §8 =
+consolidação de commits por escopo; `rules/00`; `skills/operational/*` reduzidas
+a ponteiros; dedupe do modelo de gates 12→14; Regra 13 compactada 628→550).
+
+Fase atual: **sem trabalho Git em curso.** Próximo: validar `pedagogical-checkpoint`
+em uso real (ainda sem execução), ou retomar a M008.
 
 ## ARCHITECTURE
 
@@ -69,13 +73,16 @@ Git                → O QUE TECNICAMENTE MUDOU (evidência)
 
 ## GIT STATE
 
-- `main` local **sincronizada** com `origin/main` em `7a8dfdf` (merge da PR #8).
-- Nenhuma branch de trabalho ativa. Branches das PRs #3–#8 mergeadas e removidas
-  localmente; branches remotas de #5/#6/#7/#8 — deleção pendente de decisão humana.
+- `main` local **sincronizada** com `origin/main` em `109e8b4` (merge da PR #11).
+- Nenhuma branch de trabalho ativa. Branches das PRs #3–#11 mergeadas e removidas
+  **local e remotamente** (Gate 3b feito em 01/09).
 - Working tree limpa. Novo trabalho começa com branch a partir de `main` atualizada.
 - Nota operacional: evitar 2ª sessão Git (Claude/VSCode) no mesmo worktree em
   paralelo — em 01/09 isso descartou um Gate 1 não commitado (ver `reports/`).
-- Última reconciliação: 2026-09-01, contra `origin/main@7a8dfdf`.
+- Regra vigente (memory `stop-after-closure`): ao fim de um ciclo de encerramento
+  (Gate 1→2→PR→merge→pós-merge), **parar e aguardar prompt explícito** — não
+  encadear para a próxima unidade de trabalho.
+- Última reconciliação: 2026-09-01, contra `origin/main@109e8b4`.
 
 ## PEDAGOGICAL STATE
 
@@ -101,13 +108,16 @@ Fonte: `instructions/10-progress-ledger.md` (reconciliado 27/08, já em `main`).
 
 ## PENDING
 
-1. Validar `pedagogical-checkpoint` em uso real (ainda sem execução); decidir se
-   os drafts em `skills/operational/*-skill.md` continuam como companion legível
-   ou são enxugados.
-2. Deletar branches remotas de #5/#6/#7/#8 — decisão humana explícita (Gate 3b).
-3. `backup_context/` só terá backups reais na primeira compactação de memory.
-4. M004 — comparação Codex × Claude Code continua pendente.
-5. Gates humanos para commit/push/PR permanecem obrigatórios.
+1. Validar `pedagogical-checkpoint` em uso real (ainda sem execução). O destino de
+   `skills/operational/*` já está resolvido: são **ponteiros** (PR #11).
+2. `prompts/` (`PROMPT_MESTRE_CONTINUIDADE.md`, `ATUALIZAR_CONTEXTO.md`,
+   `COMPACTAR_CONTEXTO.md`) ainda citam nomes achatados antigos do Ledger/currículo;
+   decisão separada (atualizar refs ou aposentar o master prompt legado).
+3. Codificar a regra `stop-after-closure` em `rules/` e nas skills, pelo fluxo
+   normal (a memory já registra a expectativa).
+4. `backup_context/` só terá backups reais na primeira compactação de memory.
+5. M004 — comparação Codex × Claude Code continua pendente.
+6. Gates humanos para commit/push/PR permanecem obrigatórios.
 
 ## NEXT
 
