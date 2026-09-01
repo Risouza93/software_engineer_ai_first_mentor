@@ -1,316 +1,194 @@
-# 📋 PLANO DE EXECUÇÃO: REFATORAÇÃO RAIZ → RULES + INSTRUCTIONS
-
-## ESCOPO TOTAL
-
-| Item | Arquivos | Ação |
-|------|----------|------|
-| **Regras** | 12, 13, 14, 15, 16 | Mover → `rules/` + renomear |
-| **Instruções** | 00, 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11 | Mover → `instructions/` + renomear |
-| **Referências** | memory/, .claude/skills/, prompts/, README.md | Atualizar paths |
-| **Índices** | rules/README.md, instructions/README.md | Criar novos |
-| **Raiz README** | README.md | Refatorar |
-
-**Total de mudanças:** ~35 arquivos tocados (maioria: apenas path update)
-
+---
+name: pedagogical-checkpoint
+description: >-
+  Inserir pausas pedagógicas obrigatórias — 4 checkpoints (Análise, Proposta,
+  Execução/Validação, Sync & Cleanup) — em qualquer tarefa significativa de
+  edição, refactoring, diagnóstico ou decisão arquitetural conduzida com um
+  mentorado. Automação não deve virar autonomia silenciosa: cada checkpoint para
+  e pergunta antes de avançar. Use sempre que a tarefa envolver ensino/mentoria,
+  não só execução técnica. Autoridade: rules/16-pedagogical-checkpoints.md — em
+  qualquer conflito, a Regra vence.
 ---
 
-## PLANO EM 7 PASSOS
+# pedagogical-checkpoint
 
-### PASSO 1: Criar Pastas Vazias
-**Duração:** <1 min | **Tokens:** Mínimo | **Risco:** Nenhum
+Procedimento operacional do Claude Code para conduzir tarefas com pausas
+pedagógicas deliberadas, em vez de execução silenciosa ponta a ponta.
+**Autoridade:** `rules/16-pedagogical-checkpoints.md`.
+Relacionadas: `rules/12-claude-code-artifact-automation.md` (edição),
+`rules/14-git-safe-publishing.md` (gates de Git),
+`rules/15-universal-execution-reports.md` (relatório técnico).
 
-```powershell
-mkdir rules
-mkdir instructions
+## Use when
+
+Início de qualquer tarefa significativa em contexto de mentoria: edição,
+refactoring, diagnóstico ou decisão arquitetural onde o objetivo inclui o
+mentorado aprender/decidir, não só o código mudar.
+
+## Não use para
+
+- Microações dentro de uma tarefa já aprovada num checkpoint anterior.
+- Tarefas puramente mecânicas sem decisão a ensinar (ex.: rodar um lint já
+  configurado).
+- Sessões onde o mentorado autorizou explicitamente pular os checkpoints
+  (regra 16 §5) — nesse caso, registrar a exceção no relatório e seguir sem
+  parar, mas ainda respeitando os Gates da regra 14.
+
+## Inputs
+
+- A tarefa proposta e o motivo pedagógico de trazê-la ao mentorado.
+- Opções técnicas viáveis, com vantagem/risco de cada uma.
+- Estado Git relevante (para o Checkpoint 3 — merge detectado).
+- Autorização explícita do mentorado em cada checkpoint — obtida durante o
+  procedimento, nunca assumida.
+
+## Outputs
+
+- Decisões registradas (o quê foi escolhido e por quê) prontas para o
+  relatório técnico (regra 15) e o resumo pedagógico (regra 16 §3).
+- Trabalho executado só depois de aprovação no checkpoint correspondente.
+
+## Procedimento
+
+### Checkpoint 0 — Análise e Compreensão
+
+No início da tarefa, antes de qualquer edição:
+
+```text
+Tarefa: <resumo>
+
+OPÇÕES IDENTIFICADAS:
+1. <abordagem A> — vantagem: <X>, risco: <Y>
+2. <abordagem B> — vantagem: <X>, risco: <Y>
+
+RECOMENDAÇÃO:
+→ Opção <N> porque <justificativa pedagógica>
+
+Você concorda? Quer ajustar algo? Ou prefere outra opção?
 ```
 
-**Verificação:**
-```powershell
-ls -d rules instructions
+**Não prosseguir** sem resposta explícita.
+
+### Checkpoint 1 — Proposta Técnica
+
+Após aprovação da abordagem, antes de criar/alterar qualquer arquivo:
+
+```text
+PLANO TÉCNICO:
+- <arquivo> → <o quê>
+- <arquivo> → <o quê>
+
+Passos: 1. ... 2. ... 3. ...
+
+APRENDIZADO:
+→ Esta tarefa aborda <conceitos> e reforça <habilidades>.
+
+Quer que eu proceda? Alguma dúvida antes de começar?
 ```
 
-✅ Nada quebra ainda (pastas vazias)
+**Não prosseguir** sem aprovação ou ajuste.
 
----
+### Checkpoint 2 — Execução e Validação
 
-### PASSO 2: Mover Regras (com git mv)
-**Duração:** 2-3 min | **Tokens:** Mínimo | **Risco:** Baixo (git preserva histórico)
+Depois de executar/editar, **antes do Gate 1 de commit** (regra 14):
 
-```powershell
-# Renomear enquanto move (git mv preserva history)
-git mv rules/12-claude-code-artifact-automation.md `
-       rules/12-claude-code-artifact-automation.md
-git mv rules/13-universal-memory-context-compaction.md `
-       rules/13-universal-memory-context-compaction.md
-git mv rules/14-git-safe-publishing.md `
-       rules/14-git-safe-publishing.md
-git mv rules/15-universal-execution-reports.md `
-       rules/15-universal-execution-reports.md
-git mv rules/16-pedagogical-checkpoints.md `
-       rules/16-pedagogical-checkpoints.md
+```text
+RESULTADO: <o que foi feito>
+
+VALIDAÇÕES:
+✓ <validação 1>
+✓ <validação 2>
+
+DIFF SUMMARY: <git diff --stat compacto>
+
+Tudo conforme esperado? Quer revisar algo antes do commit?
 ```
 
-**Verificação:**
-```powershell
-ls -la rules/
-git status
+Só após confirmação aqui é que o Gate 1 (staging + commit) da skill
+`git-closure` é apresentado.
+
+### Checkpoint 3 — Branch Cleanup & Sync
+
+Quando um merge no GitHub é detectado (`git fetch --all --prune` +
+`main` local atrás de `origin/main`, ou branches locais/remotas de PRs
+anteriores ainda presentes):
+
+```text
+MERGE DETECTADO NO GITHUB:
+Origin/main foi atualizada. Seu repo local está sincronizado?
+
+BRANCHES CANDIDATAS A LIMPEZA:
+- <branch> (local / remota) — merged
+
+AÇÕES DISPONÍVEIS:
+1. Atualizar main local (fetch + pull --ff-only)
+2. Limpar branches locais (git branch -d)
+3. Deletar branches remotas (git push origin --delete)
+
+Quer que eu execute? Quais branches manter?
 ```
 
-✅ 5 arquivos movidos, histórico preservado
-⚠️ Referências ainda quebradas (corrigir no passo 3)
+**Não prosseguir** sem aprovação explícita — isto se soma, não substitui, os
+Gates 2/3/3b da skill `git-closure`.
 
----
+### Relatório pedagógico
 
-### PASSO 3: Mover Instruções (com git mv)
-**Duração:** 3-4 min | **Tokens:** Mínimo | **Risco:** Baixo
-
-```powershell
-git mv instructions/00-master-context.md instructions/00-master-context.md
-git mv instructions/01-system-instructions.md instructions/01-system-instructions.md
-git mv instructions/02-learning-protocol.md instructions/02-learning-protocol.md
-git mv instructions/03-curriculum.md instructions/03-curriculum.md
-git mv instructions/04-powershell-git-github.md instructions/04-powershell-git-github.md
-git mv instructions/05-ai-first-engineering.md instructions/05-ai-first-engineering.md
-git mv instructions/06-skills-catalog.md instructions/06-skills-catalog.md
-git mv instructions/07-agents-catalog.md instructions/07-agents-catalog.md
-git mv instructions/08-prompt-library.md instructions/08-prompt-library.md
-git mv instructions/09-source-policy.md instructions/09-source-policy.md
-git mv instructions/10-progress-ledger.md instructions/10-progress-ledger.md
-git mv instructions/11-progress-ledger-rules.md instructions/11-progress-ledger-rules.md
-```
-
-**Verificação:**
-```powershell
-ls -la instructions/
-git status --short
-```
-
-✅ 12 arquivos movidos
-⚠️ Referências ainda quebradas (próximo passo)
-
----
-
-### PASSO 4: Atualizar Referências em memory/CURRENT_CONTEXT.md
-**Duração:** 5-7 min | **Tokens:** Médio | **Risco:** Médio (edição de arquivo crítico)
-
-**Referências a encontrar/atualizar:**
+Ao final, incluir no `reports/` (junto ou anexo ao relatório técnico da regra
+15) o resumo de decisões:
 
 ```markdown
-ANTES:
-- `rules/14-git-safe-publishing.md` — ...
-- `rules/15-universal-execution-reports.md` — ...
-- `rules/16-pedagogical-checkpoints.md` — ...
-- `rules/12-claude-code-artifact-automation.md` — ...
-- `rules/13-universal-memory-context-compaction.md` — ...
+## PEDAGOGICAL CHECKPOINT SUMMARY
 
-DEPOIS:
-- `rules/14-git-safe-publishing.md` — ...
-- `rules/15-universal-execution-reports.md` — ...
-- `rules/16-pedagogical-checkpoints.md` — ...
-- `rules/12-claude-code-artifact-automation.md` — ...
-- `rules/13-universal-memory-context-compaction.md` — ...
+### Checkpoint 0 — Abordagem
+- Opções consideradas: A, B
+- Escolhida: A — razão: <justificativa do mentorado>
+
+### Checkpoint 1 — Plano
+- Aprovado: sim/com ajustes
+
+### Checkpoint 2 — Execução
+- Resultado: conforme plano / divergências: <lista>
+
+### Checkpoint 3 — Sync & Cleanup
+- Merge detectado: sim/não
+- Branches removidas: <lista>
+
+### Aprendizados registrados
+- <conceito>: <breve reflexão>
+
+### Próximo passo
+- <recomendação pedagógica>
 ```
 
-**Arquivos a atualizar em memory/:**
-- `memory/CURRENT_CONTEXT.md` — ~8 referências
+Não é recursão (não relatar o relatório pedagógico) — só registra as escolhas.
 
-**Comando (Python):**
-```python
-# Simples find-replace em memory/CURRENT_CONTEXT.md
-replacements = [
-    ('rules/14-git-safe-publishing.md', 'rules/14-git-safe-publishing.md'),
-    ('rules/15-universal-execution-reports.md', 'rules/15-universal-execution-reports.md'),
-    ('rules/16-pedagogical-checkpoints.md', 'rules/16-pedagogical-checkpoints.md'),
-    ('rules/12-claude-code-artifact-automation.md', 'rules/12-claude-code-artifact-automation.md'),
-    ('rules/13-universal-memory-context-compaction.md', 'rules/13-universal-memory-context-compaction.md'),
-    ('instructions/11-progress-ledger-rules.md', 'instructions/11-progress-ledger-rules.md'),
-    ('instructions/10-progress-ledger.md', 'instructions/10-progress-ledger.md'),
-    ('instructions/09-source-policy.md', 'instructions/09-source-policy.md'),
-    ('instructions/08-prompt-library.md', 'instructions/08-prompt-library.md'),
-    ('instructions/07-agents-catalog.md', 'instructions/07-agents-catalog.md'),
-    ('instructions/06-skills-catalog.md', 'instructions/06-skills-catalog.md'),
-    ('instructions/05-ai-first-engineering.md', 'instructions/05-ai-first-engineering.md'),
-    ('instructions/04-powershell-git-github.md', 'instructions/04-powershell-git-github.md'),
-    ('instructions/03-curriculum.md', 'instructions/03-curriculum.md'),
-    ('instructions/02-learning-protocol.md', 'instructions/02-learning-protocol.md'),
-    ('instructions/01-system-instructions.md', 'instructions/01-system-instructions.md'),
-    ('instructions/00-master-context.md', 'instructions/00-master-context.md'),
-]
-```
+## Interrupções obrigatórias (parar e consultar o mentorado)
 
-✅ Referências em memory/ corrigidas
-⚠️ Próximas: .claude/skills/, prompts/, README.md
+- início de qualquer tarefa significativa sem checkpoint 0 feito;
+- qualquer edição de arquivo antes do checkpoint 1 aprovado;
+- qualquer commit (Gate 1 da regra 14) antes do checkpoint 2 confirmado;
+- merge detectado sem checkpoint 3 apresentado;
+- pedido de pular checkpoints sem autorização explícita registrada.
 
----
+## Validações (Definition of Done)
 
-### PASSO 5: Atualizar Referências em .claude/skills/
-**Duração:** 5-7 min | **Tokens:** Médio | **Risco:** Médio
+Para cada checkpoint executado, deve ser possível apontar: a pergunta feita,
+a resposta do mentorado, e a ação que seguiu dessa resposta. Nenhuma edição,
+commit ou limpeza de branch acontece sem o checkpoint correspondente ter sido
+respondido — exceto sob exceção explícita registrada (regra 16 §5).
 
-**Arquivos a atualizar:**
-- `.claude/skills/git-closure/SKILL.md` — ~10 referências
-- `.claude/skills/execution-report/SKILL.md` — ~5 referências
-- `.claude/skills/pedagogical-checkpoint/SKILL.md` — ~5 referências
+## Anti-padrões
 
-**Exemplo:**
-```markdown
-ANTES:
-Autoridade: `rules/14-git-safe-publishing.md`
-Relacionadas: `rules/12-claude-code-artifact-automation.md`
+- Assumir a resposta de um checkpoint anterior para pular o atual (regra 16
+  §6 — o contexto muda, perguntar de novo).
+- Misturar o checkpoint pedagógico com o Gate técnico da regra 14 (são
+  complementares, não substitutos um do outro).
+- Registrar "decisão" sem a justificativa do mentorado.
+- Usar esta skill para microações que não envolvem ensino/decisão.
 
-DEPOIS:
-Autoridade: `rules/14-git-safe-publishing.md`
-Relacionadas: `rules/12-claude-code-artifact-automation.md`
-```
+## Evidência de recorrência
 
-✅ Referências em skills/ corrigidas
-⚠️ Próxima: README.md
-
----
-
-### PASSO 6: Atualizar README.md (Raiz)
-**Duração:** 10-15 min | **Tokens:** Alto | **Risco:** Médio (documento público)
-
-**Ações:**
-
-1. **Criar seção "Como Navegar"** (nova):
-```markdown
-## Como Navegar
-
-Novo no projeto? Comece aqui:
-
-1. **Pedagogia & Aprendizado**
-   → [`instructions/`](instructions/README.md) — Currículo, protocolos, políticas
-
-2. **Regras Canônicas (Autoridades)**
-   → [`rules/`](rules/README.md) — Regras de automação, Git, Reports, Pedagogia
-
-3. **Execução**
-   → [`.claude/skills/`](.claude/skills/) — Skills operacionais (git-closure, execution-report, pedagogical-checkpoint)
-```
-
-2. **Atualizar referências** (todas as seções):
-- Na seção de "Getting Started", apontar para `instructions/00-master-context.md`
-- Na seção de "Rules", apontar para `rules/`
-- Na seção de "Skills", apontar para `.claude/skills/`
-
-3. **Atualizar TOC** (Table of Contents):
-```markdown
-ANTES:
-- [instructions/00-master-context.md](instructions/00-master-context.md)
-- [instructions/01-system-instructions.md](instructions/01-system-instructions.md)
-...
-- [rules/12-claude-code-artifact-automation.md](rules/12-claude-code-artifact-automation.md)
-...
-
-DEPOIS:
-### Instructions
-- [Master Context](instructions/00-master-context.md)
-- [System Instructions](instructions/01-system-instructions.md)
-...
-
-### Rules
-- [Claude Code Artifact Automation](rules/12-claude-code-artifact-automation.md)
-...
-```
-
-✅ README.md refatorado
-
----
-
-### PASSO 7: Criar Índices (rules/README.md + instructions/README.md)
-**Duração:** 10-12 min | **Tokens:** Médio-Alto | **Risco:** Baixo (novos arquivos)
-
-**rules/README.md** (novo):
-```markdown
-# Regras Canônicas
-
-Autoridades técnicas do projeto. Em caso de conflito entre regras, estas 
-ganham de skills/procedures e memory/context.
-
-## Índice
-
-| Regra | Descrição | Quando Usar |
-|-------|-----------|------------|
-| [12 - Artifact Automation](12-claude-code-artifact-automation.md) | Edição cirúrgica de artefatos | Alterar código/docs |
-| [13 - Memory & Context Compaction](13-universal-memory-context-compaction.md) | Gestão de contexto eficiente | Manter memory atualizada |
-| [14 - Git Safe Publishing](14-git-safe-publishing.md) | Gates humanos para Git | Commit, push, PR |
-| [15 - Execution Reports](15-universal-execution-reports.md) | Relatórios de execução | Toda execução significativa |
-| [16 - Pedagogical Checkpoints](16-pedagogical-checkpoints.md) | Pausas pedagógicas | Questionar mentorado |
-
-**Leitura recomendada:** Na ordem 12 → 13 → 14 → 15 → 16.
-```
-
-**instructions/README.md** (novo):
-```markdown
-# Instruções e Protocolos
-
-Pedagogia, currículo, políticas e padrões do projeto.
-
-## Índice Rápido
-
-| Arquivo | Propósito |
-|---------|-----------|
-| [00 - Master Context](00-master-context.md) | Contexto master para continuidade |
-| [01 - System Instructions](01-system-instructions.md) | Instruções de sistema para Claude |
-| [02 - Learning Protocol](02-learning-protocol.md) | Protocolo de aprendizado |
-| [03 - Curriculum](03-curriculum.md) | Módulos e roadmap pedagógico |
-| [04 - PowerShell & Git/GitHub](04-powershell-git-github.md) | Ambiente + ferramentas |
-| [05 - AI First Engineering](05-ai-first-engineering.md) | Princípios de engenharia AI-first |
-| [06 - Skills Catalog](06-skills-catalog.md) | Catálogo de skills pedagógicas |
-| [07 - Agents Catalog](07-agents-catalog.md) | Catálogo de agents |
-| [08 - Prompt Library](08-prompt-library.md) | Biblioteca de prompts |
-| [09 - Source Policy](09-source-policy.md) | Política de fontes e citações |
-| [10 - Progress Ledger](10-progress-ledger.md) | Registro de progresso (M001–M008) |
-| [11 - Progress Ledger Rules](11-progress-ledger-rules.md) | Como manter o ledger |
-
-**Para novos mentorados:** Comece em 00 → 02 → 03 → 04.
-```
-
-✅ Índices criados
-
----
-
-## RESUMO DE MUDANÇAS
-
-| Fase | Ação | Arquivos | Tempo | Risco |
-|------|------|----------|-------|-------|
-| 1 | Criar pastas | 2 novas | 1 min | 🟢 Nenhum |
-| 2 | Mover regras | 5 files moved | 3 min | 🟢 Baixo |
-| 3 | Mover instruções | 12 files moved | 4 min | 🟢 Baixo |
-| 4 | Atualizar memory/ | 1 arquivo | 7 min | 🟡 Médio |
-| 5 | Atualizar skills/ | 3 arquivos | 7 min | 🟡 Médio |
-| 6 | Atualizar README | 1 arquivo | 15 min | 🟡 Médio |
-| 7 | Criar índices | 2 novos | 12 min | 🟢 Baixo |
-| **TOTAL** | **Refatoração completa** | **26 arquivos transformados** | **~50 min** | **Controlado** |
-
----
-
-## CHECKPOINT PEDAGÓGICO
-
-**Antes de executar, validar:**
-
-- [ ] Você entende a nova estrutura?
-- [ ] Concorda com o nome das pastas (`rules/` + `instructions/`)?
-- [ ] Quer mudar algo no plano antes de começar?
-- [ ] Quer dividir em commits menores (ex: commit 1 = mover arquivos, commit 2 = atualizar referências)?
-
----
-
-## ECONOMIA DE TOKENS
-
-- **Fase 1-3 (Movimentação Git):** ~100 tokens (apenas git commands)
-- **Fase 4-5 (Atualizações):** ~1.000 tokens (find-replace automático)
-- **Fase 6-7 (READMEs + índices):** ~2.000 tokens (conteúdo novo)
-- **Total estimado:** ~3.100 tokens (muito eficiente!)
-
----
-
-## ROLLBACK (se necessário)
-
-Se algo der errado, simples:
-```powershell
-git reset --hard HEAD~1
-```
-
-(Retorna ao estado anterior)
-
+Regra nova (`rules/16-pedagogical-checkpoints.md`, 01/09/2026) — ainda sem
+histórico de execuções em `reports/`. Este skill nasce junto com a Regra;
+evidência de recorrência será acumulada nas próximas execuções pedagógicas e
+citada aqui quando houver.

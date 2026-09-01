@@ -21,7 +21,7 @@ Desta Regra decorrem:
 
 - Pontos de parada obrigatórios para questionamento
 - Relatórios pedagógicos (não apenas técnicos)
-- Sincronização deliberada com decis mentorado
+- Sincronização deliberada com decisões do mentorado
 - Registro de escolhas e aprendizados
 
 ---
@@ -262,7 +262,7 @@ Registrar a exceção no `reports/` da execução.
 
 ## 6. Registro das Decisões
 
-Toda decisão tomada no mentorado (Checkpoint 0–3) deve:
+Toda decisão tomada com o mentorado (Checkpoint 0–3) deve:
 
 1. Ser **anotada** no relatório técnico (Regra 15)
 2. Ser **refletida** no relatório pedagógico (Seção 3 desta Regra)
