@@ -1,27 +1,21 @@
 # Prompt — COMPACTAR CONTEXTO
 
-<!-- ALTERADO 2026-08-27: alvo trocado do arquivo único SOFTWARE_ENGINEERING_LEARNING_CONTEXT (inexistente) para a memória operacional realmente implementada. -->
+<!-- ALTERADO 2026-09-01: fluxo realinhado ao modelo de memória da Regra 13; refs ao Ledger achatado removidas. -->
 
 ```text
 [COMPACTAR CONTEXTO]
 
-Avalie a memória operacional canônica (10_PROGRESS_LEDGER.md e context/chat_history/).
-
-Se estiver redundante, grande ou pouco eficiente para recuperação:
+Avalie memory/CURRENT_CONTEXT.md. Se estiver redundante, acima do orçamento
+(~500–1.500 palavras) ou pouco eficiente para retomada:
 
 1. consolide aprendizados;
 2. remova repetições;
-3. preserve decisões e progresso;
-4. preserve missão atual;
-5. preserve níveis;
-6. preserve gaps;
-7. preserve roadmap;
-8. preserve o core do projeto.
+3. preserve decisões, progresso, missão atual, níveis, gaps, roadmap e o core.
 
-Compacte conforme 11_PROGRESS_LEDGER_RULES.md (regra de compactação e budget),
-preservando o material legado em legacy/archive/ quando aplicável e, se a
-continuidade exigir, gerando um novo snapshot em context/chat_history/.
+Compacte conforme a Regra 13 §13 (compactação obrigatória). Antes de reduzir,
+salve o estado anterior em backup_context/MEMORY_BACKUP_YYYY-MM-DD_HHMM.md
+(§13/§14) e registre o comentário COMPACTADO no topo da memory (§15). Gere
+relatório em reports/ se a execução for significativa.
 
-O estado resultante deve ser suficiente para continuar a formação sem depender
-da leitura das versões anteriores.
+O estado resultante deve bastar para continuar sem reler versões anteriores.
 ```

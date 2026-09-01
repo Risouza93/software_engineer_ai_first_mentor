@@ -4,6 +4,7 @@
 <!-- ALTERADO 2026-09-01: +rules/00-operating-model (digest); Regra 16 §8 (consolidação de commits); skills/operational reduzidas a ponteiros. -->
 <!-- ALTERADO 2026-09-01: reconciliado pós-merge das PRs #9-#11 (relatórios da colisão; referências de arquivo pós-reorg; §8 + digest + compactação da Regra 13). -->
 <!-- ALTERADO 2026-09-01: reconciliado pós-merge da PR #13 (Regra 16 §2.5 = Checkpoint 4 Fronteira); PENDING #3 resolvido; ACTIVE RULES = 5 checkpoints. -->
+<!-- ALTERADO 2026-09-01: Tarefa 2 (prompts/ de continuidade realinhados à Regra 13) concluída; PROMPT_MESTRE_CONTINUIDADE.md movido para legacy/; PENDING de prompts/ resolvido. -->
 
 # CURRENT CONTEXT
 
@@ -23,8 +24,9 @@ a ponteiros; dedupe do modelo de gates 12→14; Regra 13 compactada 628→550);
 PR #13 (Regra 16 §2.5 = Checkpoint 4 "Fronteira/Encerramento", codifica
 `stop-after-closure`; Tarefa 1 do plano de exercitar `pedagogical-checkpoint`).
 
-Fase atual: **sem trabalho Git em curso.** Próximo: validar `pedagogical-checkpoint`
-em uso real (ainda sem execução), ou retomar a M008.
+Fase atual: `pedagogical-checkpoint` exercitada em 2 fluxos reais (Tarefas 1 e 2
+do plano). Próximo: reavaliar CC Agent / CC Reviewer / skill `cc-flow` à luz
+dessa evidência, ou retomar a M008.
 
 ## ARCHITECTURE
 
@@ -112,23 +114,21 @@ Fonte: `instructions/10-progress-ledger.md` (reconciliado 27/08, já em `main`).
 
 ## PENDING
 
-1. Validar `pedagogical-checkpoint` em uso real — **plano em curso**: exercitá-la
-   em 2 tarefas reais registrando nos relatórios. Tarefa 1 (Checkpoint 4 da
-   Regra 16) feita, PR #13. **Tarefa 2 pendente:** referências antigas em
-   `prompts/` (ver abaixo). Só depois reavaliar CC Agent / CC Reviewer.
-2. `prompts/` (`PROMPT_MESTRE_CONTINUIDADE.md` 622 l. — legado; `ATUALIZAR_CONTEXTO.md`,
-   `COMPACTAR_CONTEXTO.md`) citam nomes achatados antigos do Ledger/currículo.
-   Decisão pendente: corrigir refs, apontar para skills/regras, ou `git mv` do
-   master prompt para `legacy/`. (= Tarefa 2 do plano acima.)
-3. `backup_context/` só terá backups reais na primeira compactação de memory.
-4. M004 — comparação Codex × Claude Code continua pendente.
-5. Gates humanos para commit/push/PR permanecem obrigatórios.
+1. Plano de exercitar `pedagogical-checkpoint` em tarefas reais **concluído**:
+   Tarefa 1 (Regra 16 §2.5 / Checkpoint 4, PR #13) e Tarefa 2 (`prompts/` de
+   continuidade — `ATUALIZAR_CONTEXTO.md` / `COMPACTAR_CONTEXTO.md` realinhados
+   à Regra 13; `PROMPT_MESTRE_CONTINUIDADE.md` → `legacy/`). Próximo: reavaliar
+   se um CC Agent / CC Reviewer / skill `cc-flow` se justifica pela evidência
+   gerada nesses fluxos.
+2. `backup_context/` só terá backups reais na primeira compactação de memory.
+3. M004 — comparação Codex × Claude Code continua pendente.
+4. Gates humanos para commit/push/PR permanecem obrigatórios.
 
 ## NEXT
 
-Escolher entre (a) exercitar `pedagogical-checkpoint` no próximo fluxo real, ou
-(b) retomar a M008 (loops + `let`, checkpoint do primeiro `for`). Qualquer
-alteração passa por branch + Gates 1/2 + PR.
+Escolher entre (a) reavaliar CC Agent / CC Reviewer / skill `cc-flow` com a
+evidência dos 2 fluxos já executados, ou (b) retomar a M008 (loops + `let`,
+checkpoint do primeiro `for`). Qualquer alteração passa por branch + Gates 1/2 + PR.
 
 ## LOAD ON DEMAND
 
@@ -146,6 +146,7 @@ Não carregar automaticamente; consultar só se a tarefa exigir:
   `instructions/07-agents-catalog.md` — conteúdo **pedagógico** (mentor), eixo
   diferente das Skills operacionais; divergências catálogo × filesystem
   conhecidas e não urgentes.
-- `prompts/PROMPT_MESTRE_CONTINUIDADE.md` — bootstrap antigo, ainda com resíduos
-  obsoletos; não usar como fonte de estado.
+- `legacy/PROMPT_MESTRE_CONTINUIDADE.md` — bootstrap pré-Regra 13, arquivado;
+  registro histórico, não usar como fonte de estado. Retomada parte de
+  `memory/CURRENT_CONTEXT.md` + `rules/00`.
 - `legacy/` — artefatos de laboratório arquivados.
