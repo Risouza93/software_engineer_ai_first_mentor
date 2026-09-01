@@ -6,13 +6,14 @@
 <!-- ALTERADO 2026-09-01: reconciliado pós-merge da PR #13 (Regra 16 §2.5 = Checkpoint 4 Fronteira); PENDING #3 resolvido; ACTIVE RULES = 5 checkpoints. -->
 <!-- ALTERADO 2026-09-01: Tarefa 2 (prompts/ de continuidade realinhados à Regra 13) concluída; PROMPT_MESTRE_CONTINUIDADE.md movido para legacy/; PENDING de prompts/ resolvido. -->
 <!-- ALTERADO 2026-09-01: reconciliação leve pós-merge das PRs #14-#15 — NOW e GIT STATE em main@66c7a94; histórico de PRs até #15. -->
+<!-- ALTERADO 2026-09-01: reconciliação pós-merge das PRs #16-#17 (reconciliação leve; README reescrito como referência de SR) — main@dbba24a. Sessão encerrada por contexto cheio; retomar em sessão nova. -->
 
 # CURRENT CONTEXT
 
 ## NOW
 
 Projeto **Software Engineering AI First Mentor**. Toda a governança está
-**publicada em `main`** (`66c7a94`): regras `00` (digest operacional) e `12–16`,
+**publicada em `main`** (`dbba24a`): regras `00` (digest operacional) e `12–16`,
 memory operacional, Skills executáveis (`git-closure`, `execution-report`,
 `pedagogical-checkpoint`), raiz em `rules/` + `instructions/`.
 
@@ -26,11 +27,20 @@ PR #13 (Regra 16 §2.5 = Checkpoint 4 "Fronteira/Encerramento", codifica
 `stop-after-closure`; Tarefa 1 do plano de exercitar `pedagogical-checkpoint`);
 PR #14 (reconciliação de memory pós-#13); PR #15 (Tarefa 2 —
 `prompts/ATUALIZAR_CONTEXTO.md` e `COMPACTAR_CONTEXTO.md` realinhados à Regra 13,
-`PROMPT_MESTRE_CONTINUIDADE.md` → `legacy/`).
+`PROMPT_MESTRE_CONTINUIDADE.md` → `legacy/`); PR #16 (reconciliação leve);
+PR #17 (`README.md` reescrito 439→140 linhas como referência de SR, V1–V6 só no
+rodapé, 15 links validados).
 
-Fase atual: `pedagogical-checkpoint` exercitada em 2 fluxos reais (Tarefas 1 e 2
-do plano). Próximo: reavaliar CC Agent / CC Reviewer / skill `cc-flow` à luz
-dessa evidência, ou retomar a M008.
+Fase atual: **nenhum trabalho Git em curso; working tree limpa.** A sessão de
+01/09 foi encerrada por contexto cheio — retomar numa sessão nova. O plano de
+exercitar `pedagogical-checkpoint` em 2 fluxos reais está concluído (PRs #13
+e #15). A próxima decisão está em NEXT.
+
+Nota: em 01/09 apareceram 3 arquivos não rastreados (`guides/QUICK_REFERENCE.md`,
+`guides/SESSION_HANDOFF.md`, `BOOTSTRAP_SESSION.md`), criados por engano numa
+sessão de colega interrompida, com erros (contradiziam a Regra 13). Foram
+descartados; nunca entraram no Git. Não recriar — a retomada de sessão usa
+`memory/CURRENT_CONTEXT.md` + `rules/00`, sem arquivo especial de bootstrap.
 
 ## ARCHITECTURE
 
@@ -83,8 +93,8 @@ Git                → O QUE TECNICAMENTE MUDOU (evidência)
 
 ## GIT STATE
 
-- `main` local **sincronizada** com `origin/main` em `66c7a94` (merge da PR #15).
-- Nenhuma branch de trabalho ativa. Branches das PRs #3–#15 mergeadas e removidas
+- `main` local **sincronizada** com `origin/main` em `dbba24a` (merge da PR #17).
+- Nenhuma branch de trabalho ativa. Branches das PRs #3–#17 mergeadas e removidas
   **local e remotamente** (Gate 3b).
 - Working tree limpa. Novo trabalho começa com branch a partir de `main` atualizada.
 - Nota operacional: evitar 2ª sessão Git (Claude/VSCode) no mesmo worktree em
@@ -92,7 +102,7 @@ Git                → O QUE TECNICAMENTE MUDOU (evidência)
 - **Checkpoint 4 / Fronteira (Regra 16 §2.5, agora canônico):** ao fim de uma
   unidade de trabalho (ciclo Git completo ou tarefa sem Git), parar e pedir o
   próximo passo — não encadear.
-- Última reconciliação: 2026-09-01, contra `origin/main@66c7a94`.
+- Última reconciliação: 2026-09-01, contra `origin/main@dbba24a`.
 
 ## PEDAGOGICAL STATE
 
@@ -130,9 +140,10 @@ Fonte: `instructions/10-progress-ledger.md` (reconciliado 27/08, já em `main`).
 
 ## NEXT
 
-Escolher entre (a) reavaliar CC Agent / CC Reviewer / skill `cc-flow` com a
-evidência dos 2 fluxos já executados, ou (b) retomar a M008 (loops + `let`,
-checkpoint do primeiro `for`). Qualquer alteração passa por branch + Gates 1/2 + PR.
+**Ponto de retomada da próxima sessão.** Escolher entre (a) reavaliar CC Agent /
+CC Reviewer / skill `cc-flow` com a evidência dos 2 fluxos já executados, ou
+(b) retomar a M008 (loops + `let`, checkpoint do primeiro `for`). Qualquer
+alteração passa por branch + Gates 1/2 + PR.
 
 ## LOAD ON DEMAND
 
