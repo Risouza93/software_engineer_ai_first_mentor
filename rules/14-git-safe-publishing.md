@@ -28,6 +28,12 @@ PUSH
 
 PR
 → autorização separada, se aplicável
+
+MERGE
+→ decisão humana no GitHub (Gate 3)
+
+SYNC & CLEANUP PÓS-MERGE
+→ somente após GATE 4 humano
 ```
 
 A autorização para editar arquivos NÃO implica autorização para commit, push ou publicação remota.
@@ -342,9 +348,84 @@ Antes de criar PR, apresentar:
 
 Não criar automaticamente.
 
+<!-- ALTERADO 2026-09-03: o merge passa a ser nomeado explicitamente como Gate 3; adicionada a §12 (Gate 4) e renumeradas as seções seguintes. -->
+O **merge da PR é o Gate 3** — decisão humana, executada pelo humano no GitHub. Claude nunca executa `git merge` (ver §13). Depois do merge, o encerramento continua na §12 (Gate 4).
+
 ---
 
-## 12. Operações proibidas por padrão
+## 12. GATE 4 — autorização para sync & cleanup pós-merge
+
+Depois que o humano fizer o merge (Gate 3), a `main` local fica desatualizada e a branch da PR fica órfã. Sincronizar e limpar **não é automático** — exige autorização humana explícita, no mesmo formato dos Gates 1 e 2.
+
+### Como detectar
+
+```powershell
+git fetch --all --prune
+git rev-list --left-right --count main...origin/main
+git branch --merged origin/main
+git branch -r
+```
+
+Merge detectado quando: `main` local está atrás de `origin/main`, ou existem branches locais/remotas de PRs já mergeadas.
+
+`git fetch` **não** atualiza a branch local; `git status clean` **não** prova sincronia com o remoto.
+
+### Comandos exatos (somente após autorização)
+
+```powershell
+git fetch --all --prune
+git switch main
+git pull --ff-only origin main
+git merge-base --is-ancestor <tip-da-branch> origin/main   # precheck: deve ser verdadeiro
+git branch -d <branch-merged>                              # -d (não -D): recusa se não estiver merged
+git push origin --delete <branch-merged>                   # remoção da branch remota
+```
+
+Nunca usar `git branch -D` nem `git reset --hard` para "resolver" divergência — se `pull --ff-only` falhar, parar e reportar (§13).
+
+### Caixa de autorização
+
+```text
+GATE 4 — SYNC & CLEANUP PÓS-MERGE
+
+Merge detectado:
+→ PR #... mergeada em origin/main
+
+Sincronização:
+→ main local <hash-atual> → <hash-origin>
+
+Branches locais a remover:
+→ ...
+
+Branches remotas a remover:
+→ ...
+
+Comandos planejados:
+→ ...
+
+Posso sincronizar a main e remover estas branches agora?
+```
+
+Somente prosseguir após autorização explícita.
+
+Silêncio não é autorização.
+
+Autorização para merge/PR NÃO é autorização para sync & cleanup.
+
+Manter qualquer branch que o humano pedir para preservar.
+
+Após o sync & cleanup, validar:
+
+```powershell
+git status
+git branch -vv
+git branch -r
+git log --oneline --decorate --graph -5
+```
+
+---
+
+## 13. Operações proibidas por padrão
 
 Não executar sem autorização específica:
 
@@ -368,7 +449,7 @@ Também não:
 
 ---
 
-## 13. Regra de segurança para branch principal
+## 14. Regra de segurança para branch principal
 
 Se `git branch --show-current` retornar `main` ou `master`:
 
@@ -383,7 +464,7 @@ Não preparar staging/commit automaticamente na branch principal.
 
 ---
 
-## 14. Relação com regras de artefatos
+## 15. Relação com regras de artefatos
 
 Se o projeto possuir regras de edição/automação de artefatos, elas devem ser respeitadas antes desta política de publicação.
 
@@ -404,7 +485,7 @@ Esta política governa staging, commit, push e publicação; não substitui regr
 
 ---
 
-## 15. Critério de sucesso
+## 16. Critério de sucesso
 
 O encerramento deve permitir responder com evidência:
 
@@ -426,11 +507,20 @@ Quem autorizou commit?
 
 Quem autorizou push?
 → humano
+
+A main local ficou sincronizada após o merge?
+→ git status + git branch -vv
+
+As branches já mergeadas foram removidas?
+→ git branch + git branch -r
+
+Quem autorizou o sync & cleanup pós-merge?
+→ humano
 ```
 
 ---
 
-## 16. Fluxo canônico
+## 17. Fluxo canônico
 
 ```text
 STATUS
@@ -466,6 +556,16 @@ SHOW / LOG / STATUS
 PUSH
 ↓
 VALIDAÇÃO FINAL
+↓
+🛑 PR
+↓
+MERGE HUMANO NO GITHUB (Gate 3)
+↓
+🛑 GATE 4
+↓
+SYNC (pull --ff-only) + CLEANUP (branch -d / push --delete)
+↓
+VALIDAÇÃO PÓS-MERGE
 ```
 
 Nunca priorizar velocidade sobre rastreabilidade.
@@ -474,7 +574,7 @@ Nunca priorizar velocidade sobre rastreabilidade.
 
 <!-- ALTERADO 2026-08-27: relatórios persistentes de execução delegados à regra canônica 15. -->
 <!-- ALTERADO 2026-09-01: nome do arquivo da regra 15 atualizado para o caminho real em rules/. -->
-## 17. Relatório da execução
+## 18. Relatório da execução
 
 A persistência do relatório técnico da execução segue:
 

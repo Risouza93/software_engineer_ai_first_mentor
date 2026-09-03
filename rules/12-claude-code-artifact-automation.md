@@ -203,12 +203,13 @@ Quando houver alteração estrutural, o Claude Code deve verificar se existem re
 
 ---
 
-<!-- ALTERADO 2026-09-01: lista de operações Git/destrutivas proibidas removida daqui; a lista canônica vive em rules/14 §12. Mantidos só os pontos específicos desta regra. -->
+<!-- ALTERADO 2026-09-01: lista de operações Git/destrutivas proibidas removida daqui; a lista canônica vive em rules/14 §13. Mantidos só os pontos específicos desta regra. -->
+<!-- ALTERADO 2026-09-03: referência §12 → §13 (rules/14 ganhou a §12 "Gate 4" e renumerou as seções seguintes). -->
 ## 8. Segurança operacional
 
 Por padrão, o prompt gerado pelo Projeto no Claude deve permitir apenas alterações locais explicitamente relacionadas ao objetivo.
 
-Publicação (commit, push, PR) e operações destrutivas: seguir `rules/14-git-safe-publishing.md` — nada automático sem gate humano; a lista de operações proibidas por padrão está na §12 daquela regra. Instalação de dependências e alteração de configuração/credenciais também exigem autorização explícita.
+Publicação (commit, push, PR) e operações destrutivas: seguir `rules/14-git-safe-publishing.md` — nada automático sem gate humano; a lista de operações proibidas por padrão está na §13 daquela regra. Instalação de dependências e alteração de configuração/credenciais também exigem autorização explícita.
 
 Nunca incluir segredos, tokens ou credenciais nos prompts/artefatos.
 

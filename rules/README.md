@@ -3,6 +3,7 @@
 Autoridades técnicas do projeto. Em caso de conflito entre regras, estas ganham de skills/procedures e memory/context.
 
 <!-- ALTERADO 2026-09-01: adicionado o digest 00-operating-model como porta de entrada de baixo custo de tokens. -->
+<!-- ALTERADO 2026-09-03: descrição da Regra 14 atualizada — Gates 3 (merge) e 4 (sync & cleanup pós-merge). -->
 ## Comece pelo digest
 
 [**`00-operating-model.md`**](00-operating-model.md) — resumo normativo de todo o
@@ -17,7 +18,7 @@ naquele domínio.
 | [00 - Operating Model (digest)](00-operating-model.md) | Resumo normativo do modelo operacional | Porta de entrada — toda sessão |
 | [12 - Claude Code Artifact Automation](12-claude-code-artifact-automation.md) | Edição cirúrgica de artefatos com comentários explícitos | Alteração de código/docs |
 | [13 - Universal Memory & Context Compaction](13-universal-memory-context-compaction.md) | Gestão eficiente de memory operacional e contexto | Manter memory/ atualizada |
-| [14 - Git Safe Publishing](14-git-safe-publishing.md) | Gates humanos para commit, push e PR | Publicação Git segura |
+| [14 - Git Safe Publishing](14-git-safe-publishing.md) | Gates humanos: commit (1), push (2), PR/merge (3), sync & cleanup pós-merge (4) | Publicação Git segura |
 | [15 - Universal Execution Reports](15-universal-execution-reports.md) | Relatórios persistentes de cada execução | Auditoria + rastreabilidade |
 | [16 - Pedagogical Checkpoints](16-pedagogical-checkpoints.md) | Pausas pedagógicas obrigatórias + questionamento | Ensino guiado (não automação pura) |
 

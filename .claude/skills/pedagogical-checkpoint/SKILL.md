@@ -109,29 +109,26 @@ Tudo conforme esperado? Quer revisar algo antes do commit?
 Só após confirmação aqui é que o Gate 1 (staging + commit) da skill
 `git-closure` é apresentado.
 
-### Checkpoint 3 — Branch Cleanup & Sync
+### Checkpoint 3 — Sync & Cleanup pós-merge (pausa pedagógica do Gate 4)
 
 Quando um merge no GitHub é detectado (`git fetch --all --prune` +
 `main` local atrás de `origin/main`, ou branches locais/remotas de PRs
-anteriores ainda presentes):
+anteriores ainda presentes) — sempre **depois** do push, da PR e do merge:
 
 ```text
 MERGE DETECTADO NO GITHUB:
-Origin/main foi atualizada. Seu repo local está sincronizado?
+origin/main foi atualizada. Seu repo local está sincronizado?
 
 BRANCHES CANDIDATAS A LIMPEZA:
 - <branch> (local / remota) — merged
 
-AÇÕES DISPONÍVEIS:
-1. Atualizar main local (fetch + pull --ff-only)
-2. Limpar branches locais (git branch -d)
-3. Deletar branches remotas (git push origin --delete)
-
-Quer que eu execute? Quais branches manter?
+Quais branches você quer manter?
 ```
 
-**Não prosseguir** sem aprovação explícita — isto se soma, não substitui, os
-Gates 2/3/3b da skill `git-closure`.
+**Não prosseguir** sem aprovação explícita. Esta é a pausa pedagógica; a execução
+dos comandos (sync + `git branch -d` + `git push origin --delete`) segue o
+**Gate 4** da skill `git-closure` / `rules/14` §12 — que se soma ao Gate 2 (push),
+ao merge (Gate 3) e à abertura de PR, não os substitui.
 
 ### Checkpoint 4 — Fronteira / Encerramento
 

@@ -17,10 +17,15 @@ HUMANO             → aprova gates e decisões relevantes
 
 ## Gates humanos de Git (Regra 14)
 
+<!-- ALTERADO 2026-09-03: merge nomeado como Gate 3; adicionado o Gate 4 (sync & cleanup pós-merge). -->
 1. **Gate 1 — staging + commit.** Inspeção/diff/proposta são automáticos; `git add`
    e `git commit` só após "sim" explícito. Autorização para editar ≠ para commitar.
 2. **Gate 2 — push.** Commit não autoriza push.
-3. **PR — autorização separada.** Push não autoriza PR. Nunca fazer merge.
+3. **PR — autorização separada; merge = Gate 3.** Push não autoriza PR. O merge é
+   decisão humana no GitHub (Gate 3); Claude nunca faz merge.
+4. **Gate 4 — sync & cleanup pós-merge.** Sincronizar a `main` local e remover as
+   branches já mergeadas (local + remota) só após "sim" explícito. Comandos e caixa
+   de autorização em `rules/14` §12; pausa pedagógica em `rules/16` §2.4.
 
 Nunca commitar direto em `main`. Proibido por padrão (sem autorização
 específica): `git merge`, `git rebase`, `git reset --hard`, `git clean`,
@@ -31,9 +36,9 @@ específica): `git merge`, `git rebase`, `git reset --hard`, `git clean`,
 
 Pausar e consultar o mentorado em: **Análise** (opções + recomendação), **Proposta
 técnica** (plano antes de editar), **Execução/Validação** (resultado antes do
-Gate 1), **Sync & Cleanup** (após merge detectado) e **Fronteira** (ao fechar a
-unidade de trabalho — parar, não encadear para a próxima sem prompt explícito;
-Regra 16 §2.5).
+Gate 1), **Sync & Cleanup** (após merge detectado — pausa pedagógica que antecede o
+Gate 4 da Regra 14) e **Fronteira** (ao fechar a unidade de trabalho — parar, não
+encadear para a próxima sem prompt explícito; Regra 16 §2.5).
 
 ## Edição e evidência
 

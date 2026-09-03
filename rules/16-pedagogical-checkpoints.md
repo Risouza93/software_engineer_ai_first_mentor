@@ -128,9 +128,10 @@ Quer revisar algo antes do commit?
 
 ---
 
-### 2.4. CHECKPOINT TRÊS — Branch Cleanup & Sync
+<!-- ALTERADO 2026-09-03: título ajustado; removida a lista crua de comandos ("AÇÕES DISPONÍVEIS") — a mecânica de Git e a caixa de autorização vivem no Gate 4 da rules/14 §12. Este checkpoint mantém só a decisão pedagógica de quando parar. -->
+### 2.4. CHECKPOINT TRÊS — Sync & Cleanup pós-merge (pausa pedagógica do Gate 4)
 
-**Quando**: Após **merge manual no GitHub** ser detectado.
+**Quando**: Após **merge manual no GitHub** ser detectado — sempre depois do Gate 2 (push), da PR e do merge (Gate 3), nunca antes.
 
 **Como detectar**:
 
@@ -141,41 +142,29 @@ Quer revisar algo antes do commit?
 **O que fazer**:
 
 1. Informar que um merge foi detectado
-2. Oferecer atualizar local
-3. Perguntar sobre limpeza de branches
-4. Parar (🛑)
+2. Explicar ao mentorado *por que* sincronizar e limpar (evitar ramificar de base velha, não acumular branches órfãs)
+3. Parar (🛑)
 
 **O que perguntar**:
 
 ```
 MERGE DETECTADO NO GITHUB:
 
-Branch remota origin/main foi atualizada.
-Seu repo local está sincronizado?
+origin/main foi atualizada. Seu repo local está sincronizado?
 
 BRANCHES ANTIGAS (candidatas a limpeza):
 - feature/pr-5 (local + remota) — merged
 - feature/pr-6 (local) — merged
 - feature/pr-7 (remota) — merged
 
-AÇÕES DISPONÍVEIS:
-
-1. Atualizar main local:
-   $ git fetch origin
-   $ git checkout main
-   $ git pull origin main
-
-2. Limpar branches locais:
-   $ git branch -d feature/pr-5 feature/pr-6
-   
-3. Deletar branches remotas:
-   $ git push origin --delete feature/pr-5 feature/pr-7
-
-Quer que eu execute essas ações?
 Quais branches você quer manter?
 ```
 
 **Não prosseguir** até explícita aprovação.
+
+A execução dos comandos (sync + `git branch -d` + `git push origin --delete`) segue o
+**Gate 4 da `rules/14` §12** — é lá que ficam os comandos exatos e a caixa de
+autorização de Git. Este checkpoint é a pausa pedagógica que antecede esse Gate.
 
 ---
 
@@ -262,14 +251,21 @@ REGRA 14 (Git Safe Publishing)
 REGRA 15 (Execution Report)
 → relatório técnico + pedagógico
 ↓
-REGRA 16 → CHECKPOINT 3 (sync & cleanup)
-→ se merge detectado
+REGRA 14 → GATE 2 (push)
 ↓
-REGRA 14
-→ GATE 2 (push, se houver)
+REGRA 14 → PR (autorização separada)
+↓
+MERGE HUMANO NO GITHUB (Gate 3)
+↓
+REGRA 16 → CHECKPOINT 3 (sync & cleanup — se merge detectado)
+↓
+REGRA 14 → GATE 4 (executa sync + branch -d + push --delete)
 ↓
 REGRA 16 → CHECKPOINT 4 (fronteira — parar ao fechar a unidade de trabalho)
 ```
+
+<!-- ALTERADO 2026-09-03: ordem corrigida — Checkpoint 3 estava antes do Gate 2; passou para depois de push/PR/merge, com o Gate 4 da rules/14 logo a seguir. -->
+Cronologia: o Checkpoint 3 e o Gate 4 acontecem **depois** do merge — nunca antes do push.
 
 **Hierarquia**: se houver conflito entre esta Regra e outra, a **pedagogia não pode ser comprometida** — pausas nunca são opcionais.
 
