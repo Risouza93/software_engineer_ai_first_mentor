@@ -47,6 +47,14 @@ Regra 16 §2.5).
 - **Regra 13:** `memory/CURRENT_CONTEXT.md` é bootstrap (500–1.500 palavras); ler
   primeiro, abrir só o que a tarefa exige, não reauditar o repo.
 
+## Gerenciamento de Memória
+
+### Memory Update Protocol
+- **Hot update:** CURRENT_CONTEXT.md é atualizado no início de cada sessão
+- **Sincronismo:** Se PRs foram mergeadas desde última memory, atualizar status substantivo
+- **Padrão:** Mudança de carona no primeiro commit da sessão
+- **Não delete:** Manter histórico de PRs referenciadas, só marcar status
+
 ## Quando abrir a regra completa
 
 | Abra | Quando |
