@@ -4,8 +4,9 @@ description: >-
   Encerrar com Git qualquer execução que alterou arquivos ou que precise publicar
   alterações já presentes na working tree. Cobre inspeção pré-flight, diff como
   evidência, proposta de commit, e os gates humanos — Gate 1 (staging + commit),
-  Gate 2 (push) e PR (autorização separada) — mais a limpeza pós-merge. Use sempre
-  que for commitar, dar push ou abrir PR neste repositório. Autoridade:
+  Gate 2 (push) e PR (autorização separada; merge = Gate 3) — mais o Gate 4
+  (sync & cleanup pós-merge). Use sempre que for commitar, dar push ou abrir PR
+  neste repositório. Autoridade:
   rules/14-git-safe-publishing.md — em qualquer conflito, a Regra vence.
 ---
 
@@ -138,24 +139,36 @@ git push -u origin <branch>   # se sem upstream; senão: git push
 git status ; git branch -vv ; git log -1 --oneline --decorate
 ```
 
-### 7. 🛑 PR (autorização separada)
+### 7. 🛑 PR (autorização separada) — merge = Gate 3
 
 Push não autoriza PR. Mostrar base / head / título / resumo / arquivos /
 validações / riscos / pendências. Após autorização: `gh pr create ...`, validar
-(`gh pr view`), informar número / URL / estado. **Não** fazer merge.
+(`gh pr view`), informar número / URL / estado. **Não** fazer merge — o merge é o
+**Gate 3**, decisão humana no GitHub.
 
-### 8. Pós-merge (quando o humano mergear)
+### 8. 🛑 GATE 4 — sync & cleanup pós-merge (quando o humano mergear)
+
+Sincronizar a `main` e remover branches **não é automático**. Detectar o merge
+(`git fetch --all --prune`; `main` local atrás de `origin/main`; branches de PRs
+mergeadas ainda presentes), então apresentar a caixa de autorização (merge
+detectado / sync `<hash>→<hash>` / branches locais a remover / branches remotas a
+remover / comandos) e pedir "sim" explícito. Autorização de merge/PR não autoriza
+o cleanup. Após o "sim":
 
 ```powershell
 git fetch --all --prune
 git switch main ; git pull --ff-only origin main
 git merge-base --is-ancestor <tip-da-branch> origin/main   # precheck: deve ser verdadeiro
 git branch -d <branch-merged>          # -d (não -D): recusa se não merged
+git push origin --delete <branch-merged>
+git status ; git branch -vv ; git branch -r
 ```
+
+Manter qualquer branch que o humano pedir. Autoridade: `rules/14` §12.
 
 Reconciliar a memory (regra 13) em novo fluxo se o estado operacional mudou.
 
-Concluído o pós-merge, **parar** — Checkpoint 4 da Regra 16 (Fronteira): não
+Concluído o Gate 4, **parar** — Checkpoint 4 da Regra 16 (Fronteira): não
 iniciar a próxima unidade de trabalho sem novo pedido do humano.
 
 ## Interrupções obrigatórias (parar e consultar o humano)
@@ -184,8 +197,10 @@ sem autorização.
 Deve ser possível responder com evidência:
 o que mudou (`git diff`) · o que foi selecionado (`git diff --staged`) ·
 o que foi gravado (`git show HEAD`) · o que foi publicado (push + upstream) ·
-quem autorizou commit · quem autorizou push · PR (número / estado).
-Working tree limpa e branch com upstream conhecido ao final.
+quem autorizou commit · quem autorizou push · PR (número / estado) ·
+quem autorizou o sync & cleanup pós-merge (Gate 4).
+Working tree limpa e branch com upstream conhecido ao final; após o merge,
+`main` local sincronizada e branches mergeadas removidas (local + remota).
 
 ## Anti-padrões
 

@@ -1,4 +1,5 @@
 <!-- REESCRITO 2026-09-01: README consolidado como referência de engenheiro sênior — estrutura alinhada ao filesystem atual (rules/, instructions/, .claude/skills/, memory/); acréscimo histórico V1–V6 reduzido a uma tabela de rodapé; comentários de edição linha a linha removidos. -->
+<!-- ALTERADO 2026-09-03: Regra 14 agora com Gate 3 (merge) e Gate 4 (sync & cleanup pós-merge); "Gate 3b" informal substituído por "Gate 4". -->
 
 # Software Engineer AI-First Mentor
 
@@ -71,7 +72,7 @@ Precedência interna: 16 > 15 > 14 > 13 > 12.
 | [`00`](rules/00-operating-model.md) | Digest de ~1 página de todo o modelo — porta de entrada de baixo custo de tokens. |
 | [`12`](rules/12-claude-code-artifact-automation.md) | Edição cirúrgica de artefatos, com comentário `<!-- ALTERADO YYYY-MM-DD: … -->` no ponto alterado. |
 | [`13`](rules/13-universal-memory-context-compaction.md) | `memory/` é hot context enxuto (~500–1.500 palavras); `backup_context/` é cold; compactação obrigatória com backup. |
-| [`14`](rules/14-git-safe-publishing.md) | **Gate 1** = staging + commit; **Gate 2** = push; **PR** = autorização separada. Operações destrutivas nunca automáticas. |
+| [`14`](rules/14-git-safe-publishing.md) | **Gate 1** = staging + commit; **Gate 2** = push; **PR** = autorização separada; **Gate 3** = merge (humano); **Gate 4** = sync & cleanup pós-merge. Operações destrutivas nunca automáticas. |
 | [`15`](rules/15-universal-execution-reports.md) | Toda execução significativa gera 1 relatório imutável em `reports/report_task_DD-MM-YY_HH-mm.md`. |
 | [`16`](rules/16-pedagogical-checkpoints.md) | 5 checkpoints pedagógicos obrigatórios; §8 consolida commits por escopo ("1 frase = 1 commit"). |
 
@@ -80,9 +81,9 @@ Precedência interna: 16 > 15 > 14 > 13 > 12.
 1. **Branch** a partir de `main` atualizada.
 2. **Editar** com edição cirúrgica (Regra 12) — mudar o mínimo, comentar o ponto alterado.
 3. **Checkpoints pedagógicos** (Regra 16): pausar em Análise, Proposta, Validação, Sync & Cleanup e Fronteira. Skill: [`.claude/skills/pedagogical-checkpoint`](.claude/skills/pedagogical-checkpoint/SKILL.md).
-4. **Encerrar com Git** pela skill [`.claude/skills/git-closure`](.claude/skills/git-closure/SKILL.md): proposta de commit → **Gate 1** (commit) → **Gate 2** (push) → **PR**.
+4. **Encerrar com Git** pela skill [`.claude/skills/git-closure`](.claude/skills/git-closure/SKILL.md): proposta de commit → **Gate 1** (commit) → **Gate 2** (push) → **PR** → merge humano (**Gate 3**).
 5. **Relatório** pela skill [`.claude/skills/execution-report`](.claude/skills/execution-report/SKILL.md) (Regra 15).
-6. **Pós-merge**: sincronizar `main` (Regra 13 reconcilia a memory), apagar a branch local e — com autorização (Gate 3b) — a remota.
+6. **Pós-merge — Gate 4** (`rules/14` §12): com autorização explícita, sincronizar `main` (Regra 13 reconcilia a memory) e apagar a branch local e a remota.
 7. **Parar** ao fim da unidade de trabalho (Regra 16 §2.5) e pedir o próximo passo.
 
 ## Mapa de diretórios
