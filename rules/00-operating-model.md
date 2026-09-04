@@ -71,4 +71,28 @@ encadear para a próxima sem prompt explícito; Regra 16 §2.5).
 | `rules/16` | conduzir tarefa de mentoria; dúvida sobre quando pausar; relatório pedagógico |
 
 As skills executáveis (`.claude/skills/git-closure`, `execution-report`,
-`pedagogical-checkpoint`) são o procedimento passo a passo dessas regras.
+`pedagogical-checkpoint`, `cc-flow`) são o procedimento passo a passo dessas
+regras.
+
+<!-- CRIADO 2026-09-04: nota registrando por que rules/ fica fora de .claude/skills/ — pergunta recorrente, evitar reabrir a análise do zero. -->
+## Por que `rules/` fica fora de `.claude/skills/`
+
+As diretrizes oficiais da Anthropic para Agent Skills (progressive disclosure;
+`SKILL.md` enxuto, sob ~500 linhas; material de referência bundled dentro da
+pasta da skill) foram checadas contra este design em 04/09/2026 (pesquisa via
+`claude-code-guide`, fontes: Claude Code docs, Agent Skills spec, Claude
+Platform docs). Veredito: o design atual **cumpre** progressive disclosure e o
+limite de tamanho (nenhum `SKILL.md` do projeto passa de 225 linhas). A
+convenção de "bundled resources dentro da pasta" existe para material que
+**pertence a uma skill específica** e para portabilidade de skill como plugin
+— nenhuma das duas se aplica aqui: `rules/12` e `13` não têm skill
+correspondente (citadas direto por README/memory), `rules/14` §12 é citada por
+duas skills diferentes (`git-closure` e `pedagogical-checkpoint`), e nenhuma
+skill deste projeto é portável para outro repositório. Mover as regras para
+dentro de cada pasta de skill duplicaria política canônica — o problema que a
+Regra 13 e a Regra 12 existem para evitar. Decisão: manter `rules/` como fonte
+única de política, skills enxutas citando-a como autoridade. **Ao criar uma
+nova skill, seguir as diretrizes oficiais de Agent Skills** (progressive
+disclosure, `SKILL.md` focado, bundled resources para material que pertence
+só àquela skill) — a exceção de manter política transversal em `rules/`, não
+duplicá-la dentro de pastas de skill, permanece.
