@@ -1,25 +1,28 @@
 <!-- COMPACTADO 2026-09-04: versão anterior (1668 palavras, histórico narrativo de PRs #3–#21) preservada em backup_context/MEMORY_BACKUP_2026-09-04_1426.md (Regra 13 §13). Histórico completo de PRs também disponível em `git log --oneline`. -->
+<!-- ALTERADO 2026-09-04: +skill cc-flow (PENDING #1 resolvido) — ver NOW e ACTIVE RULES. -->
 
 # CURRENT CONTEXT
 
 ## NOW
 
 Projeto **Software Engineering AI First Mentor**. Governança publicada em
-`main` (`1e4ee1e`): regras `00` (digest) + `12–16`, memory operacional, Skills
-executáveis (`git-closure`, `execution-report`, `pedagogical-checkpoint`).
+`main` (`bd9ffa5`): regras `00` (digest) + `12–16`, memory operacional, Skills
+executáveis (`git-closure`, `execution-report`, `pedagogical-checkpoint`,
+`cc-flow`).
 
 Modelo de Gates de Git (Regra 14): Gate 1 (commit), Gate 2 (push), PR
 (autorização separada), Gate 3 (merge humano), Gate 4 (sync & cleanup
 pós-merge, §12). O Checkpoint 3 da Regra 16 §2.4 é a pausa pedagógica que
 antecede o Gate 4.
 
-Mudança mais recente (PRs #21–#22, 04/09): avaliada e fechada a Melhoria 2 do
+Mudança mais recente (PRs #21–#24, 04/09): avaliada e fechada a Melhoria 2 do
 relatório de handoff `qa_automation` (README como "mapa enxuto") — já resolvida
-pela PR #17, sem refatoração a portar; corrigido o único ponto real de
-sobreposição encontrado (diagrama de Arquitetura duplicado entre `README.md` e
-esta memory — agora só no README); memory reconciliada e compactada nesta
-mesma unidade de trabalho. Histórico completo de PRs #3–#22: `git log
---oneline` e `backup_context/MEMORY_BACKUP_2026-09-04_1426.md`.
+pela PR #17, sem refatoração a portar; corrigido o diagrama de Arquitetura
+duplicado entre `README.md` e esta memory; memory reconciliada e compactada
+(1668→679 palavras); e criada a skill `cc-flow` (orquestra as 3 skills
+executáveis existentes, com pré-voo de branch antes de editar). Histórico
+completo de PRs: `git log --oneline` e
+`backup_context/MEMORY_BACKUP_2026-09-04_1426.md`.
 
 Fase atual: nenhum trabalho Git em curso; working tree limpa. Próxima decisão
 em NEXT.
@@ -39,7 +42,9 @@ checkpoints pedagógicos). Precedência: 16 > 15 > 14 > 13 > 12. Tabela de uma
 frase por regra: seção "Regras ativas" do `README.md` — não repetida aqui para
 evitar duplicação. Skills operacionais executáveis (cópia única do
 procedimento): `.claude/skills/git-closure`, `.claude/skills/execution-report`,
-`.claude/skills/pedagogical-checkpoint`.
+`.claude/skills/pedagogical-checkpoint`, e `.claude/skills/cc-flow` (orquestra
+as 3 em ordem para uma unidade de trabalho, com pré-voo de branch antes de
+qualquer edição — criada em 04/09 com evidência de 7+ ciclos reais).
 
 ## GIT STATE
 
@@ -75,17 +80,24 @@ Fonte: `instructions/10-progress-ledger.md`.
 
 ## PENDING
 
-1. `pedagogical-checkpoint` exercitado em 4 fluxos reais (PRs #13, #15, #19,
-   #21). Próximo: reavaliar se um CC Agent / CC Reviewer / skill `cc-flow` se
-   justifica pela evidência gerada.
+1. ~~Reavaliar se um CC Agent / CC Reviewer / skill `cc-flow` se justifica pela
+   evidência de `pedagogical-checkpoint` em 4 fluxos reais~~ —
+   **RESOLVIDO 2026-09-04**: CC Agent e CC Reviewer não se justificam (Agent
+   pularia o degrau "Skills antes de Agents" da evolução decidida; Reviewer
+   não tem evidência nos fluxos analisados, que são de disciplina de processo
+   Git, não de revisão de código). Skill `cc-flow` criada — orquestra
+   `git-closure`/`execution-report`/`pedagogical-checkpoint` sem duplicá-las,
+   com 1 item novo (pré-voo de branch antes de editar) que corrige um
+   incidente real desta sessão (edição em `main` sem branch, corrigido antes
+   do commit).
 2. M004 — comparação Codex × Claude Code continua pendente.
 
 ## NEXT
 
-Ponto de retomada da próxima sessão. Escolher entre (a) reavaliar CC Agent /
-CC Reviewer / skill `cc-flow` com a evidência dos 4 fluxos já executados, ou
-(b) retomar a M008 (loops + `let`, checkpoint do primeiro `for`). Qualquer
-alteração passa por branch + Gates 1/2 + PR.
+Ponto de retomada da próxima sessão: retomar a M008 (loops + `let`,
+checkpoint do primeiro `for`), ou tratar o PENDING #2 (M004). Qualquer
+alteração passa por branch + Gates 1/2 + PR — usar a skill `cc-flow` para
+orquestrar o ciclo completo.
 
 ## LOAD ON DEMAND
 
