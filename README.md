@@ -1,5 +1,6 @@
 <!-- REESCRITO 2026-09-01: README consolidado como referência de engenheiro sênior — estrutura alinhada ao filesystem atual (rules/, instructions/, .claude/skills/, memory/); acréscimo histórico V1–V6 reduzido a uma tabela de rodapé; comentários de edição linha a linha removidos. -->
 <!-- ALTERADO 2026-09-03: Regra 14 agora com Gate 3 (merge) e Gate 4 (sync & cleanup pós-merge); "Gate 3b" informal substituído por "Gate 4". -->
+<!-- ALTERADO 2026-09-04: +skill cc-flow (orquestra git-closure/execution-report/pedagogical-checkpoint) no Fluxo de trabalho prático e no Mapa de diretórios. -->
 
 # Software Engineer AI-First Mentor
 
@@ -78,6 +79,11 @@ Precedência interna: 16 > 15 > 14 > 13 > 12.
 
 ## Fluxo de trabalho prático
 
+Os 7 passos abaixo são orquestrados, em ordem, pela skill
+[`.claude/skills/cc-flow`](.claude/skills/cc-flow/SKILL.md) — que não duplica
+nenhuma das 3 skills citadas, só sequencia e acrescenta o pré-voo de branch do
+passo 1 (checar/criar a branch **antes** de editar).
+
 1. **Branch** a partir de `main` atualizada.
 2. **Editar** com edição cirúrgica (Regra 12) — mudar o mínimo, comentar o ponto alterado.
 3. **Checkpoints pedagógicos** (Regra 16): pausar em Análise, Proposta, Validação, Sync & Cleanup e Fronteira. Skill: [`.claude/skills/pedagogical-checkpoint`](.claude/skills/pedagogical-checkpoint/SKILL.md).
@@ -91,7 +97,7 @@ Precedência interna: 16 > 15 > 14 > 13 > 12.
 ```text
 instructions/            pedagogia: currículo, protocolos, catálogos, progress ledger
 rules/                   governança canônica: 00 (digest) + 12–16
-.claude/skills/          skills operacionais executáveis: git-closure, execution-report, pedagogical-checkpoint
+.claude/skills/          skills operacionais executáveis: git-closure, execution-report, pedagogical-checkpoint, cc-flow (orquestra as 3)
 skills/                  skills pedagógicas (ensinam o humano); skills/operational/ = ponteiros para as executáveis
 agents/                  agents pedagógicos (mentores por domínio)
 memory/                  hot context: CURRENT_CONTEXT.md

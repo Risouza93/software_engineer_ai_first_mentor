@@ -1,3 +1,4 @@
+<!-- ALTERADO 2026-09-04: +cc-flow no catálogo — skill de orquestração fina das outras 3, criada com evidência de 7+ ciclos reais (PRs #13, #15, #19, #21, #22, #23). -->
 # skills/operational/ — Skills operacionais do Claude Code
 
 Estas Skills descrevem **como o Claude Code executa uma responsabilidade
@@ -39,3 +40,4 @@ divergência, vale a versão executável e, acima dela, a Regra canônica.
 | `git-closure-skill.md` | `.claude/skills/git-closure/SKILL.md` | `rules/14-git-safe-publishing.md` | encerrar alterações com Git de forma auditável e com gates humanos |
 | `execution-report-skill.md` | `.claude/skills/execution-report/SKILL.md` | `rules/15-universal-execution-reports.md` | registrar cada execução significativa em `reports/` |
 | `pedagogical-checkpoint-skill.md` | `.claude/skills/pedagogical-checkpoint/SKILL.md` | `rules/16-pedagogical-checkpoints.md` | inserir as 5 pausas pedagógicas obrigatórias em tarefas de mentoria |
+| `cc-flow-skill.md` | `.claude/skills/cc-flow/SKILL.md` | `rules/14` + `rules/15` + `rules/16` (combinadas) | orquestrar as 3 linhas acima, em ordem, numa unidade de trabalho — sem duplicar nenhuma |
