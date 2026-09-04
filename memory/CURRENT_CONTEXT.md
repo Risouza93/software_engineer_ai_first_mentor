@@ -8,6 +8,7 @@
 <!-- ALTERADO 2026-09-01: reconciliação leve pós-merge das PRs #14-#15 — NOW e GIT STATE em main@66c7a94; histórico de PRs até #15. -->
 <!-- ALTERADO 2026-09-01: reconciliação pós-merge das PRs #16-#17 (reconciliação leve; README reescrito como referência de SR) — main@dbba24a. Sessão encerrada por contexto cheio; retomar em sessão nova. -->
 <!-- ALTERADO 2026-09-03: reconciliação pós-merge da PR #19 (Gate 4 pós-merge formalizado na Regra 14 §12; merge = Gate 3; "Gate 3b" aposentado) + commit manual 8db7e04 (moves de legacy/, seção de memory no digest 00) — main@1b2efd7. -->
+<!-- ALTERADO 2026-09-04: PENDING #5 (Melhoria 2 do handoff qa_automation) avaliado e fechado — README já seguia o princípio "mapa enxuto" desde a PR #17; diagrama de Arquitetura duplicado entre README.md e esta memory removido daqui, com ponteiro para o README. -->
 
 # CURRENT CONTEXT
 
@@ -55,12 +56,8 @@ descartados; nunca entraram no Git. Não recriar — a retomada de sessão usa
 
 ## ARCHITECTURE
 
-```text
-PROJETO NO CLAUDE  → mentoria, contexto, regras, decisões pedagógicas
-CLAUDE CODE        → execução local no repositório (análise + alterações cirúrgicas)
-GIT / GITHUB       → evidência, versionamento, colaboração
-HUMANO             → aprova os gates (commit / push / PR) e decisões relevantes
-```
+<!-- ALTERADO 2026-09-04: diagrama removido daqui — duplicava o do README.md quase verbatim (Melhoria 2 do handoff qa_automation, ver PENDING). Versão canônica: seção "Arquitetura" do README.md; memory é hot/operacional, não repositório de diagramas estáticos (Regra 13). -->
+Diagrama canônico: seção "Arquitetura" do [`README.md`](../README.md).
 
 Retomada normal: ler esta memory primeiro, validar Git com comandos baratos,
 abrir só os arquivos que a tarefa exige. Não reauditar o repositório.
@@ -149,9 +146,15 @@ Fonte: `instructions/10-progress-ledger.md` (reconciliado 27/08, já em `main`).
 3. M004 — comparação Codex × Claude Code continua pendente.
 4. Gates humanos (Gate 1 commit, Gate 2 push, PR, Gate 3 merge, Gate 4 pós-merge)
    permanecem obrigatórios.
-5. Melhoria 2 do relatório de handoff do `qa_automation` (README como "mapa
-   enxuto") — **não portada**; decisão separada, avaliar o README deste projeto
-   por si. Ver `legacy/archive/RELATORIO_MELHORIAS_PARA_MENTOR.md`.
+5. ~~Melhoria 2 do relatório de handoff do `qa_automation` (README como "mapa
+   enxuto")~~ — **RESOLVIDO 2026-09-04**: avaliado contra o `README.md` atual
+   (142 linhas, já reescrito na PR #17 antes do handoff existir) — não é
+   refatoração aplicável, o princípio já estava seguido (ponteiros para
+   `instructions/`, nomes reais de diretório, "não reproduz o progresso").
+   Único ponto real de sobreposição — o diagrama de arquitetura duplicado
+   entre README.md e esta memory — corrigido nesta mesma PR (ver
+   `## ARCHITECTURE` acima). Ver
+   `legacy/archive/RELATORIO_MELHORIAS_PARA_MENTOR.md` para o relatório original.
 
 ## NEXT
 
