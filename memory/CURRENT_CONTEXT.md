@@ -9,13 +9,14 @@
 <!-- ALTERADO 2026-09-01: reconciliação pós-merge das PRs #16-#17 (reconciliação leve; README reescrito como referência de SR) — main@dbba24a. Sessão encerrada por contexto cheio; retomar em sessão nova. -->
 <!-- ALTERADO 2026-09-03: reconciliação pós-merge da PR #19 (Gate 4 pós-merge formalizado na Regra 14 §12; merge = Gate 3; "Gate 3b" aposentado) + commit manual 8db7e04 (moves de legacy/, seção de memory no digest 00) — main@1b2efd7. -->
 <!-- ALTERADO 2026-09-04: PENDING #5 (Melhoria 2 do handoff qa_automation) avaliado e fechado — README já seguia o princípio "mapa enxuto" desde a PR #17; diagrama de Arquitetura duplicado entre README.md e esta memory removido daqui, com ponteiro para o README. -->
+<!-- ALTERADO 2026-09-04: reconciliação pós-merge da PR #21 (dedupe do diagrama + fechamento do PENDING #5) — main@5692656. Histórico de PRs até #21. -->
 
 # CURRENT CONTEXT
 
 ## NOW
 
 Projeto **Software Engineering AI First Mentor**. Toda a governança está
-**publicada em `main`** (`1b2efd7`): regras `00` (digest operacional) e `12–16`,
+**publicada em `main`** (`5692656`): regras `00` (digest operacional) e `12–16`,
 memory operacional, Skills executáveis (`git-closure`, `execution-report`,
 `pedagogical-checkpoint`), raiz em `rules/` + `instructions/`.
 
@@ -42,11 +43,15 @@ seção "Gerenciamento de Memória" no digest `rules/00`, entrada do relatório 
 handoff do `qa_automation`); **PR #19** (Gate 4 pós-merge formalizado na
 Regra 14 §12, merge nomeado Gate 3, `rules/16` §2.4 sem comandos crus, diagrama
 §4 corrigido, `"Gate 3b"` → `"Gate 4"` nos arquivos vivos — porte de melhoria do
-projeto irmão `qa_automation`).
+projeto irmão `qa_automation`); PR #20 (reconciliação de memory pós-#19,
+registra o modelo de 4 Gates e o commit manual `8db7e04`); **PR #21** (avalia a
+Melhoria 2 do handoff `qa_automation` — README "mapa enxuto" já resolvido pela
+PR #17, sem porte necessário — e remove o diagrama de Arquitetura duplicado
+entre `README.md` e esta memory, substituído por ponteiro; fecha PENDING #5).
 
 Fase atual: **nenhum trabalho Git em curso; working tree limpa.** O plano de
-exercitar `pedagogical-checkpoint` em fluxos reais segue (PRs #13, #15, #19).
-A próxima decisão está em NEXT.
+exercitar `pedagogical-checkpoint` em fluxos reais segue (PRs #13, #15, #19,
+#21). A próxima decisão está em NEXT.
 
 Nota: em 01/09 apareceram 3 arquivos não rastreados (`guides/QUICK_REFERENCE.md`,
 `guides/SESSION_HANDOFF.md`, `BOOTSTRAP_SESSION.md`), criados por engano numa
@@ -104,16 +109,16 @@ Git                → O QUE TECNICAMENTE MUDOU (evidência)
 
 ## GIT STATE
 
-- `main` local **sincronizada** com `origin/main` em `1b2efd7` (merge da PR #19).
-- Nenhuma branch de trabalho ativa. Branches das PRs #3–#19 mergeadas e removidas
-  **local e remotamente** pelo Gate 4 (antes chamado informalmente "Gate 3b").
+- `main` local **sincronizada** com `origin/main` em `5692656` (merge da PR #21).
+- Nenhuma branch de trabalho ativa. Branches das PRs #3–#21 mergeadas e removidas
+  **local e remotamente** pelo Gate 4.
 - Working tree limpa. Novo trabalho começa com branch a partir de `main` atualizada.
 - Nota operacional: evitar 2ª sessão Git (Claude/VSCode) no mesmo worktree em
   paralelo — em 01/09 isso descartou um Gate 1 não commitado (ver `reports/`).
 - **Checkpoint 4 / Fronteira (Regra 16 §2.5, canônico):** ao fim de uma
   unidade de trabalho (ciclo Git completo ou tarefa sem Git), parar e pedir o
   próximo passo — não encadear.
-- Última reconciliação: 2026-09-03, contra `origin/main@1b2efd7`.
+- Última reconciliação: 2026-09-04, contra `origin/main@5692656`.
 
 ## PEDAGOGICAL STATE
 
